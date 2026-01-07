@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Browse our complete collection of personalized memorial products. Photo blankets, t-shirts, keepsakes, and gift sets to honor your loved ones.">
+    <title>All Products | Eternal Embrace Memorial Products</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .page-hero {
+            padding: calc(var(--header-height) + var(--space-4xl)) 0 var(--space-3xl);
+            background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-cream-dark) 100%);
+            text-align: center;
+        }
+
+        .page-hero__title {
+            margin-bottom: var(--space-md);
+        }
+
+        .page-hero__breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            font-size: var(--text-sm);
+            color: var(--color-gray);
+            margin-bottom: var(--space-lg);
+        }
+
+        .page-hero__breadcrumb a:hover {
+            color: var(--color-primary);
+        }
+
+        .products-section {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: var(--space-2xl);
+        }
+
+        .filters {
+            position: sticky;
+            top: calc(var(--header-height) + var(--space-lg));
+            height: fit-content;
+        }
+
+        .filters__group {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filters__title {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-charcoal);
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 2px solid var(--color-cream-dark);
+        }
+
+        .filters__list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .filters__item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .filters__checkbox {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--color-primary);
+        }
+
+        .filters__label {
+            font-size: var(--text-sm);
+            color: var(--color-gray);
+            cursor: pointer;
+        }
+
+        .filters__count {
+            margin-left: auto;
+            font-size: var(--text-xs);
+            color: var(--color-gray-light);
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .products-count {
+            font-size: var(--text-sm);
+            color: var(--color-gray);
+        }
+
+        .products-sort {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .products-sort label {
+            font-size: var(--text-sm);
+            color: var(--color-gray);
+        }
+
+        .products-sort select {
+            padding: var(--space-sm) var(--space-md);
+            border: 2px solid var(--color-cream-dark);
+            border-radius: var(--radius-md);
+            font-size: var(--text-sm);
+            background: var(--color-white);
+            cursor: pointer;
+        }
+
+        @media (max-width: 1024px) {
+            .products-section {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                position: relative;
+                top: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="../" class="logo">
+                <svg class="logo__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M20 10C20 10 14 15 14 21C14 24.314 16.686 27 20 27C23.314 27 26 24.314 26 21C26 15 20 10 20 10Z"
+                        fill="currentColor" opacity="0.3" />
+                    <circle cx="20" cy="20" r="3" fill="currentColor" />
+                </svg>
+                <span class="logo__text">Eternal <span>Embrace</span></span>
+            </a>
+
+            <nav class="nav">
+                <ul class="nav__list" id="navList">
+                    <li><a href="../" class="nav__link">Home</a></li>
+                    <li><a href="./" class="nav__link nav__link--active">Products</a></li>
+                    <li><a href="gift-sets.html" class="nav__link">Gift Sets</a></li>
+                    <li><a href="../for-funeral-homes/" class="nav__link">For Funeral Homes</a></li>
+                    <li><a href="../about.html" class="nav__link">About</a></li>
+                    <li><a href="../contact.html" class="nav__link">Contact</a></li>
+                </ul>
+
+                <a href="../personalize/" class="btn btn--primary">Personalize Now</a>
+
+                <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <div class="container">
+                <nav class="page-hero__breadcrumb">
+                    <a href="../">Home</a>
+                    <span>/</span>
+                    <span>All Products</span>
+                </nav>
+                <h1 class="page-hero__title">Memorial Products</h1>
+                <p>Personalized keepsakes to honor and remember those you love</p>
+            </div>
+        </section>
+
+        <!-- Products -->
+        <section class="section">
+            <div class="container">
+                <div class="products-section">
+                    <!-- Filters Sidebar -->
+                    <aside class="filters">
+                        <div class="filters__group">
+                            <h3 class="filters__title">Categories</h3>
+                            <ul class="filters__list">
+                                <li class="filters__item">
+                                    <input type="checkbox" class="filters__checkbox" id="cat-all" checked>
+                                    <label class="filters__label" for="cat-all">All Products</label>
+                                </li>
+                                <li class="filters__item">
+                                    <input type="checkbox" class="filters__checkbox" id="cat-home">
+                                    <label class="filters__label" for="cat-home">Home Comfort</label>
+                                    <span class="filters__count">12</span>
+                                </li>
+                                <li class="filters__item">
+                                    <input type="checkbox" class="filters__checkbox" id="cat-wear">
+                                    <label class="filters__label" for="cat-wear">Wearables</label>
+                                    <span class="filters__count">8</span>
+                                </li>
+                                <li class="filters__item">
+                                    <input type="checkbox" class="filters__checkbox" id="cat-keep">
+                                    <label class="filters__label" for="cat-keep">Keepsakes</label>
+                                    <span class="filters__count">15</span>
+                                </li>
+                                <li class="filters__item">
+                                    <input type="checkbox" class="filters__checkbox" id="cat-drink">
+                                    <label class="filters__label" for="cat-drink">Drinkware</label>
+                                    <span class="filters__count">6</span>
+                                </li>
+                                <li class="filters__item">
+                                    <input type="checkbox" class="filters__checkbox" id="cat-stat">
+                                    <label class="filters__label" for="cat-stat">Stationery</label>
+                                    <span class="filters__count">10</span>
+                                </li>
+                                <li class="filters__item">
+                                    <input type="checkbox" class="filters__checkbox" id="cat-gift">
+                                    <label class="filters__label" for="cat-gift">Gift Sets</label>
+                                    <span class="filters__count">5</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="filters__group">
+                            <h3 class="filters__title">Price Range</h3>
+                            <ul class="filters__list">
+                                <li class="filters__item">
+                                    <input type="checkbox" class="filters__checkbox" id="price-1">
+                                    <label class="filters__label" for="price-1">Under $25</label>
+                                    <span class="filters__count">18</span>
+                                </li>
+                                <li class="filters__item">
+                                    <input type="checkbox" class="filters__checkbox" id="price-2">
+                                    <label class="filters__label" for="price-2">$25 - $50</label>
+                                    <span class="filters__count">22</span>
+                                </li>
+                                <li class="filters__item">
+                                    <input type="checkbox" class="filters__checkbox" id="price-3">
+                                    <label class="filters__label" for="price-3">$50 - $100</label>
+                                    <span class="filters__count">15</span>
+                                </li>
+                                <li class="filters__item">
+                                    <input type="checkbox" class="filters__checkbox" id="price-4">
+                                    <label class="filters__label" for="price-4">$100+</label>
+                                    <span class="filters__count">8</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+
+                    <!-- Products Grid -->
+                    <div class="products-main">
+                        <div class="products-header">
+                            <p class="products-count">Showing 56 products</p>
+                            <div class="products-sort">
+                                <label for="sort">Sort by:</label>
+                                <select id="sort">
+                                    <option value="featured">Featured</option>
+                                    <option value="newest">Newest</option>
+                                    <option value="price-low">Price: Low to High</option>
+                                    <option value="price-high">Price: High to Low</option>
+                                    <option value="popular">Most Popular</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="products-grid">
+                            <article class="card">
+                                <div class="card__image">
+                                    <img src="../assets/images/memorial_blanket_1767761174045.png"
+                                        alt="Custom Photo Memorial Blanket">
+                                    <span class="card__badge">Bestseller</span>
+                                </div>
+                                <div class="card__body">
+                                    <p class="card__category">Home Comfort</p>
+                                    <h3 class="card__title">Custom Photo Memorial Blanket</h3>
+                                    <p class="card__description">Soft, premium fleece blanket personalized with your
+                                        cherished photo.</p>
+                                    <p class="card__price">$59.99 <span>– $79.99</span></p>
+                                </div>
+                            </article>
+
+                            <article class="card">
+                                <div class="card__image">
+                                    <img src="../assets/images/diverse_tshirt_1767762157367.png"
+                                        alt="In Loving Memory T-Shirt">
+                                </div>
+                                <div class="card__body">
+                                    <p class="card__category">Wearables</p>
+                                    <h3 class="card__title">In Loving Memory T-Shirt</h3>
+                                    <p class="card__description">Premium memorial shirt with elegant angel wings design.
+                                    </p>
+                                    <p class="card__price">$29.99 <span>– $39.99</span></p>
+                                </div>
+                            </article>
+
+                            <article class="card">
+                                <div class="card__image">
+                                    <img src="../assets/images/memorial_candle_1767761203396.png"
+                                        alt="Personalized Memorial Candle">
+                                    <span class="card__badge">New</span>
+                                </div>
+                                <div class="card__body">
+                                    <p class="card__category">Keepsakes</p>
+                                    <h3 class="card__title">Personalized Memorial Candle</h3>
+                                    <p class="card__description">Beautiful soy wax candle with custom photo and text.
+                                    </p>
+                                    <p class="card__price">$34.99</p>
+                                </div>
+                            </article>
+
+                            <article class="card">
+                                <div class="card__image">
+                                    <img src="../assets/images/diverse_ornament_1767762188044.png"
+                                        alt="Angel Wings Photo Ornament">
+                                </div>
+                                <div class="card__body">
+                                    <p class="card__category">Keepsakes</p>
+                                    <h3 class="card__title">Angel Wings Photo Ornament</h3>
+                                    <p class="card__description">Elegant crystal ornament with angel wings design.</p>
+                                    <p class="card__price">$24.99</p>
+                                </div>
+                            </article>
+
+                            <article class="card">
+                                <div class="card__image">
+                                    <img src="../assets/images/diverse_mug_1767762203779.png"
+                                        alt="Forever in Our Hearts Mug">
+                                </div>
+                                <div class="card__body">
+                                    <p class="card__category">Drinkware</p>
+                                    <h3 class="card__title">Forever in Our Hearts Mug</h3>
+                                    <p class="card__description">Premium ceramic mug with custom photo.</p>
+                                    <p class="card__price">$19.99</p>
+                                </div>
+                            </article>
+
+                            <article class="card">
+                                <div class="card__image">
+                                    <img src="../assets/images/memorial_gift_set_1767761231998.png"
+                                        alt="Comfort Package Gift Set">
+                                    <span class="card__badge">Save 30%</span>
+                                </div>
+                                <div class="card__body">
+                                    <p class="card__category">Gift Sets</p>
+                                    <h3 class="card__title">Comfort Package Gift Set</h3>
+                                    <p class="card__description">Complete memorial bundle with blanket, candle, mug.</p>
+                                    <p class="card__price">$89.99 <span>$129.99</span></p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="../" class="logo">
+                        <svg class="logo__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z"
+                                stroke="currentColor" stroke-width="2" />
+                        </svg>
+                        <span class="logo__text">Eternal <span>Embrace</span></span>
+                    </a>
+                    <p>Creating meaningful memorial products that help families honor and remember their loved ones.</p>
+                </div>
+
+                <div class="footer__column">
+                    <h5>Products</h5>
+                    <ul>
+                        <li><a href="home-comfort.html">Home Comfort</a></li>
+                        <li><a href="wearables.html">Wearables</a></li>
+                        <li><a href="keepsakes.html">Keepsakes</a></li>
+                        <li><a href="gift-sets.html">Gift Sets</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__column">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../for-funeral-homes/">For Funeral Homes</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__column">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2026 Eternal Embrace. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

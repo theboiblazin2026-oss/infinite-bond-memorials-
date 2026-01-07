@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Contact Eternal Embrace for questions about memorial products, custom orders, or partnership inquiries. We're here to help.">
+    <title>Contact Us | Eternal Embrace Memorial Products</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-hero {
+            padding: calc(var(--header-height) + var(--space-4xl)) 0 var(--space-3xl);
+            background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-cream-dark) 100%);
+            text-align: center;
+        }
+
+        .page-hero__title {
+            margin-bottom: var(--space-md);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: var(--space-2xl);
+        }
+
+        .contact-info {
+            background: var(--color-charcoal);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            color: var(--color-white);
+        }
+
+        .contact-info h3 {
+            color: var(--color-white);
+            margin-bottom: var(--space-md);
+        }
+
+        .contact-info>p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: var(--space-xl);
+        }
+
+        .contact-info__items {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .contact-info__item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            padding: var(--space-lg) 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-info__item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-info__item svg {
+            color: var(--color-primary);
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .contact-info__item h4 {
+            color: var(--color-white);
+            font-size: var(--text-sm);
+            margin-bottom: var(--space-xs);
+        }
+
+        .contact-info__item p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: var(--text-sm);
+            margin: 0;
+        }
+
+        .contact-social {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .contact-social a {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all var(--transition-fast);
+        }
+
+        .contact-social a:hover {
+            background: var(--color-primary);
+        }
+
+        .contact-form {
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-form h3 {
+            margin-bottom: var(--space-xl);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+        }
+
+        .faq-section {
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-md);
+        }
+
+        .faq-item {
+            padding: var(--space-lg) 0;
+            border-bottom: 1px solid var(--color-cream-dark);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item h4 {
+            font-size: var(--text-base);
+            margin-bottom: var(--space-sm);
+            color: var(--color-charcoal);
+        }
+
+        .faq-item p {
+            font-size: var(--text-sm);
+            margin: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="/" class="logo">
+                <svg class="logo__icon" viewBox="0 0 40 40" fill="none">
+                    <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z"
+                        stroke="currentColor" stroke-width="2" />
+                    <circle cx="20" cy="20" r="3" fill="currentColor" />
+                </svg>
+                <span class="logo__text">Eternal <span>Embrace</span></span>
+            </a>
+
+            <nav class="nav">
+                <ul class="nav__list" id="navList">
+                    <li><a href="/" class="nav__link">Home</a></li>
+                    <li><a href="products/" class="nav__link">Products</a></li>
+                    <li><a href="products/gift-sets.html" class="nav__link">Gift Sets</a></li>
+                    <li><a href="for-funeral-homes/" class="nav__link">For Funeral Homes</a></li>
+                    <li><a href="about.html" class="nav__link">About</a></li>
+                    <li><a href="contact.html" class="nav__link nav__link--active">Contact</a></li>
+                </ul>
+                <a href="personalize/" class="btn btn--primary">Personalize Now</a>
+                <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="page-hero__title">Contact Us</h1>
+                <p>We're here to help with compassion and care</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Get In Touch</h3>
+                        <p>Have questions about our products or need help with an order? We're here to assist you with
+                            care and understanding.</p>
+
+                        <div class="contact-info__items">
+                            <div class="contact-info__item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>support@eternalembrace.com</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info__item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                </svg>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p>1-800-EMBRACE (362-7223)</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info__item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
+                                </svg>
+                                <div>
+                                    <h4>Hours</h4>
+                                    <p>Monday - Friday: 9am - 6pm EST<br>Saturday: 10am - 4pm EST</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 style="color: var(--color-white); margin-bottom: var(--space-md);">Follow Us</h4>
+                        <div class="contact-social">
+                            <a href="#" aria-label="Facebook">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="Instagram">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="Pinterest">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.182-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.425 1.81-2.425.853 0 1.265.641 1.265 1.408 0 .858-.546 2.14-.828 3.33-.236.995.5 1.807 1.48 1.807 1.778 0 3.144-1.874 3.144-4.58 0-2.393-1.72-4.068-4.177-4.068-2.845 0-4.515 2.135-4.515 4.34 0 .859.331 1.781.745 2.281a.3.3 0 0 1 .069.288l-.278 1.133c-.044.183-.145.223-.335.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.965-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.938.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <form class="contact-form">
+                        <h3>Send Us a Message</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="firstName">First Name *</label>
+                                <input type="text" class="form-input" id="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="lastName">Last Name *</label>
+                                <input type="text" class="form-input" id="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email *</label>
+                            <input type="email" class="form-input" id="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject</label>
+                            <select class="form-input" id="subject">
+                                <option value="">Select a topic</option>
+                                <option value="order">Order Question</option>
+                                <option value="product">Product Information</option>
+                                <option value="custom">Custom Order Request</option>
+                                <option value="shipping">Shipping Inquiry</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message *</label>
+                            <textarea class="form-textarea" id="message" placeholder="How can we help you?"
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn--primary btn--large" style="width: 100%;">Send
+                            Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section section--alt">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-header__subtitle">Common Questions</p>
+                    <h2 class="section-header__title">Frequently Asked Questions</h2>
+                </div>
+
+                <div class="faq-section">
+                    <div class="faq-item">
+                        <h4>How long does it take to receive my order?</h4>
+                        <p>Most personalized items ship within 3-5 business days. Rush processing is available for most
+                            products if you need it sooner.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>What photo quality do you recommend?</h4>
+                        <p>For best results, we recommend photos that are at least 1MB in size and in focus. Our team
+                            will reach out if we have any concerns about photo quality before printing.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>Can I see a proof before my item is printed?</h4>
+                        <p>Yes! We offer digital proofs for an additional $5. Just select the proof option during
+                            checkout and we'll send you a preview before printing.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>What is your return policy?</h4>
+                        <p>We want you to love your memorial products. If you're not completely satisfied, please
+                            contact us within 30 days and we'll make it right with a replacement or refund.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>Do you offer bulk or wholesale pricing?</h4>
+                        <p>Yes! We have special pricing for funeral homes and organizations. Visit our <a
+                                href="for-funeral-homes/" style="color: var(--color-primary);">For Funeral Homes</a>
+                            page to learn more about partnership opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="/" class="logo">
+                        <svg class="logo__icon" viewBox="0 0 40 40" fill="none">
+                            <path
+                                d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z"
+                                stroke="currentColor" stroke-width="2" />
+                        </svg>
+                        <span class="logo__text">Eternal <span>Embrace</span></span>
+                    </a>
+                    <p>Creating meaningful memorial products.</p>
+                </div>
+                <div class="footer__column">
+                    <h5>Products</h5>
+                    <ul>
+                        <li><a href="products/">All Products</a></li>
+                        <li><a href="products/gift-sets.html">Gift Sets</a></li>
+                    </ul>
+                </div>
+                <div class="footer__column">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer__column">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2026 Eternal Embrace. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

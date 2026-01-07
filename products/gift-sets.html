@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Curated memorial gift sets combining blankets, candles, mugs, and keepsakes. Perfect sympathy gifts to comfort grieving families.">
+    <title>Memorial Gift Sets | Eternal Embrace</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .page-hero {
+            padding: calc(var(--header-height) + var(--space-4xl)) 0 var(--space-3xl);
+            background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-cream-dark) 100%);
+            text-align: center;
+        }
+
+        .page-hero__title {
+            margin-bottom: var(--space-md);
+        }
+
+        .page-hero__breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            font-size: var(--text-sm);
+            color: var(--color-gray);
+            margin-bottom: var(--space-lg);
+        }
+
+        .gift-sets-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3xl);
+        }
+
+        .gift-set--reverse {
+            direction: rtl;
+        }
+
+        .gift-set--reverse>* {
+            direction: ltr;
+        }
+
+        .comparison-table {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: var(--space-lg);
+            text-align: center;
+            border-bottom: 1px solid var(--color-cream-dark);
+        }
+
+        .comparison-table th {
+            background: var(--color-cream);
+            font-family: var(--font-heading);
+            font-size: var(--text-lg);
+            font-weight: 600;
+        }
+
+        .comparison-table th:first-child {
+            text-align: left;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .comparison-table .check {
+            color: var(--color-secondary);
+        }
+
+        .comparison-table .price-row td {
+            font-family: var(--font-heading);
+            font-size: var(--text-2xl);
+            font-weight: 600;
+            color: var(--color-charcoal);
+            background: var(--color-cream);
+        }
+
+        .build-your-own {
+            background: linear-gradient(135deg, var(--color-charcoal), var(--color-charcoal-light));
+            border-radius: var(--radius-xl);
+            padding: var(--space-4xl);
+            text-align: center;
+            color: var(--color-white);
+        }
+
+        .build-your-own h2 {
+            color: var(--color-white);
+            margin-bottom: var(--space-md);
+        }
+
+        .build-your-own p {
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto var(--space-xl);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="../" class="logo">
+                <svg class="logo__icon" viewBox="0 0 40 40" fill="none">
+                    <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z"
+                        stroke="currentColor" stroke-width="2" />
+                    <circle cx="20" cy="20" r="3" fill="currentColor" />
+                </svg>
+                <span class="logo__text">Eternal <span>Embrace</span></span>
+            </a>
+
+            <nav class="nav">
+                <ul class="nav__list" id="navList">
+                    <li><a href="../" class="nav__link">Home</a></li>
+                    <li><a href="./" class="nav__link">Products</a></li>
+                    <li><a href="gift-sets.html" class="nav__link nav__link--active">Gift Sets</a></li>
+                    <li><a href="../for-funeral-homes/" class="nav__link">For Funeral Homes</a></li>
+                    <li><a href="../about.html" class="nav__link">About</a></li>
+                    <li><a href="../contact.html" class="nav__link">Contact</a></li>
+                </ul>
+                <a href="../personalize/" class="btn btn--primary">Personalize Now</a>
+                <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <div class="container">
+                <nav class="page-hero__breadcrumb">
+                    <a href="../">Home</a>
+                    <span>/</span>
+                    <a href="./">Products</a>
+                    <span>/</span>
+                    <span>Gift Sets</span>
+                </nav>
+                <h1 class="page-hero__title">Memorial Gift Sets</h1>
+                <p>Thoughtfully curated bundles to bring comfort during difficult times</p>
+            </div>
+        </section>
+
+        <!-- Gift Sets -->
+        <section class="section">
+            <div class="container">
+                <div class="gift-sets-grid">
+
+                    <!-- Comfort Package -->
+                    <div class="gift-set">
+                        <div class="gift-set__images">
+                            <div class="gift-set__image">
+                                <img src="../assets/images/memorial_gift_set_1767761231998.png" alt="Comfort Package">
+                            </div>
+                            <div class="gift-set__image">
+                                <img src="../assets/images/diverse_blanket_1767762141592.png" alt="Photo Blanket">
+                            </div>
+                            <div class="gift-set__image">
+                                <img src="../assets/images/memorial_candle_1767761203396.png" alt="Memorial Candle">
+                            </div>
+                        </div>
+                        <div class="gift-set__content">
+                            <span class="gift-set__badge">Most Popular</span>
+                            <h2 class="gift-set__title">Comfort Package</h2>
+                            <p class="gift-set__description">
+                                Our most beloved gift set. Each item is personalized with your cherished photos and
+                                memories,
+                                bringing warmth and comfort during difficult times.
+                            </p>
+                            <div class="gift-set__includes">
+                                <h5>This package includes:</h5>
+                                <ul>
+                                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <polyline points="20,6 9,17 4,12" />
+                                        </svg>Custom Photo Blanket (50" x 60")</li>
+                                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <polyline points="20,6 9,17 4,12" />
+                                        </svg>Memorial Candle</li>
+                                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <polyline points="20,6 9,17 4,12" />
+                                        </svg>Personalized Mug</li>
+                                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <polyline points="20,6 9,17 4,12" />
+                                        </svg>Sympathy Card</li>
+                                </ul>
+                            </div>
+                            <div class="gift-set__price">
+                                <span class="gift-set__price-current">$89.99</span>
+                                <span class="gift-set__price-original">$129.99</span>
+                            </div>
+                            <a href="#" class="btn btn--primary btn--large">Personalize This Set</a>
+                        </div>
+                    </div>
+
+                    <!-- Keepsake Collection -->
+                    <div class="gift-set gift-set--reverse">
+                        <div class="gift-set__images">
+                            <div class="gift-set__image">
+                                <img src="../assets/images/diverse_ornament_1767762188044.png" alt="Photo Ornament">
+                            </div>
+                            <div class="gift-set__image">
+                                <img src="../assets/images/memorial_candle_1767761203396.png" alt="Candle">
+                            </div>
+                            <div class="gift-set__image">
+                                <img src="../assets/images/diverse_mug_1767762203779.png" alt="Mug">
+                            </div>
+                        </div>
+                        <div class="gift-set__content">
+                            <span class="gift-set__badge">Best Value</span>
+                            <h2 class="gift-set__title">Keepsake Collection</h2>
+                            <p class="gift-set__description">
+                                A beautiful collection of cherished keepsakes. Perfect for displaying and treasuring
+                                precious memories throughout the year.
+                            </p>
+                            <div class="gift-set__includes">
+                                <h5>This collection includes:</h5>
+                                <ul>
+                                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <polyline points="20,6 9,17 4,12" />
+                                        </svg>Angel Wings Photo Ornament</li>
+                                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <polyline points="20,6 9,17 4,12" />
+                                        </svg>Crystal Photo Block</li>
+                                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <polyline points="20,6 9,17 4,12" />
+                                        </svg>Memorial Bookmark Set (3)</li>
+                                </ul>
+                            </div>
+                            <div class="gift-set__price">
+                                <span class="gift-set__price-current">$45.99</span>
+                                <span class="gift-set__price-original">$64.99</span>
+                            </div>
+                            <a href="#" class="btn btn--primary btn--large">Personalize This Set</a>
+                        </div>
+                    </div>
+
+                    <!-- Remembrance Bundle -->
+                    <div class="gift-set">
+                        <div class="gift-set__images">
+                            <div class="gift-set__image">
+                                <img src="../assets/images/diverse_tshirt_1767762157367.png" alt="Memorial T-Shirt">
+                            </div>
+                            <div class="gift-set__image">
+                                <img src="../assets/images/memorial_mug_1767761245643.png" alt="Photo Mug">
+                            </div>
+                            <div class="gift-set__image">
+                                <img src="../assets/images/memorial_ornament_1767761217557.png" alt="Ornament">
+                            </div>
+                        </div>
+                        <div class="gift-set__content">
+                            <span class="gift-set__badge">New</span>
+                            <h2 class="gift-set__title">Remembrance Bundle</h2>
+                            <p class="gift-set__description">
+                                Wear their memory close to your heart. This bundle includes wearable
+                                and everyday items to keep their spirit with you always.
+                            </p>
+                            <div class="gift-set__includes">
+                                <h5>This bundle includes:</h5>
+                                <ul>
+                                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <polyline points="20,6 9,17 4,12" />
+                                        </svg>In Loving Memory T-Shirt</li>
+                                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <polyline points="20,6 9,17 4,12" />
+                                        </svg>Forever in Our Hearts Mug</li>
+                                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <polyline points="20,6 9,17 4,12" />
+                                        </svg>Photo Keychain</li>
+                                </ul>
+                            </div>
+                            <div class="gift-set__price">
+                                <span class="gift-set__price-current">$55.99</span>
+                                <span class="gift-set__price-original">$74.99</span>
+                            </div>
+                            <a href="#" class="btn btn--primary btn--large">Personalize This Set</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Table -->
+        <section class="section section--alt">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-header__title">Compare Gift Sets</h2>
+                    <p class="section-header__description">Find the perfect package for your needs</p>
+                </div>
+
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Includes</th>
+                                <th>Keepsake Collection</th>
+                                <th>Remembrance Bundle</th>
+                                <th>Comfort Package</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Photo Blanket</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td class="check">✓</td>
+                            </tr>
+                            <tr>
+                                <td>Memorial T-Shirt</td>
+                                <td>—</td>
+                                <td class="check">✓</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>Memorial Candle</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td class="check">✓</td>
+                            </tr>
+                            <tr>
+                                <td>Photo Mug</td>
+                                <td>—</td>
+                                <td class="check">✓</td>
+                                <td class="check">✓</td>
+                            </tr>
+                            <tr>
+                                <td>Photo Ornament</td>
+                                <td class="check">✓</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>Crystal Photo Block</td>
+                                <td class="check">✓</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>Bookmark Set</td>
+                                <td class="check">✓</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>Photo Keychain</td>
+                                <td>—</td>
+                                <td class="check">✓</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>Sympathy Card</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td class="check">✓</td>
+                            </tr>
+                            <tr class="price-row">
+                                <td>Price</td>
+                                <td>$45.99</td>
+                                <td>$55.99</td>
+                                <td>$89.99</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Build Your Own -->
+        <section class="section">
+            <div class="container">
+                <div class="build-your-own">
+                    <h2>Build Your Own Gift Set</h2>
+                    <p>
+                        Can't find exactly what you're looking for? Create a custom gift set
+                        by selecting individual items and we'll package them beautifully together.
+                    </p>
+                    <a href="./" class="btn btn--primary btn--large">Browse All Products</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="../" class="logo">
+                        <svg class="logo__icon" viewBox="0 0 40 40" fill="none">
+                            <path
+                                d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z"
+                                stroke="currentColor" stroke-width="2" />
+                        </svg>
+                        <span class="logo__text">Eternal <span>Embrace</span></span>
+                    </a>
+                    <p>Creating meaningful memorial products.</p>
+                </div>
+                <div class="footer__column">
+                    <h5>Products</h5>
+                    <ul>
+                        <li><a href="home-comfort.html">Home Comfort</a></li>
+                        <li><a href="wearables.html">Wearables</a></li>
+                        <li><a href="gift-sets.html">Gift Sets</a></li>
+                    </ul>
+                </div>
+                <div class="footer__column">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer__column">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2026 Eternal Embrace. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>
