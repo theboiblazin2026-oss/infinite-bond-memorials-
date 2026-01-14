@@ -4,17 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/images/logo-red.png">
     <meta name="description"
         content="Browse our complete collection of personalized memorial products. Photo blankets, t-shirts, keepsakes, and gift sets to honor your loved ones.">
-    <title>All Products | Eternal Embrace Memorial Products</title>
+    <title>All Products | Infinite Bond Memorial Products</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://app.snipcart.com">
+    <link rel="preconnect" href="https://cdn.snipcart.com">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.css" />
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Google Analytics (Uncomment and add ID to enable) -->
+    <!-- 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script> 
+    -->
     <style>
         .page-hero {
             padding: calc(var(--header-height) + var(--space-4xl)) 0 var(--space-3xl);
@@ -149,29 +164,46 @@
     <!-- Header -->
     <header class="header" id="header">
         <div class="container header__inner">
-            <a href="../" class="logo">
-                <svg class="logo__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <path
-                        d="M20 10C20 10 14 15 14 21C14 24.314 16.686 27 20 27C23.314 27 26 24.314 26 21C26 15 20 10 20 10Z"
-                        fill="currentColor" opacity="0.3" />
-                    <circle cx="20" cy="20" r="3" fill="currentColor" />
-                </svg>
-                <span class="logo__text">Eternal <span>Embrace</span></span>
+            <a href="/" class="logo">
+                <img src="../assets/images/logo-red.png" alt="Infinite Bond Logo" class="logo__icon">
+                <span class="logo__text">Infinite <span>Bond</span></span>
             </a>
 
             <nav class="nav">
                 <ul class="nav__list" id="navList">
-                    <li><a href="../" class="nav__link">Home</a></li>
-                    <li><a href="./" class="nav__link nav__link--active">Products</a></li>
-                    <li><a href="gift-sets.html" class="nav__link">Gift Sets</a></li>
-                    <li><a href="../for-funeral-homes/" class="nav__link">For Funeral Homes</a></li>
-                    <li><a href="../about.html" class="nav__link">About</a></li>
-                    <li><a href="../contact.html" class="nav__link">Contact</a></li>
+                    <li><a href="/" class="nav__link">Home</a></li>
+                    <li><a href="/products/" class="nav__link nav__link--active">Products</a></li>
+                    <li><a href="/products/gift-sets.html" class="nav__link">Gift Sets</a></li>
+                    <li><a href="/for-funeral-homes/" class="nav__link">For Funeral Homes</a></li>
+                    <li><a href="/about.html" class="nav__link">About</a></li>
+                    <li><a href="/contact.html" class="nav__link">Contact</a></li>
+                    <!-- Cart button for mobile -->
+                    <li class="snipcart-checkout nav__link nav__link--cart">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="snipcart-items-count">0</span>
+                    </li>
                 </ul>
 
-                <a href="../personalize/" class="btn btn--primary">Personalize Now</a>
+                </ul>
+
+                </ul>
+
+                <a href="/personalize/" class="btn btn--primary">Personalize Now</a>
+
+                <!-- Desktop Cart -->
+                <button class="snipcart-checkout btn-cart" aria-label="Cart">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="snipcart-items-count">0</span>
+                </button>
 
                 <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
                     <span></span>
@@ -297,7 +329,19 @@
                                     <h3 class="card__title">Custom Photo Memorial Blanket</h3>
                                     <p class="card__description">Soft, premium fleece blanket personalized with your
                                         cherished photo.</p>
-                                    <p class="card__price">$59.99 <span>– $79.99</span></p>
+                                    <p class="card__price">$64.99</p>
+                                    <p class="tax-disclaimer">*Sales
+                                        tax calculated at checkout</p>
+                                    <button class="btn btn--secondary snipcart-add-item" data-item-id="memorial-blanket"
+                                        data-item-price="64.99" data-item-url="/products/"
+                                        data-item-description="Soft, premium fleece blanket personalized with your cherished photo"
+                                        data-item-image="../assets/images/memorial_blanket_1767761174045.png"
+                                        data-item-name="Custom Photo Memorial Blanket"
+                                        data-item-custom1-name="Upload Photo" data-item-custom1-type="file"
+                                        data-item-custom1-required="true" data-item-custom2-name="Processing Time"
+                                        data-item-custom2-options="Standard|Rush Order (Expedited) [+$15]">
+                                        Personalize & Add to Cart
+                                    </button>
                                 </div>
                             </article>
 
@@ -311,7 +355,18 @@
                                     <h3 class="card__title">In Loving Memory T-Shirt</h3>
                                     <p class="card__description">Premium memorial shirt with elegant angel wings design.
                                     </p>
-                                    <p class="card__price">$29.99 <span>– $39.99</span></p>
+                                    <p class="card__price">$29.99</p>
+                                    <p class="tax-disclaimer">*Sales tax calculated at checkout</p>
+                                    <button class="btn btn--secondary snipcart-add-item" data-item-id="memorial-tshirt"
+                                        data-item-price="29.99" data-item-url="/products/"
+                                        data-item-description="Premium memorial shirt with elegant angel wings design"
+                                        data-item-image="../assets/images/diverse_tshirt_1767762157367.png"
+                                        data-item-name="In Loving Memory T-Shirt" data-item-custom1-name="Size"
+                                        data-item-custom1-options="S|M|L|XL|2XL" data-item-custom1-required="true"
+                                        data-item-custom2-name="Processing Time"
+                                        data-item-custom2-options="Standard|Rush Order (Expedited) [+$15]">
+                                        Select Size
+                                    </button>
                                 </div>
                             </article>
 
@@ -327,6 +382,17 @@
                                     <p class="card__description">Beautiful soy wax candle with custom photo and text.
                                     </p>
                                     <p class="card__price">$34.99</p>
+                                    <p class="tax-disclaimer">*Sales tax calculated at checkout</p>
+                                    <button class="btn btn--secondary snipcart-add-item" data-item-id="memorial-candle"
+                                        data-item-price="34.99" data-item-url="/products/"
+                                        data-item-description="Beautiful soy wax candle with custom photo and text"
+                                        data-item-image="../assets/images/memorial_candle_1767761203396.png"
+                                        data-item-name="Personalized Memorial Candle"
+                                        data-item-custom1-name="Upload Photo" data-item-custom1-type="file"
+                                        data-item-custom2-name="Processing Time"
+                                        data-item-custom2-options="Standard|Rush Order (Expedited) [+$15]">
+                                        Personalize
+                                    </button>
                                 </div>
                             </article>
 
@@ -340,6 +406,17 @@
                                     <h3 class="card__title">Angel Wings Photo Ornament</h3>
                                     <p class="card__description">Elegant crystal ornament with angel wings design.</p>
                                     <p class="card__price">$24.99</p>
+                                    <p class="tax-disclaimer">*Sales tax calculated at checkout</p>
+                                    <button class="btn btn--secondary snipcart-add-item" data-item-id="angel-ornament"
+                                        data-item-price="24.99" data-item-url="/products/"
+                                        data-item-description="Elegant crystal ornament with angel wings design"
+                                        data-item-image="../assets/images/diverse_ornament_1767762188044.png"
+                                        data-item-name="Angel Wings Photo Ornament"
+                                        data-item-custom1-name="Upload Photo" data-item-custom1-type="file"
+                                        data-item-custom2-name="Processing Time"
+                                        data-item-custom2-options="Standard|Rush Order (Expedited) [+$15]">
+                                        Add to Cart
+                                    </button>
                                 </div>
                             </article>
 
@@ -353,6 +430,16 @@
                                     <h3 class="card__title">Forever in Our Hearts Mug</h3>
                                     <p class="card__description">Premium ceramic mug with custom photo.</p>
                                     <p class="card__price">$19.99</p>
+                                    <p class="tax-disclaimer">*Sales tax calculated at checkout</p>
+                                    <button class="btn btn--secondary snipcart-add-item" data-item-id="memorial-mug"
+                                        data-item-price="19.99" data-item-url="/products/"
+                                        data-item-description="Premium ceramic mug with custom photo"
+                                        data-item-image="../assets/images/diverse_mug_1767762203779.png"
+                                        data-item-name="Forever in Our Hearts Mug" data-item-custom1-name="Upload Photo"
+                                        data-item-custom1-type="file" data-item-custom2-name="Processing Time"
+                                        data-item-custom2-options="Standard|Rush Order (Expedited) [+$15]">
+                                        Personalize
+                                    </button>
                                 </div>
                             </article>
 
@@ -366,7 +453,18 @@
                                     <p class="card__category">Gift Sets</p>
                                     <h3 class="card__title">Comfort Package Gift Set</h3>
                                     <p class="card__description">Complete memorial bundle with blanket, candle, mug.</p>
-                                    <p class="card__price">$89.99 <span>$129.99</span></p>
+                                    <p class="card__price">$99.99 <span>$129.99</span></p>
+                                    <p class="tax-disclaimer">*Sales
+                                        tax calculated at checkout</p>
+                                    <button class="btn btn--secondary snipcart-add-item" data-item-id="comfort-gift-set"
+                                        data-item-price="99.99" data-item-url="/products/"
+                                        data-item-description="Complete memorial bundle with blanket, candle, mug"
+                                        data-item-image="../assets/images/memorial_gift_set_1767761231998.png"
+                                        data-item-name="Comfort Package Gift Set"
+                                        data-item-custom1-name="Processing Time"
+                                        data-item-custom1-options="Standard|Rush Order (Expedited) [+$15]">
+                                        View Details
+                                    </button>
                                 </div>
                             </article>
                         </div>
@@ -382,12 +480,8 @@
             <div class="footer__grid">
                 <div class="footer__brand">
                     <a href="../" class="logo">
-                        <svg class="logo__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z"
-                                stroke="currentColor" stroke-width="2" />
-                        </svg>
-                        <span class="logo__text">Eternal <span>Embrace</span></span>
+                        <img src="../assets/images/logo-red.png" alt="Infinite Bond Logo" class="logo__icon">
+                        <span class="logo__text">Infinite <span>Bond</span></span>
                     </a>
                     <p>Creating meaningful memorial products that help families honor and remember their loved ones.</p>
                 </div>
@@ -398,6 +492,7 @@
                         <li><a href="home-comfort.html">Home Comfort</a></li>
                         <li><a href="wearables.html">Wearables</a></li>
                         <li><a href="keepsakes.html">Keepsakes</a></li>
+                        <li><a href="pet-memorials.html">Pet Memorials</a></li>
                         <li><a href="gift-sets.html">Gift Sets</a></li>
                     </ul>
                 </div>
@@ -408,26 +503,48 @@
                         <li><a href="../about.html">About Us</a></li>
                         <li><a href="../for-funeral-homes/">For Funeral Homes</a></li>
                         <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="../policies.html">Store Policies</a></li>
                     </ul>
                 </div>
 
                 <div class="footer__column">
                     <h5>Support</h5>
                     <ul>
-                        <li><a href="#">Shipping Info</a></li>
-                        <li><a href="#">Returns</a></li>
-                        <li><a href="#">Help Center</a></li>
+                        <li><a href="../track-order.html">Track Order</a></li>
+                        <li><a href="../policies.html#shipping">Shipping Info</a></li>
+                        <li><a href="../policies.html#returns">Returns</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer__bottom">
-                <p class="footer__copyright">© 2026 Eternal Embrace. All rights reserved.</p>
+                <p class="footer__copyright">© 2026 Infinite Bond. All rights reserved.</p>
+                <div class="footer__trust">
+                    <span class="footer__secure-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        Secure SSL Encryption
+                    </span>
+                    <span class="footer__payment-methods">
+                        <svg class="footer__payment-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="5" width="20" height="14" rx="2" />
+                            <line x1="2" y1="10" x2="22" y2="10" />
+                        </svg>
+                        Secure Payments
+                    </span>
+                </div>
             </div>
         </div>
     </footer>
 
     <script src="../js/main.js"></script>
+    <script async src="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.js"></script>
+    <div hidden id="snipcart" data-api-key="NDc4N2JjYmEtNzlmMi00YmIxLWEyMDAtN2I4NmIwZTRkZDEzNjM5MDM5MjkyMDY0MTMxMDYw"
+        data-config-modal-style="side"></div>
 </body>
 
 </html>

@@ -1,0 +1,29 @@
+# Netlify Build Configuration
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # No build command needed for static HTML site
+  publish = "."
+
+# Netlify Functions configuration
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Redirects (if needed)
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/products"
+  to = "/products/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/for-funeral-homes"
+  to = "/for-funeral-homes/index.html"
+  status = 200
+
+# Headers are defined in _headers file

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/images/logo-red.png">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Page Not Found | Infinite Bond</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--space-2xl);
+            background: linear-gradient(135deg, var(--color-cream) 0%, #f5f3ef 100%);
+        }
+
+        .error-content {
+            max-width: 500px;
+        }
+
+        .error-code {
+            font-family: var(--font-heading);
+            font-size: 8rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: var(--space-md);
+        }
+
+        .error-title {
+            font-family: var(--font-heading);
+            font-size: var(--text-3xl);
+            color: var(--color-charcoal);
+            margin-bottom: var(--space-md);
+        }
+
+        .error-message {
+            color: var(--color-gray);
+            margin-bottom: var(--space-xl);
+            line-height: 1.6;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="error-page">
+        <div class="error-content">
+            <div class="error-code">404</div>
+            <h1 class="error-title">Page Not Found</h1>
+            <p class="error-message">
+                We're sorry, but the page you're looking for doesn't exist.
+                It may have been moved or deleted.
+            </p>
+            <div class="error-actions">
+                <a href="/" class="btn btn--primary">Return Home</a>
+                <a href="/contact.html" class="btn btn--outline">Contact Us</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

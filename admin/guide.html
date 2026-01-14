@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Integration Guide | Infinite Bond</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body {
+            background: #f3f4f6;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--color-gold);
+            padding-bottom: 1rem;
+        }
+
+        h2 {
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-charcoal);
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+
+        code {
+            font-family: monospace;
+        }
+
+        .step-list {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-list li {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 1rem;
+        }
+
+        .step-list li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .step-list--start-3 {
+            counter-reset: step 3;
+        }
+
+        .note {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 1rem 0;
+            font-size: 0.9em;
+            border-left: 4px solid #ffeeba;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .btn-back:hover {
+            text-decoration: underline;
+        }
+
+        .badge-important {
+            background: var(--color-primary);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.8em;
+            vertical-align: middle;
+        }
+
+        .success-msg {
+            text-align: center;
+            margin-top: 2rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--color-success);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <a href="index.html" class="btn-back">&larr; Back to Dashboard</a>
+
+        <div class="card">
+            <h1>Free "Forever" Integration Guide</h1>
+            <p>Connect Snipcart Orders directly to Google Sheets using Google Apps Script.</p>
+
+            <div class="note">
+                <strong>Why this is great:</strong> It is 100% free, has no monthly limits, and updates your sheet
+                instantly.
+            </div>
+
+            <h2>Part 1: Prepare the Google Sheet</h2>
+            <ol class="step-list">
+                <li>Create a new <strong>Google Sheet</strong>.</li>
+                <li>Name it <code>Infinite Bond Orders</code>.</li>
+                <li>In <strong>Row 1</strong>, copy-paste these exact headers into columns A through F:
+                    <ul>
+                        <li><strong>A:</strong> Order ID</li>
+                        <li><strong>B:</strong> Date</li>
+                        <li><strong>C:</strong> Customer Name</li>
+                        <li><strong>D:</strong> Email</li>
+                        <li><strong>E:</strong> Product Name</li>
+                        <li><strong>F:</strong> Status (Type "Pending" in row 2 as a placeholder)</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h2>Part 2: Add the Script</h2>
+            <ol class="step-list">
+                <li>In your Google Sheet, click <strong>Extensions</strong> (top menu) > <strong>Apps Script</strong>.
+                </li>
+                <li>Delete any code currently in the editor.</li>
+                <li><strong>Copy and Paste</strong> the code below exactly:</li>
+            </ol>
+
+            <pre><code>function doPost(e) {
+  try {
+    var jsonString = e.postData.contents;
+    var data = JSON.parse(jsonString);
+    var order = data.content;
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    
+    var orderId = order.invoiceNumber;
+    var date = new Date(order.creationDate).toLocaleDateString();
+    var customer = order.billingAddress.fullName;
+    var email = order.email;
+    
+    var items = order.items;
+    for (var i = 0; i < items.length; i++) {
+      var product = items[i].name;
+      var customization = "";
+      var imageUrl = "";
+      
+      // Extract Custom Fields (Text vs Files)
+      if (items[i].customFields && items[i].customFields.length > 0) {
+        items[i].customFields.forEach(function(field) {
+            // If it's a file upload (starts with http)
+            if (field.value.toString().indexOf("http") === 0) {
+                imageUrl = field.value;
+                customization += "[PHOTO ATTACHED] ";
+            } else {
+                // Regular text (Name, Note, etc)
+                customization += field.name + ": " + field.value + " | ";
+            }
+        });
+      }
+      
+      // Append Row: Order ID | Date | Customer | Email | Product | Details | Image Link | Status
+      sheet.appendRow([orderId, date, customer, email, product, customization, imageUrl, "Pending Review"]);
+    }
+    
+    return ContentService.createTextOutput("Success");
+    
+  } catch (error) {
+    Logger.log(error);
+    return ContentService.createTextOutput("Error").setMimeType(ContentService.MimeType.TEXT);
+  }
+}</code></pre>
+
+            <ol class="step-list step-list--start-3">
+                <li>Click the <strong>Save</strong> icon (floppy disk). Name the project "SnipcartHook".</li>
+            </ol>
+
+            <h2>Part 3: Deploy as Web App</h2>
+            <ol class="step-list">
+                <li>Click the blue <strong>Deploy</strong> button (top right) > <strong>New deployment</strong>.</li>
+                <li><strong>Select type:</strong> Gear icon ⚙️ > <strong>Web app</strong>.</li>
+                <li><strong>Description:</strong> "Order Listener".</li>
+                <li><strong>Execute as:</strong> <code>Me (your email)</code>.</li>
+                <li><strong>Who has access:</strong> <strong>Anyone</strong> (Critical!).</li>
+                <li>Click <strong>Deploy</strong>.</li>
+                <li>Authorize access if asked (Review permissions > Choose account > Advanced > Go to SnipcartHook
+                    (unsafe) > Allow).</li>
+                <li><strong>Copy</strong> the <strong>Web app URL</strong>.</li>
+            </ol>
+
+            <h2>Part 4: Connect to Snipcart</h2>
+            <ol class="step-list">
+                <li>Log in to <strong>Snipcart Dashboard</strong>.</li>
+                <li>Go to <strong>Settings</strong> > <strong>Webhooks</strong>.</li>
+                <li>Click <strong>Add a new webhook</strong>.</li>
+                <li><strong>Url:</strong> Paste your Google Script URL.</li>
+                <li><strong>Events:</strong> Check <code>order.completed</code>.</li>
+                <li>Click <strong>Save</strong>.</li>
+            </ol>
+
+            <h2>Part 5: Dashboard Setup</h2>
+            <ol class="step-list">
+                <li>Go back to your Google Sheet.</li>
+                <li><strong>File > Share > Publish to web</strong>.</li>
+                <li><span class="badge-important">IMPORTANT</span> In the box that appears, click the
+                    <strong>Embed</strong> tab (next to "Link").
+                </li>
+                <li>Click <strong>Publish</strong>.</li>
+                <li>Copy the code that starts with <code>&lt;iframe...</code>.</li>
+                <li>Go to your <a href="index.html">Admin Dashboard</a>.</li>
+                <li>Click <strong>⚙️ Settings</strong> in the Tracker card and paste the code.</li>
+            </ol>
+
+            <p class="success-msg">You are all set!</p>
+        </div>
+    </div>
+</body>
+
+</html>

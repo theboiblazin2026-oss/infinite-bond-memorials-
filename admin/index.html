@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Mission Control | Infinite Bond</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        :root {
+            --color-admin-bg: #f3f4f6;
+            --color-admin-card: #ffffff;
+            --color-admin-text: #1f2937;
+            --color-status-pending: #f59e0b;
+            --color-status-processing: #3b82f6;
+            --color-status-shipped: #10b981;
+        }
+
+        body {
+            background-color: var(--color-admin-bg);
+        }
+
+        .admin-header {
+            background: var(--color-charcoal);
+            color: white;
+            padding: var(--space-lg) 0;
+            margin-bottom: var(--space-2xl);
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-xl);
+            padding-bottom: var(--space-4xl);
+        }
+
+        .admin-card {
+            background: var(--color-admin-card);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-card__title {
+            font-family: var(--font-heading);
+            font-size: var(--text-2xl);
+            color: var(--color-charcoal);
+            margin-bottom: var(--space-lg);
+            border-bottom: 2px solid var(--color-gold);
+            padding-bottom: var(--space-xs);
+        }
+
+        .vendor-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .vendor-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-md);
+            border-bottom: 1px solid #e5e7eb;
+            transition: background 0.2s;
+        }
+
+        .vendor-item:hover {
+            background: #f9fafb;
+        }
+
+        .vendor-name {
+            font-weight: 600;
+        }
+
+        .vendor-products {
+            font-size: var(--text-sm);
+            color: var(--color-gray);
+        }
+
+        .btn-dashboard {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            margin-bottom: var(--space-sm);
+        }
+
+        .sop-checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sop-step {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+            align-items: flex-start;
+        }
+
+        .sop-number {
+            background: var(--color-gold);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .admin-header__content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            /* Fix: Prevent links from touching */
+        }
+
+        .admin-title {
+            margin-bottom: 2rem;
+        }
+
+        .admin-text {
+            margin-bottom: 1.5rem;
+        }
+
+        .admin-note {
+            margin-top: 1rem;
+            font-size: 0.9em;
+            color: gray;
+        }
+
+        .btn-dashboard--danger {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+
+        .btn-dashboard--danger:hover {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .mb-sm {
+            margin-bottom: 0.5rem;
+        }
+
+        .mt-sm {
+            margin-top: 1rem;
+        }
+
+        .flex-col-gap {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .admin-footer {
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--color-gray);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="admin-header">
+        <div class="container">
+            <div class="admin-header__content">
+                <div class="logo">
+                    <span class="logo__text text-white">Infinite <span>Bond</span></span>
+                </div>
+                <div>Mission Control</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="admin-title">Fulfillment Dashboard</h1>
+
+        <div class="admin-grid">
+
+            <!-- 1. Incoming Orders -->
+            <div class="admin-card">
+                <h2 class="admin-card__title">1. Incoming Orders</h2>
+                <div
+                    style="background:var(--color-primary); color:white; padding:1rem; border-radius:4px; margin-bottom:1rem;">
+                    <strong>Recommended:</strong> Use the <strong>Order Tracker</strong> below to manage orders.
+                </div>
+                <p class="admin-text">For full details, use the official dashboard.</p>
+                <a href="https://app.snipcart.com/dashboard/orders" target="_blank" rel="noopener"
+                    class="btn btn--primary btn-dashboard">
+                    Open Snipcart Dashboard
+                </a>
+            </div>
+
+            <!-- 2. Funeral Home Orders (B2B) -->
+            <div class="admin-card admin-card--border-gold">
+                <h2 class="admin-card__title">2. Funeral Home B2B <span class="badge-priority">PRIORITY</span></h2>
+                <p class="mb-sm"><strong>High-Value Partners.</strong> Process these immediately.</p>
+
+                <div class="flex-col-gap">
+                    <div style="background:#f9f9f9; padding:10px; border-radius:4px;">
+                        <strong>Quote Requests:</strong>
+                        <a href="https://app.snipcart.com/dashboard/orders" target="_blank" rel="noopener"
+                            class="link-arrow">Process
+                            Quotes in Snipcart &rarr;</a>
+                    </div>
+                    <div style="background:#f9f9f9; padding:10px; border-radius:4px;">
+                        <strong>New Inquiries:</strong>
+                        <a href="https://app.netlify.com" target="_blank" rel="noopener" class="link-arrow">View Leads
+                            in Netlify
+                            &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. LIVE ORDER TRACKER (Google Sheet Embed) -->
+            <div class="admin-card admin-card--border-primary admin-card--full-width">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h2 class="admin-card__title" style="margin-bottom:0; border:none;">3. Live Order Tracker</h2>
+                    <button onclick="toggleTrackerSettings()"
+                        style="font-size:0.8rem; text-decoration:underline; background:none; border:none; cursor:pointer; color:var(--color-primary);">⚙️
+                        Settings</button>
+                </div>
+
+                <!-- Display Area -->
+                <div id="tracker-display" style="margin-top:1rem;">
+                    <!-- Content injected via JS -->
+                    <div class="tracker-display-placeholder">
+                        <p><strong>Tracker not connected yet.</strong></p>
+                        <p>1. Connect to Google Sheets (see Guide).</p>
+                        <p>2. Open Sheet &rarr; File &rarr; Share &rarr; Publish to Web &rarr; Embed.</p>
+                        <p>3. Click "⚙️ Settings" above and paste the code.</p>
+                    </div>
+                </div>
+
+                <!-- Settings Area (Hidden by default) -->
+                <div id="tracker-settings" class="tracker-settings">
+                    <label style="display:block; margin-bottom:0.5rem; font-weight:bold;">Paste Google Sheet Embed
+                        Code:</label>
+                    <textarea id="embed-input" rows="4" class="tracker-input"
+                        placeholder='<iframe src="https://docs.google.com/spreadsheets/d/e/..." ...></iframe>'></textarea>
+                    <div style="margin-top:0.5rem; display:flex; gap:10px;">
+                        <button onclick="saveTrackerEmbed()" class="btn btn--primary btn--small">Save
+                            Connection</button>
+                        <button onclick="loadDemoTracker()" class="btn btn--outline btn--small btn-demo">Running a Test?
+                            Load Demo Data</button>
+                        <button onclick="toggleTrackerSettings()" class="btn btn--outline btn--small">Cancel</button>
+                    </div>
+                </div>
+
+                <!-- Fallback Link (Always Visible if tracker is loaded) -->
+                <div id="tracker-fallback" style="margin-top:10px; display:none; text-align:center;">
+                    <a id="fallback-link" href="#" target="_blank" rel="noopener"
+                        style="font-size:0.85rem; color:gray; text-decoration:underline;">
+                        Tracker blank? Click here to open in new tab
+                    </a>
+                </div>
+
+                <script>
+                    // Simple local logic for the tracker embed
+                    const STORAGE_KEY = 'admin_tracker_embed';
+
+                    function loadTracker() {
+                        const savedCode = localStorage.getItem(STORAGE_KEY);
+                        const display = document.getElementById('tracker-display');
+                        const input = document.getElementById('embed-input');
+
+                        if (savedCode) {
+                            display.innerHTML = savedCode;
+                            const iframe = display.querySelector('iframe');
+                            if (iframe) {
+                                iframe.style.width = '100%';
+                                iframe.style.height = '500px';
+                                iframe.style.border = 'none';
+                                iframe.style.borderRadius = '8px';
+                            }
+                            input.value = savedCode;
+
+                            // Update fallback link
+                            const srcMatch = savedCode.match(/src="([^"]+)"/);
+                            if (srcMatch && srcMatch[1]) {
+                                const fallbackLink = document.getElementById('fallback-link');
+                                const fallbackDiv = document.getElementById('tracker-fallback');
+                                fallbackLink.href = srcMatch[1];
+                                fallbackDiv.style.display = 'block';
+                            }
+                        }
+                    }
+
+                    function saveTrackerEmbed() {
+                        const code = document.getElementById('embed-input').value;
+                        if (code.trim()) {
+                            localStorage.setItem(STORAGE_KEY, code);
+                            loadTracker();
+                            toggleTrackerSettings();
+                        } else {
+                            alert("Please paste the embed code first!");
+                        }
+                    }
+
+                    function loadDemoTracker() {
+                        const demoTable = `
+                            <div style="overflow-x:auto;">
+                                <table style="width:100%; border-collapse:collapse; background:white; font-size:0.9rem;">
+                                    <thead style="background:#eee;">
+                                        <tr>
+                                            <th style="padding:10px; text-align:left;">Order #</th>
+                                            <th style="padding:10px; text-align:left;">Date</th>
+                                            <th style="padding:10px; text-align:left;">Customer</th>
+                                            <th style="padding:10px; text-align:left;">Product</th>
+                                            <th style="padding:10px; text-align:center;">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="border-bottom:1px solid #eee;">
+                                            <td style="padding:10px;">SNIP-1024</td>
+                                            <td style="padding:10px;">Jan 14</td>
+                                            <td style="padding:10px;">John Doe</td>
+                                            <td style="padding:10px;">Photo Blanket (60x80)</td>
+                                            <td style="padding:10px; text-align:center;"><span style="background:#e6f4ea; color:#1e8e3e; padding:2px 8px; border-radius:12px;">Shipped</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p style="text-align:center; color:gray; font-size:0.8rem; margin-top:10px;">(This is a demo. Your real Google Sheet will replace this.)</p>
+                            </div>
+                        `;
+                        document.getElementById('tracker-display').innerHTML = demoTable;
+                        toggleTrackerSettings();
+                    }
+
+                    function toggleTrackerSettings() {
+                        const settings = document.getElementById('tracker-settings');
+                        const display = document.getElementById('tracker-display');
+
+                        if (settings.style.display === 'none') {
+                            settings.style.display = 'block';
+                            display.style.display = 'none';
+                        } else {
+                            settings.style.display = 'none';
+                            display.style.display = 'block';
+                        }
+                    }
+                    window.addEventListener('DOMContentLoaded', loadTracker);
+                </script>
+            </div>
+
+            <!-- 4. Vendor Routing & Integrations -->
+            <div class="admin-card">
+                <h2 class="admin-card__title">4. Vendor Routing & Integrations</h2>
+                <div
+                    style="margin-bottom: 1rem; padding: 10px; background: #e0f7fa; color: #006064; border-radius: 4px; font-size: 0.9em; word-break: break-all;">
+                    <strong>Webhook URL:</strong> <span id="webhook-url-display"
+                        style="font-family: monospace; font-weight: bold;">Loading...</span>
+                    <button onclick="copyWebhook()"
+                        style="margin-left: 5px; cursor: pointer; border: 1px solid #006064; background: white; padding: 2px 5px; border-radius: 3px; font-size: 0.8em;">Copy</button>
+                    <p style="margin-top: 5px; font-size: 0.9em;">Paste this URL into your vendor settings to auto-sync
+                        shipments.</p>
+                </div>
+
+                <ul class="vendor-list">
+                    <li class="vendor-item" style="flex-wrap: wrap;">
+                        <div
+                            style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <div><strong style="color:#d93025;">Printful</strong> <span
+                                    style="font-size:0.8em; color:gray;">(Apparel, Mugs)</span></div>
+                            <div>
+                                <button onclick="toggleSetup('setup-printful')" class="btn btn--outline btn--small"
+                                    style="margin-right: 5px; font-size: 0.75rem;">Setup</button>
+                                <a href="https://www.printful.com/dashboard/orders" target="_blank" rel="noopener"
+                                    class="btn btn--primary btn--small">Login</a>
+                            </div>
+                        </div>
+                        <div id="setup-printful"
+                            style="display: none; width: 100%; background: #fff5f5; padding: 10px; border-radius: 4px; font-size: 0.9em; margin-top: 5px; border-left: 3px solid #d93025;">
+                            <strong>Setup Steps:</strong>
+                            <ol style="margin-left: 20px; list-style-type: decimal;">
+                                <li>Create Order -> Paste <strong>Reference ID</strong> (e.g. SNIP-1024).</li>
+                                <li>Settings > API > Webhooks.</li>
+                                <li>Paste <strong>Webhook URL</strong> above.</li>
+                                <li>Check <strong>"Package Shipped"</strong>.</li>
+                                <li>Save.</li>
+                            </ol>
+                        </div>
+                    </li>
+
+                    <li class="vendor-item" style="flex-wrap: wrap;">
+                        <div
+                            style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <div><strong style="color:#1a73e8;">Printify</strong> <span
+                                    style="font-size:0.8em; color:gray;">(Blankets, Stones)</span></div>
+                            <div>
+                                <button onclick="toggleSetup('setup-printify')" class="btn btn--outline btn--small"
+                                    style="margin-right: 5px; font-size: 0.75rem;">Setup</button>
+                                <a href="https://printify.com/app/orders" target="_blank" rel="noopener"
+                                    class="btn btn--primary btn--small">Login</a>
+                            </div>
+                        </div>
+                        <div id="setup-printify"
+                            style="display: none; width: 100%; background: #f0f7ff; padding: 10px; border-radius: 4px; font-size: 0.9em; margin-top: 5px; border-left: 3px solid #1a73e8;">
+                            <strong>Setup Steps:</strong>
+                            <ol style="margin-left: 20px; list-style-type: decimal;">
+                                <li>Orders > Create -> Paste <strong>External ID</strong> (e.g. SNIP-1024).</li>
+                                <li>Settings > API > Webhooks.</li>
+                                <li>Topic: <strong>"Order Shipment Created"</strong>.</li>
+                                <li>Paste <strong>Webhook URL</strong> above.</li>
+                                <li>Create Hook.</li>
+                            </ol>
+                        </div>
+                    </li>
+
+                    <li class="vendor-item" style="flex-wrap: wrap;">
+                        <div
+                            style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <div><strong style="color:#e37400;">Gooten</strong> <span
+                                    style="font-size:0.8em; color:gray;">(Ornaments)</span></div>
+                            <div>
+                                <button onclick="toggleSetup('setup-gooten')" class="btn btn--outline btn--small"
+                                    style="margin-right: 5px; font-size: 0.75rem;">Setup</button>
+                                <a href="https://www.gooten.com/admin" target="_blank" rel="noopener"
+                                    class="btn btn--primary btn--small">Login</a>
+                            </div>
+                        </div>
+                        <div id="setup-gooten"
+                            style="display: none; width: 100%; background: #fffcf5; padding: 10px; border-radius: 4px; font-size: 0.9em; margin-top: 5px; border-left: 3px solid #e37400;">
+                            <strong>Setup Steps:</strong>
+                            <ol style="margin-left: 20px; list-style-type: decimal;">
+                                <li>Paste <strong>Ref ID</strong> when ordering.</li>
+                                <li>Settings > API.</li>
+                                <li>Paste <strong>Webhook URL</strong> in Postback/Webhook field.</li>
+                            </ol>
+                        </div>
+                    </li>
+                </ul>
+                <script>
+                    function toggleSetup(id) {
+                        const el = document.getElementById(id);
+                        el.style.display = el.style.display === 'none' ? 'block' : 'none';
+                    }
+
+                    document.addEventListener('DOMContentLoaded', () => {
+                        // Build Webhook URL dynamically based on current domain
+                        // If running locally (localhost), warn user it won't work for real vendors
+                        const origin = window.location.origin;
+                        let webhookUrl = origin + '/.netlify/functions/pod-webhook';
+                        const display = document.getElementById('webhook-url-display');
+
+                        if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+                            // On localhost, show the PRODUCTION URL so the user can actually use it
+                            webhookUrl = 'https://infintiebondmemorial.netlify.app/.netlify/functions/pod-webhook';
+                            display.style.color = '#006064'; // standard text color
+
+                            // Add a small helpful note
+                            const note = document.createElement('div');
+                            note.style.fontSize = '0.8em';
+                            note.style.color = '#f59e0b'; // warning orange
+                            note.style.marginTop = '2px';
+                            note.innerText = '✨ Showing Production URL (for vendor settings)';
+                            display.parentNode.appendChild(note);
+                        }
+
+                        display.innerText = webhookUrl;
+                    });
+
+                    function copyWebhook() {
+                        const url = document.getElementById('webhook-url-display').innerText;
+                        navigator.clipboard.writeText(url).then(() => {
+                            alert('Webhook URL copied!');
+                        });
+                    }
+                </script>
+            </div>
+
+            <!-- 5. AUTOPILOT CONSOLE -->
+            <div class="admin-card">
+                <h2 class="admin-card__title">5. Autopilot Console 🤖</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <p class="admin-text" style="margin: 0;"><strong>Status:</strong> Automatically route orders to
+                        vendors.</p>
+                </div>
+
+                <div class="autopilot-grid" style="display: grid; gap: 10px;">
+
+                    <!-- Global Master Switch -->
+                    <div class="autopilot-item"
+                        style="background: #1f2937; color: white; padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                        <strong>MASTER CONTROL</strong>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-global"
+                                onchange="updateAutopilot('AUTOPILOT_GLOBAL', this.checked)">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <!-- Individual Products -->
+                    <div class="autopilot-item item-row">
+                        <span>Photo Blanket</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-blanket"
+                                onchange="updateAutopilot('AUTOPILOT_BLANKET', this.checked)">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="autopilot-item item-row">
+                        <span>Memorial T-Shirt</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-tshirt"
+                                onchange="updateAutopilot('AUTOPILOT_TSHIRT', this.checked)">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="autopilot-item item-row">
+                        <span>Custom Mug</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-mug"
+                                onchange="updateAutopilot('AUTOPILOT_MUG', this.checked)">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="autopilot-item item-row">
+                        <span>Comfort Package (Bundle)</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-comfort"
+                                onchange="updateAutopilot('AUTOPILOT_COMFORT', this.checked)">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="autopilot-item item-row">
+                        <span>Other / Default</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-default"
+                                onchange="updateAutopilot('AUTOPILOT_DEFAULT', this.checked)">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                </div>
+
+                <style>
+                    .item-row {
+                        background: white;
+                        border: 1px solid #e5e7eb;
+                        padding: 10px 15px;
+                        border-radius: 6px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+
+                    /* Switch Styles */
+                    .switch {
+                        position: relative;
+                        display: inline-block;
+                        width: 44px;
+                        height: 24px;
+                    }
+
+                    .switch input {
+                        opacity: 0;
+                        width: 0;
+                        height: 0;
+                    }
+
+                    .slider {
+                        position: absolute;
+                        cursor: pointer;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background-color: #ccc;
+                        transition: .4s;
+                        border-radius: 24px;
+                    }
+
+                    .slider:before {
+                        position: absolute;
+                        content: "";
+                        height: 18px;
+                        width: 18px;
+                        left: 3px;
+                        bottom: 3px;
+                        background-color: white;
+                        transition: .4s;
+                        border-radius: 50%;
+                    }
+
+                    input:checked+.slider {
+                        background-color: #22c55e;
+                    }
+
+                    input:checked+.slider:before {
+                        transform: translateX(20px);
+                    }
+                </style>
+
+                <script>
+                    async function fetchSettings() {
+                        try {
+                            const res = await fetch('/.netlify/functions/manage-settings');
+                            const settings = await res.json();
+
+                            // Map settings to toggles
+                            document.getElementById('toggle-global').checked = settings['AUTOPILOT_GLOBAL'] === 'ON';
+                            document.getElementById('toggle-blanket').checked = settings['AUTOPILOT_BLANKET'] === 'ON';
+                            document.getElementById('toggle-tshirt').checked = settings['AUTOPILOT_TSHIRT'] === 'ON';
+                            document.getElementById('toggle-mug').checked = settings['AUTOPILOT_MUG'] === 'ON';
+                            document.getElementById('toggle-comfort').checked = settings['AUTOPILOT_COMFORT'] === 'ON';
+                            document.getElementById('toggle-default').checked = settings['AUTOPILOT_DEFAULT'] === 'ON';
+
+                        } catch (e) { console.error('Error fetching settings', e); }
+                    }
+
+                    async function updateAutopilot(key, isChecked) {
+                        const val = isChecked ? 'ON' : 'OFF';
+                        // Visual feedback (optional)
+                        console.log(`Setting ${key} to ${val}`);
+
+                        try {
+                            await fetch('/.netlify/functions/manage-settings', {
+                                method: 'POST',
+                                body: JSON.stringify({ key: key, value: val })
+                            });
+                        } catch (e) {
+                            alert('Failed to save setting');
+                        }
+                    }
+
+                    // Load on start
+                    window.addEventListener('DOMContentLoaded', fetchSettings);
+                </script>
+            </div>
+
+            <!-- 6. CRM & Financials -->
+            <div class="admin-card">
+                <h2 class="admin-card__title">6. CRM & Financials</h2>
+                <div class="flex-col-gap">
+                    <a href="https://app.snipcart.com/dashboard/customers" target="_blank" rel="noopener"
+                        class="btn btn--outline btn-dashboard">Customer CRM</a>
+                    <a href="https://app.snipcart.com/dashboard/refunds" target="_blank" rel="noopener"
+                        class="btn btn--outline btn-dashboard btn-dashboard--danger">Disputes & Refunds</a>
+                </div>
+            </div>
+
+            <!-- 7. Quick Links -->
+            <div class="admin-card">
+                <h2 class="admin-card__title">7. Quick Actions</h2>
+                <div class="flex-col-gap">
+                    <a href="../" target="_blank" class="btn btn--outline">View Live Store</a>
+                    <a href="https://analytics.google.com/" target="_blank" rel="noopener"
+                        class="btn btn--outline">Google
+                        Analytics</a>
+                </div>
+            </div>
+
+            <!-- 8. Fulfillment SOP (Full Width) -->
+            <div class="admin-card admin-card--full-width">
+                <h2 class="admin-card__title">8. Reference: Fulfillment SOP</h2>
+                <div class="sop-grid">
+                    <div>
+                        <h4>Step 1: Receive & Review</h4>
+                        <ol style="font-size:0.9rem; padding-left:1.2rem;">
+                            <li>Open Snipcart Order.</li>
+                            <li>Download <strong>Custom Photo</strong>.</li>
+                            <li><strong>QC Check:</strong> Is it blurry? Face cut off?</li>
+                            <li><em>If bad: Email customer immediately.</em></li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h4>Step 2: Create Vendor Order</h4>
+                        <ol style="font-size:0.9rem; padding-left:1.2rem;">
+                            <li>Login to Vendor (see Card 3).</li>
+                            <li>Create <strong>Manual Order</strong>.</li>
+                            <li>Upload Photo & Text.</li>
+                            <li>Copy Shipping Info <strong>Exactly</strong>.</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h4>Step 3: Ship & Track</h4>
+                        <ol style="font-size:0.9rem; padding-left:1.2rem;">
+                            <li>Pay vendor base cost.</li>
+                            <li>Wait for Tracking # (2-5 days).</li>
+                            <li>Add Tracking # to Snipcart.</li>
+                            <li>Mark as Shipped.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CONTENT MANAGEMENT SECTION -->
+        <h2 class="admin-title" style="margin-top: 3rem;">Content Management</h2>
+        <div class="admin-grid">
+
+            <!-- Product & Price Editor -->
+            <div class="admin-card admin-card--full-width">
+                <h2 class="admin-card__title">📦 Product & Price Editor</h2>
+                <p class="admin-text" style="margin-bottom: 1rem;">Edit product prices below. Click "Generate Code" to
+                    get the updated HTML.</p>
+
+                <div id="product-editor">
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 1rem;">
+                        <thead>
+                            <tr style="background: var(--color-cream);">
+                                <th
+                                    style="padding: 10px; text-align: left; border-bottom: 2px solid var(--color-primary);">
+                                    Product</th>
+                                <th
+                                    style="padding: 10px; text-align: left; border-bottom: 2px solid var(--color-primary);">
+                                    Current Price</th>
+                                <th
+                                    style="padding: 10px; text-align: left; border-bottom: 2px solid var(--color-primary);">
+                                    New Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Photo Blanket</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$64.99</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
+                                        step="0.01" id="price-blanket" value="64.99"
+                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Memorial T-Shirt</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$29.99</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
+                                        step="0.01" id="price-tshirt" value="29.99"
+                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Custom Mug</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$24.99</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
+                                        step="0.01" id="price-mug" value="24.99"
+                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Memorial Candle</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$34.99</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
+                                        step="0.01" id="price-candle" value="34.99"
+                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Keychain</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$19.99</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
+                                        step="0.01" id="price-keychain" value="19.99"
+                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
+                                </td>
+                            </tr>
+                            <tr style="background: #fef3c7;">
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><strong>Comfort
+                                        Package</strong></td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$99.99</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
+                                        step="0.01" id="price-comfort" value="99.99"
+                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Keepsake Collection</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$45.99</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
+                                        step="0.01" id="price-keepsake" value="45.99"
+                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Remembrance Bundle</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$55.99</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
+                                        step="0.01" id="price-remembrance" value="55.99"
+                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
+                                </td>
+                            </tr>
+                            <tr style="background: #dbeafe;">
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><strong>Rush Order</strong>
+                                </td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$15.00</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
+                                        step="0.01" id="price-rush" value="15.00"
+                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div
+                        style="background: #f0fdf4; padding: 1rem; border-radius: 8px; border-left: 4px solid #22c55e;">
+                        <p style="margin: 0; font-size: 0.9rem;"><strong>💡 How to update prices:</strong></p>
+                        <ol style="font-size: 0.85rem; margin: 0.5rem 0 0 1rem; padding: 0;">
+                            <li>Edit the prices in the table above</li>
+                            <li>Use "Find & Replace" in your code editor</li>
+                            <li>Search for the old price (e.g., <code>data-item-price="64.99"</code>)</li>
+                            <li>Replace with the new price</li>
+                            <li>Deploy to Netlify</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page Header Editor -->
+            <div class="admin-card">
+                <h2 class="admin-card__title">📝 Page Headers</h2>
+                <p class="admin-text" style="margin-bottom: 1rem;">Edit key page text content.</p>
+
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div>
+                        <label style="display: block; font-weight: 600; margin-bottom: 0.25rem;">Homepage Hero
+                            Title</label>
+                        <input type="text" id="header-hero" value="Keep Their Memory Close to Your Heart"
+                            style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 4px;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-weight: 600; margin-bottom: 0.25rem;">Homepage Hero
+                            Subtitle</label>
+                        <textarea id="header-subtitle" rows="2"
+                            style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 4px;">Premium personalized memorial products crafted with love, designed to honor and celebrate the lives of those who meant the most.</textarea>
+                    </div>
+                    <div>
+                        <label style="display: block; font-weight: 600; margin-bottom: 0.25rem;">Products Page
+                            Title</label>
+                        <input type="text" id="header-products" value="Memorial Products"
+                            style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 4px;">
+                    </div>
+                </div>
+
+                <div
+                    style="background: #fef3c7; padding: 0.75rem; border-radius: 8px; margin-top: 1rem; border-left: 4px solid #f59e0b;">
+                    <p style="margin: 0; font-size: 0.85rem;"><strong>Note:</strong> Copy this text and use Find &
+                        Replace in HTML files to update.</p>
+                </div>
+            </div>
+
+            <!-- Image Upload Reference -->
+            <div class="admin-card">
+                <h2 class="admin-card__title">🖼️ Product Images</h2>
+                <p class="admin-text">Manage product images for the store.</p>
+
+                <div style="margin-top: 1rem;">
+                    <p style="font-size: 0.9rem;"><strong>Image Location:</strong></p>
+                    <code
+                        style="background: #f3f4f6; padding: 0.5rem; display: block; border-radius: 4px; font-size: 0.85rem;">/assets/images/</code>
+
+                    <p style="font-size: 0.9rem; margin-top: 1rem;"><strong>Current Product Images:</strong></p>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>memorial_blanket_*.png</li>
+                        <li>memorial_tshirt_*.png</li>
+                        <li>memorial_mug_*.png</li>
+                        <li>memorial_candle_*.png</li>
+                        <li>memorial_gift_set_*.png</li>
+                    </ul>
+
+                    <p style="font-size: 0.9rem; margin-top: 1rem;"><strong>To update images:</strong></p>
+                    <ol style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Replace files in <code>/assets/images/</code></li>
+                        <li>Use same filename OR update HTML</li>
+                        <li>Recommended size: 800x800px</li>
+                    </ol>
+                </div>
+
+                <a href="https://github.com/" target="_blank" rel="noopener" class="btn btn--outline"
+                    style="margin-top: 1rem;">
+                    Upload via GitHub
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer admin-footer">
+        <p>&copy; 2026 Infinite Bond Internal.</p>
+    </footer>
+</body>
+
+</html>

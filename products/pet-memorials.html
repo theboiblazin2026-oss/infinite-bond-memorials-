@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/images/logo-red.png">
+    <meta name="description"
+        content="Personalized pet memorial products to honor your furry friends. Garden stones, urn necklaces, and rainbow bridge blankets.">
+    <title>Pet Memorials | Infinite Bond</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://app.snipcart.com">
+    <link rel="preconnect" href="https://cdn.snipcart.com">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Google Analytics (Uncomment and add ID to enable) -->
+    <!-- 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script> 
+    -->
+
+    <style>
+        .page-hero {
+            padding: calc(var(--header-height) + var(--space-4xl)) 0 var(--space-3xl);
+            background: linear-gradient(135deg, var(--color-stone) 0%, var(--color-cream) 100%);
+            text-align: center;
+        }
+
+        .page-hero__title {
+            margin-bottom: var(--space-md);
+        }
+
+        .page-hero__breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            font-size: var(--text-sm);
+            color: var(--color-gray);
+            margin-bottom: var(--space-lg);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-xl);
+        }
+
+        .product-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+            border: 1px solid var(--color-cream-dark);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .product-card__image {
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: var(--color-cream);
+        }
+
+        .product-card__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-card__image img {
+            transform: scale(1.05);
+        }
+
+        .product-card__content {
+            padding: var(--space-lg);
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-card__category {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-gray);
+            margin-bottom: var(--space-xs);
+        }
+
+        .product-card__title {
+            font-family: var(--font-heading);
+            font-size: var(--text-lg);
+            color: var(--color-charcoal);
+            margin-bottom: var(--space-xs);
+        }
+
+        .product-card__price {
+            font-weight: 500;
+            color: var(--color-primary);
+            margin-bottom: var(--space-md);
+        }
+
+        .product-card__footer {
+            margin-top: auto;
+            border-top: 1px solid var(--color-cream-dark);
+            padding-top: var(--space-md);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="/" class="logo">
+                <img src="../assets/images/logo-red.png" alt="Infinite Bond Logo" class="logo__icon">
+                <span class="logo__text">Infinite <span>Bond</span></span>
+            </a>
+
+            <nav class="nav">
+                <ul class="nav__list" id="navList">
+                    <li><a href="/" class="nav__link">Home</a></li>
+                    <li><a href="/products/" class="nav__link">Products</a></li>
+                    <li><a href="/products/gift-sets.html" class="nav__link">Gift Sets</a></li>
+                    <li><a href="/products/pet-memorials.html" class="nav__link nav__link--active">Pet Memorials</a>
+                    </li>
+                    <li><a href="/for-funeral-homes/" class="nav__link">For Funeral Homes</a></li>
+                    <li><a href="/about.html" class="nav__link">About</a></li>
+                    <li><a href="/contact.html" class="nav__link">Contact</a></li>
+                    <!-- Cart button for mobile -->
+                    <li class="snipcart-checkout nav__link nav__link--cart">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="snipcart-items-count">0</span>
+                    </li>
+                </ul>
+                <a href="/personalize/" class="btn btn--primary">Personalize Now</a>
+
+                <!-- Desktop Cart -->
+                <button class="snipcart-checkout btn-cart" aria-label="Cart">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="snipcart-items-count">0</span>
+                </button>
+                <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <div class="container">
+                <nav class="page-hero__breadcrumb">
+                    <a href="../">Home</a>
+                    <span>/</span>
+                    <a href="./">Products</a>
+                    <span>/</span>
+                    <span>Pet Memorials</span>
+                </nav>
+                <h1 class="page-hero__title">Pet Memorials</h1>
+                <p>Honor the unconditional love of your faithful companions</p>
+            </div>
+        </section>
+
+        <!-- Products -->
+        <section class="section">
+            <div class="container">
+                <div class="products-grid">
+
+                    <!-- Product 1: Garden Stone -->
+                    <div class="product-card">
+                        <div class="product-card__image">
+                            <img src="../images/products/pet-stone.png"
+                                alt="Personalized Pet Garden Stone with paw print">
+                        </div>
+                        <div class="product-card__content">
+                            <span class="product-card__category">Outdoor</span>
+                            <h3 class="product-card__title">Forever Paw Garden Stone</h3>
+                            <div class="product-card__price">$39.99</div>
+                            <p class="tax-disclaimer">*Sales tax calculated at checkout</p>
+                            <p class="delivery-estimate">🚚 Est. Delivery: 7-10
+                                Business Days</p>
+                            <div class="product-card__footer">
+                                <button class="btn btn--secondary snipcart-add-item" data-item-id="pet-garden-stone"
+                                    data-item-price="39.99" data-item-url="/products/pet-memorials.html"
+                                    data-item-description="Weather-resistant engraved garden stone with paw print"
+                                    data-item-image="../images/products/pet-stone.png"
+                                    data-item-name="Forever Paw Garden Stone" data-item-custom1-name="Pet Name"
+                                    data-item-custom1-required="true" data-item-custom2-name="Dates"
+                                    data-item-custom2-type="text" data-item-custom3-name="Processing Time"
+                                    data-item-custom3-options="Standard|Rush Order (Expedited) [+$15]">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2: Urn Necklace -->
+                    <div class="product-card">
+                        <div class="product-card__image">
+                            <img src="../images/products/pet-urn.png" alt="Silver Pet Urn Necklace">
+                        </div>
+                        <div class="product-card__content">
+                            <span class="product-card__category">Jewelry</span>
+                            <h3 class="product-card__title">Sterling Silver Heart Urn</h3>
+                            <div class="product-card__price">$49.99</div>
+                            <p class="tax-disclaimer">*Sales tax calculated at checkout</p>
+                            <p class="delivery-estimate">🚚 Est. Delivery: 3-5
+                                Business Days</p>
+                            <div class="product-card__footer">
+                                <button class="btn btn--secondary snipcart-add-item" data-item-id="pet-urn-necklace"
+                                    data-item-price="49.99" data-item-url="/products/pet-memorials.html"
+                                    data-item-description="Sterling silver keepsake urn necklace for pet ashes"
+                                    data-item-image="../images/products/pet-urn.png"
+                                    data-item-name="Sterling Silver Heart Urn"
+                                    data-item-custom1-name="Engravings (Back)" data-item-custom1-type="text"
+                                    data-item-custom2-name="Processing Time"
+                                    data-item-custom2-options="Standard|Rush Order (Expedited) [+$15]">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3: Rainbow Bridge Blanket -->
+                    <div class="product-card">
+                        <div class="product-card__image">
+                            <img src="../assets/images/memorial_blanket_1767761174045.png"
+                                alt="Rainbow Bridge Photo Blanket">
+                        </div>
+                        <div class="product-card__content">
+                            <span class="product-card__category">Home Comfort</span>
+                            <h3 class="product-card__title">Rainbow Bridge Blanket</h3>
+                            <div class="product-card__price">$79.99</div>
+                            <p class="tax-disclaimer">*Sales tax
+                                calculated at checkout</p>
+                            <p class="delivery-estimate">🚚 Est. Delivery: 5-8
+                                Business Days</p>
+                            <div class="product-card__footer">
+                                <button class="btn btn--secondary snipcart-add-item" data-item-id="pet-rainbow-blanket"
+                                    data-item-price="79.99" data-item-url="/products/pet-memorials.html"
+                                    data-item-description="Premium fleece blanket with Rainbow Bridge art and pet photo"
+                                    data-item-image="../assets/images/memorial_blanket_1767761174045.png"
+                                    data-item-name="Rainbow Bridge Blanket" data-item-custom1-name="Upload Pet Photo"
+                                    data-item-custom1-type="file" data-item-custom1-required="true"
+                                    data-item-custom2-name="Pet Name" data-item-custom2-required="true"
+                                    data-item-custom3-name="Processing Time"
+                                    data-item-custom3-options="Standard|Rush Order (Expedited) [+$15]">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="../" class="logo">
+                        <img src="../assets/images/logo-red.png" alt="Infinite Bond Logo" class="logo__icon">
+                        <span class="logo__text">Infinite <span>Bond</span></span>
+                    </a>
+                    <p>Creating meaningful memorial products.</p>
+                </div>
+                <div class="footer__column">
+                    <h5>Products</h5>
+                    <ul>
+                        <li><a href="index.html">All Products</a></li>
+                        <li><a href="pet-memorials.html">Pet Memorials</a></li>
+                        <li><a href="gift-sets.html">Gift Sets</a></li>
+                    </ul>
+                </div>
+                <div class="footer__column">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="../policies.html">Store Policies</a></li>
+                    </ul>
+                </div>
+                <div class="footer__column">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="../track-order.html">Track Order</a></li>
+                        <li><a href="../policies.html#shipping">Shipping Info</a></li>
+                        <li><a href="../policies.html#returns">Returns</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2026 Infinite Bond. All rights reserved.</p>
+                <div class="footer__trust">
+                    <span class="footer__secure-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        Secure SSL Encryption
+                    </span>
+                    <span class="footer__payment-methods">
+                        <svg class="footer__payment-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="5" width="20" height="14" rx="2" />
+                            <line x1="2" y1="10" x2="22" y2="10" />
+                        </svg>
+                        Secure Payments
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script async src="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.js"></script>
+    <div hidden id="snipcart" data-api-key="NDc4N2JjYmEtNzlmMi00YmIxLWEyMDAtN2I4NmIwZTRkZDEzNjM5MDM5MjkyMDY0MTMxMDYw"
+        data-config-modal-style="side"></div>
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://infinitebondmemorials.netlify.app/sitemap.xml
