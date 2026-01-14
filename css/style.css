@@ -1362,9 +1362,11 @@ p {
     padding: 0 var(--space-md);
   }
 
-  /* Hide header CTA on mobile - use nav instead */
-  .header .btn {
-    display: none;
+  /* Hide header CTA button on mobile - use hamburger nav instead */
+  .nav>.btn,
+  .nav .btn--primary,
+  .header .btn--primary {
+    display: none !important;
   }
 }
 
