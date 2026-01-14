@@ -1,596 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="/assets/images/logo-red.png">
-  <link rel="apple-touch-icon" href="/assets/images/logo-red.png">
-  <meta name="description"
-    content="Infinite Bond - Premium personalized memorial products to honor and remember your loved ones. Custom photo blankets, memorial t-shirts, keepsakes, and gift sets.">
-  <title>Infinite Bond Memorials | Personalized Memorial Products & Keepsakes</title>
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/12.7.0/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/12.7.0/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/12.7.0/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/12.7.0/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/12.7.0/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/12.7.0/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/12.7.0/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/12.7.0/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/12.7.0/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/12.7.0/firebase-performance-compat.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
-  <!-- Open Graph / Social Sharing -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://infinitebondmemorials.netlify.app/">
-  <meta property="og:title" content="Infinite Bond | Personalized Memorial Products">
-  <meta property="og:description"
-    content="Premium personalized memorial products to honor and remember your loved ones. Custom photo blankets, memorial t-shirts, keepsakes, and gift sets.">
-  <meta property="og:image" content="https://infinitebondmemorials.netlify.app/assets/images/og-image.jpg">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Infinite Bond | Personalized Memorial Products">
-  <meta name="twitter:description"
-    content="Premium personalized memorial products to honor and remember your loved ones.">
-  <meta name="twitter:image" content="https://infinitebondmemorials.netlify.app/assets/images/og-image.jpg">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://app.snipcart.com">
-  <link rel="preconnect" href="https://cdn.snipcart.com">
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css">
-
-  <!-- Google Analytics (Uncomment and add ID to enable) -->
-  <!-- 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script> 
-  -->
-</head>
-
-<body>
-  <!-- Header -->
-  <header class="header" id="header">
-    <div class="container header__inner">
-      <a href="/" class="logo">
-        <img src="assets/images/logo-red.png" alt="Infinite Bond Logo" class="logo__icon">
-        <span class="logo__text">Infinite Bond <span>Memorials</span></span>
-      </a>
-
-      <nav class="nav">
-        <ul class="nav__list" id="navList">
-          <li><a href="/" class="nav__link nav__link--active">Home</a></li>
-          <li><a href="/products/" class="nav__link">Products</a></li>
-          <li><a href="/products/gift-sets.html" class="nav__link">Gift Sets</a></li>
-          <li><a href="/for-funeral-homes/" class="nav__link">For Funeral Homes</a></li>
-          <li><a href="/about.html" class="nav__link">About</a></li>
-          <li><a href="/contact.html" class="nav__link">Contact</a></li>
-        </ul>
-
-        <a href="/personalize/" class="btn btn--primary">Personalize Now</a>
-
-        <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </nav>
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="message">
+      <h2>Welcome</h2>
+      <h1>Firebase Hosting Setup Complete</h1>
+      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
+      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
     </div>
-  </header>
+    <p id="load">Firebase SDK Loading&hellip;</p>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero__bg">
-        <div class="hero__bg-pattern"></div>
-      </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadEl = document.querySelector('#load');
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.firestore().doc('/foo/bar').get().then(() => { });
+        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        // firebase.analytics(); // call to activate
+        // firebase.analytics().logEvent('tutorial_completed');
+        // firebase.performance(); // call to activate
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-      <div class="container">
-        <div class="hero__content">
-          <div class="hero__badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path
-                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-            </svg>
-            Honoring Lives with Love
-          </div>
-
-          <h1 class="hero__title">
-            Keep Their Memory<br>
-            <span class="text-gradient">Close to Your Heart</span>
-          </h1>
-
-          <p class="hero__subtitle">
-            Beautiful, personalized memorial products crafted with care.<br>
-            Create lasting tributes to honor those who touched your life.
-          </p>
-
-          <div class="hero__actions">
-            <a href="products/" class="btn btn--primary btn--large">
-              Explore Products
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12H19M19 12L12 5M19 12L12 19" />
-              </svg>
-            </a>
-            <a href="products/gift-sets.html" class="btn btn--secondary btn--large">View Gift Sets</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero__scroll">
-        <span>Scroll to explore</span>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 5V19M12 19L5 12M12 19L19 12" />
-        </svg>
-      </div>
-    </section>
-
-    <!-- Featured Gift Set -->
-    <section class="section">
-      <div class="container">
-        <div class="gift-set">
-          <div class="gift-set__images">
-            <div class="gift-set__image">
-              <img src="assets/images/memorial_gift_set_1767761231998.png" alt="Comfort Package Gift Set">
-            </div>
-            <div class="gift-set__image">
-              <img src="assets/images/diverse_blanket_1767762141592.png" alt="Memorial Blanket">
-            </div>
-            <div class="gift-set__image">
-              <img src="assets/images/diverse_candle_1767762172626.png" alt="Memorial Candle">
-            </div>
-          </div>
-
-          <div class="gift-set__content">
-            <span class="gift-set__badge">Most Popular</span>
-            <h2 class="gift-set__title">Comfort Package</h2>
-            <p class="gift-set__description">
-              Our most beloved gift set, thoughtfully curated to bring warmth and comfort
-              during difficult times. Each item is personalized with your cherished photos
-              and memories.
-            </p>
-
-            <div class="gift-set__includes">
-              <h5>This package includes:</h5>
-              <ul>
-                <li>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="20,6 9,17 4,12" />
-                  </svg>
-                  Custom Photo Blanket
-                </li>
-                <li>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="20,6 9,17 4,12" />
-                  </svg>
-                  Memorial Candle
-                </li>
-                <li>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="20,6 9,17 4,12" />
-                  </svg>
-                  Personalized Mug
-                </li>
-                <li>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="20,6 9,17 4,12" />
-                  </svg>
-                  Sympathy Card
-                </li>
-              </ul>
-            </div>
-
-            <div class="gift-set__price">
-              <span class="gift-set__price-current">$99.99</span>
-              <span class="gift-set__price-original">$129.99</span>
-            </div>
-
-            <a href="products/gift-sets.html" class="btn btn--primary btn--large">Personalize This Set</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section class="section section--alt">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-header__subtitle">Browse By Category</p>
-          <h2 class="section-header__title">Meaningful Memorial Products</h2>
-          <p class="section-header__description">
-            From comforting blankets to cherished keepsakes, find the perfect way
-            to honor your loved one's memory.
-          </p>
-        </div>
-
-        <div class="categories stagger">
-          <a href="products/home-comfort.html" class="category-card">
-            <div class="category-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path
-                  d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" />
-                <polyline points="9,22 9,12 15,12 15,22" />
-              </svg>
-            </div>
-            <h4 class="category-card__title">Home Comfort</h4>
-            <p class="category-card__count">Blankets, Pillows & Throws</p>
-          </a>
-
-          <a href="products/wearables.html" class="category-card">
-            <div class="category-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path
-                  d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z" />
-              </svg>
-            </div>
-            <h4 class="category-card__title">Wearables</h4>
-            <p class="category-card__count">T-Shirts, Hoodies & Caps</p>
-          </a>
-
-          <a href="products/keepsakes.html" class="category-card">
-            <div class="category-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path
-                  d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-              </svg>
-            </div>
-            <h4 class="category-card__title">Keepsakes</h4>
-            <p class="category-card__count">Ornaments, Frames & Plaques</p>
-          </a>
-
-          <a href="products/drinkware.html" class="category-card">
-            <div class="category-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
-                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" />
-                <line x1="6" x2="6" y1="2" y2="4" />
-                <line x1="10" x2="10" y1="2" y2="4" />
-                <line x1="14" x2="14" y1="2" y2="4" />
-              </svg>
-            </div>
-            <h4 class="category-card__title">Drinkware</h4>
-            <p class="category-card__count">Mugs & Tumblers</p>
-          </a>
-
-          <a href="products/stationery.html" class="category-card">
-            <div class="category-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-            </div>
-            <h4 class="category-card__title">Stationery</h4>
-            <p class="category-card__count">Cards, Bookmarks & Programs</p>
-          </a>
-
-          <a href="products/gift-sets.html" class="category-card">
-            <div class="category-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <polyline points="20 12 20 22 4 22 4 12" />
-                <rect x="2" y="7" width="20" height="5" />
-                <line x1="12" y1="22" x2="12" y2="7" />
-                <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
-                <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
-              </svg>
-            </div>
-            <h4 class="category-card__title">Gift Sets</h4>
-            <p class="category-card__count">Curated Memorial Bundles</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured Products -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-header__subtitle">Our Bestsellers</p>
-          <h2 class="section-header__title">Popular Memorial Products</h2>
-          <p class="section-header__description">
-            These heartfelt items have brought comfort to thousands of families.
-          </p>
-        </div>
-
-        <div class="products-grid stagger">
-          <article class="card">
-            <div class="card__image">
-              <img src="assets/images/memorial_blanket_1767761174045.png" alt="Custom Photo Memorial Blanket">
-              <span class="card__badge">Bestseller</span>
-            </div>
-            <div class="card__body">
-              <p class="card__category">Home Comfort</p>
-              <h3 class="card__title">Custom Photo Memorial Blanket</h3>
-              <p class="card__description">Soft, premium fleece blanket personalized with your cherished photo and
-                loving message.</p>
-              <p class="card__price">$64.99 <span>– $79.99</span></p>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__image">
-              <img src="assets/images/diverse_tshirt_1767762157367.png" alt="In Loving Memory T-Shirt">
-            </div>
-            <div class="card__body">
-              <p class="card__category">Wearables</p>
-              <h3 class="card__title">In Loving Memory T-Shirt</h3>
-              <p class="card__description">Premium quality memorial shirt with elegant angel wings design and photo.</p>
-              <p class="card__price">$29.99 <span>– $39.99</span></p>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__image">
-              <img src="assets/images/memorial_candle_1767761203396.png" alt="Personalized Memorial Candle">
-              <span class="card__badge">New</span>
-            </div>
-            <div class="card__body">
-              <p class="card__category">Keepsakes</p>
-              <h3 class="card__title">Personalized Memorial Candle</h3>
-              <p class="card__description">Beautiful soy wax candle with custom photo and text in elegant glass
-                container.</p>
-              <p class="card__price">$34.99</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__image">
-              <img src="assets/images/diverse_ornament_1767762188044.png" alt="Angel Wings Photo Ornament">
-            </div>
-            <div class="card__body">
-              <p class="card__category">Keepsakes</p>
-              <h3 class="card__title">Angel Wings Photo Ornament</h3>
-              <p class="card__description">Elegant crystal ornament with angel wings design and personalized photo.</p>
-              <p class="card__price">$24.99</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__image">
-              <img src="assets/images/diverse_mug_1767762203779.png" alt="Forever in Our Hearts Mug">
-            </div>
-            <div class="card__body">
-              <p class="card__category">Drinkware</p>
-              <h3 class="card__title">Forever in Our Hearts Mug</h3>
-              <p class="card__description">Premium ceramic mug with custom photo and heartfelt message.</p>
-              <p class="card__price">$19.99</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__image">
-              <img src="assets/images/memorial_gift_set_1767761231998.png" alt="Comfort Package Gift Set">
-              <span class="card__badge">Save 30%</span>
-            </div>
-            <div class="card__body">
-              <p class="card__category">Gift Sets</p>
-              <h3 class="card__title">Comfort Package Gift Set</h3>
-              <p class="card__description">Complete memorial bundle with blanket, candle, mug, and sympathy card.</p>
-              <p class="card__price">$99.99 <span>$129.99</span></p>
-            </div>
-          </article>
-        </div>
-
-        <div class="text-center mt-3xl">
-          <a href="products/" class="btn btn--secondary btn--large">View All Products</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="section section--alt">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-header__subtitle">Customer Stories</p>
-          <h2 class="section-header__title">Bringing Comfort to Families</h2>
-        </div>
-
-        <div class="testimonial">
-          <p class="testimonial__quote">
-            The memorial blanket we ordered for my grandmother was absolutely beautiful.
-            The quality exceeded our expectations, and it brought so much comfort to our
-            family during a difficult time. We now wrap ourselves in her memory every day.
-          </p>
-          <div class="testimonial__author">
-            <p class="testimonial__name">Sarah M.</p>
-            <p class="testimonial__role">Ordered Comfort Package</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- B2B CTA -->
-    <section class="section">
-      <div class="container">
-        <div class="b2b-cta">
-          <div class="b2b-cta__content">
-            <h2 class="b2b-cta__title">Partner With Us</h2>
-            <p class="b2b-cta__description">
-              Are you a funeral home looking to offer premium memorial products to families?
-              We provide wholesale pricing, white-label options, and dedicated support.
-            </p>
-
-            <div class="b2b-cta__benefits">
-              <div class="b2b-cta__benefit">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="20,6 9,17 4,12" />
-                </svg>
-                <span>Wholesale Pricing</span>
-              </div>
-              <div class="b2b-cta__benefit">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="20,6 9,17 4,12" />
-                </svg>
-                <span>White-Label Options</span>
-              </div>
-              <div class="b2b-cta__benefit">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="20,6 9,17 4,12" />
-                </svg>
-                <span>No Minimum Orders</span>
-              </div>
-              <div class="b2b-cta__benefit">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="20,6 9,17 4,12" />
-                </svg>
-                <span>Dedicated Support</span>
-              </div>
-            </div>
-
-            <a href="for-funeral-homes/" class="btn btn--primary btn--large">Learn About Partnerships</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="section section--alt">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-header__subtitle">Simple Process</p>
-          <h2 class="section-header__title">How It Works</h2>
-          <p class="section-header__description">
-            Creating a personalized memorial product is easy. Just follow these simple steps.
-          </p>
-        </div>
-
-        <div class="categories stagger grid-cols-4">
-          <div class="category-card">
-            <div class="category-card__icon">
-              <span class="step-number">1</span>
-            </div>
-            <h4 class="category-card__title">Choose a Product</h4>
-            <p class="category-card__count">Browse our collection</p>
-          </div>
-
-          <div class="category-card">
-            <div class="category-card__icon">
-              <span class="step-number">2</span>
-            </div>
-            <h4 class="category-card__title">Upload Photos</h4>
-            <p class="category-card__count">Add your cherished images</p>
-          </div>
-
-          <div class="category-card">
-            <div class="category-card__icon">
-              <span class="step-number">3</span>
-            </div>
-            <h4 class="category-card__title">Personalize</h4>
-            <p class="category-card__count">Add names, dates & messages</p>
-          </div>
-
-          <div class="category-card">
-            <div class="category-card__icon">
-              <span class="step-number">4</span>
-            </div>
-            <h4 class="category-card__title">Receive With Love</h4>
-            <p class="category-card__count">Delivered to your door</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div class="footer__brand">
-          <a href="/" class="logo">
-            <img src="assets/images/logo-red.png" alt="Infinite Bond Logo" class="logo__icon obj-contain">
-            <span class="logo__text">Infinite Bond <span>Memorials</span></span>
-          </a>
-          <p>Creating meaningful memorial products that help families honor and remember their loved ones with dignity
-            and love.</p>
-          <div class="footer__social hidden">
-            <a href="#" aria-label="Facebook">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-              </svg>
-            </a>
-            <a href="#" aria-label="Instagram">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-              </svg>
-            </a>
-            <a href="#" aria-label="Pinterest">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.182-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.425 1.81-2.425.853 0 1.265.641 1.265 1.408 0 .858-.546 2.14-.828 3.33-.236.995.5 1.807 1.48 1.807 1.778 0 3.144-1.874 3.144-4.58 0-2.393-1.72-4.068-4.177-4.068-2.845 0-4.515 2.135-4.515 4.34 0 .859.331 1.781.745 2.281a.3.3 0 0 1 .069.288l-.278 1.133c-.044.183-.145.223-.335.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.965-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.938.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z" />
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        <div class="footer__column">
-          <h5>Products</h5>
-          <ul>
-            <li><a href="products/home-comfort.html">Home Comfort</a></li>
-            <li><a href="products/wearables.html">Wearables</a></li>
-            <li><a href="products/keepsakes.html">Keepsakes</a></li>
-            <li><a href="products/drinkware.html">Drinkware</a></li>
-            <li><a href="products/stationery.html">Stationery</a></li>
-            <li><a href="products/pet-memorials.html">Pet Memorials</a></li>
-            <li><a href="products/gift-sets.html">Gift Sets</a></li>
-          </ul>
-        </div>
-
-        <div class="footer__column">
-          <h5>Company</h5>
-          <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="for-funeral-homes/">For Funeral Homes</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="policies.html">Store Policies</a></li>
-          </ul>
-        </div>
-
-        <div class="footer__column">
-          <h5>Support</h5>
-          <ul>
-            <li><a href="track-order.html">Track Order</a></li>
-            <li><a href="policies.html#shipping">Shipping Info</a></li>
-            <li><a href="policies.html#returns">Returns & Exchanges</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer__bottom">
-        <p class="footer__copyright">© 2026 Infinite Bond. All rights reserved.</p>
-        <div class="footer__links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Cookie Policy</a>
-        </div>
-        <div class="footer__trust">
-          <span class="footer__secure-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg>
-            Secure SSL Encryption
-          </span>
-          <span class="footer__payment-methods">
-            <svg class="footer__payment-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="5" width="20" height="14" rx="2" />
-              <line x1="2" y1="10" x2="22" y2="10" />
-            </svg>
-            Secure Payments
-          </span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/config.js"></script>
-  <script src="js/main.js"></script>
-  <script async src="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.js"></script>
-  <div hidden id="snipcart" data-api-key="" data-config-modal-style="side"></div>
-</body>
-
+        try {
+          let app = firebase.app();
+          let features = [
+            'auth', 
+            'database', 
+            'firestore',
+            'functions',
+            'messaging', 
+            'storage', 
+            'analytics', 
+            'remoteConfig',
+            'performance',
+          ].filter(feature => typeof app[feature] === 'function');
+          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+  </body>
 </html>
