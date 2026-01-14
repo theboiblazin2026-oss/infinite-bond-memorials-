@@ -1295,6 +1295,77 @@ p {
   .products-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Mobile Logo Fix */
+  .logo__icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo__text {
+    font-size: 1.2rem;
+    line-height: 1.1;
+  }
+
+  .hero__title {
+    font-size: var(--text-3xl);
+  }
+
+  .hero__subtitle {
+    font-size: var(--text-base);
+  }
+
+  .btn {
+    padding: var(--space-sm) var(--space-lg);
+    font-size: var(--text-xs);
+  }
+
+  .btn--large {
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--text-sm);
+  }
+}
+
+/* Extra small mobile fixes */
+@media (max-width: 380px) {
+  .logo__icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .logo__text {
+    font-size: 1rem;
+  }
+
+  .header__inner {
+    padding: 0 var(--space-sm);
+  }
+
+  .hero__content {
+    padding: var(--space-md);
+  }
+}
+
+/* 768px Mobile Header Improvements */
+@media (max-width: 768px) {
+  .logo__icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .logo__text {
+    font-size: 1.5rem;
+    line-height: 1.1;
+  }
+
+  .header__inner {
+    padding: 0 var(--space-md);
+  }
+
+  /* Hide header CTA on mobile - use nav instead */
+  .header .btn {
+    display: none;
+  }
 }
 
 /* Snipcart Integration */
