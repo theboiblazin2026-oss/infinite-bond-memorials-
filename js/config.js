@@ -5,7 +5,7 @@ const CONFIG = {
 
     // Live Domain URL (No trailing slash)
     // Update this after you purchase your custom domain (e.g., "https://infinitebondmemorials.com")
-    LIVE_DOMAIN: "https://infinitebondmemorials.netlify.app",
+    LIVE_DOMAIN: "https://infinitebondmemorials.com",
 
     // Google Analytics ID
     GA_MEASUREMENT_ID: "G-XXXXXXXXXX",
