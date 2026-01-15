@@ -862,7 +862,9 @@
                 window.LoadSnipcart();
             }
 
+
             // 1. Get Product Data from the clicked button attributes
+            window.currentProductElement = element; // Store for cloning later
             currentProductData = {
                 id: element.dataset.itemId,
                 name: element.dataset.itemName,
@@ -1029,48 +1031,27 @@
                 addToCartBtn.textContent = "Processing...";
                 addToCartBtn.disabled = true;
 
-                // Native Snipcart Integration (Reliable Fallback)
-                // We create a hidden button with the exact configuration and click it
-                // This lets Snipcart handle validation, session loading, and file upload prompts natively
-
-                const tempBtn = document.createElement('button');
+                // Native Snipcart Integration: CLONE METHOD
+                // We clone the original button to ensure 100% attribute matching for Snipcart's strict validation
+                const tempBtn = window.currentProductElement.cloneNode(true);
                 tempBtn.className = 'snipcart-add-item';
+                tempBtn.removeAttribute('onclick'); // Prevent recursion
                 tempBtn.hidden = true;
 
-                // Core Product Data
-                tempBtn.dataset.itemId = currentProductData.id;
-                tempBtn.dataset.itemName = currentProductData.name;
-                tempBtn.dataset.itemPrice = currentProductData.price;
-                tempBtn.dataset.itemUrl = currentProductData.url;
-                tempBtn.dataset.itemDescription = currentProductData.description;
-                tempBtn.dataset.itemImage = currentProductData.image;
-                tempBtn.dataset.itemQuantity = 1;
-
-                // Custom Fields Configuration
-                // 1. Photo (Custom 1) - If file type, we explicitly DON'T set a value so Snipcart prompts for upload
-                if (currentProductData.custom1Name) {
-                    tempBtn.dataset.itemCustom1Name = currentProductData.custom1Name;
-                    tempBtn.dataset.itemCustom1Type = currentProductData.custom1Type || 'text';
-                    // No value = Prompt User in Cart
+                // Overlay User Selections
+                // 1. Photo (Custom 1) - Set empty to trigger native upload UI in cart
+                if (currentProductData.custom1Type === 'file') {
+                    tempBtn.dataset.itemCustom1Value = "";
                 }
 
-                // 2. Variant/Size (Custom 2)
-                if (currentProductData.custom2Name) {
-                    tempBtn.dataset.itemCustom2Name = currentProductData.custom2Name;
-                    // Copy options string for validation
-                    tempBtn.dataset.itemCustom2Options = currentProductData.custom2Options;
-                    if (custom2Value) {
-                        tempBtn.dataset.itemCustom2Value = custom2Value;
-                    }
+                // 2. Variant (Custom 2)
+                if (currentProductData.custom2Name && custom2Value) {
+                    tempBtn.dataset.itemCustom2Value = custom2Value;
                 }
 
-                // 3. Text/Personalization (Custom 3)
-                if (currentProductData.custom3Name) {
-                    tempBtn.dataset.itemCustom3Name = currentProductData.custom3Name;
-                    tempBtn.dataset.itemCustom3Type = currentProductData.custom3Type || 'text';
-                    if (custom3Value) {
-                        tempBtn.dataset.itemCustom3Value = custom3Value;
-                    }
+                // 3. Text (Custom 3)
+                if (currentProductData.custom3Name && custom3Value) {
+                    tempBtn.dataset.itemCustom3Value = custom3Value;
                 }
 
                 // Add to DOM, Click, Remove
