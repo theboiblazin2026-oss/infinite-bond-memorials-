@@ -54,3 +54,10 @@
   status = 200
 
 # Headers are defined in _headers file
+
+# Force HTTPS
+[[redirects]]
+  from = "http://*"
+  to = "https://:splat"
+  status = 301
+  force = true

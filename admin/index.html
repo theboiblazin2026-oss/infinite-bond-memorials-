@@ -164,8 +164,7 @@
                     <div class="tracker-actions">
                         <button onclick="saveTrackerEmbed()" class="btn btn--primary btn--small">Save
                             Connection</button>
-                        <button onclick="loadDemoTracker()" class="btn btn--outline btn--small btn-demo">Running a Test?
-                            Load Demo Data</button>
+
                         <button onclick="toggleTrackerSettings()" class="btn btn--outline btn--small">Cancel</button>
                     </div>
                 </div>
@@ -219,35 +218,7 @@
                         }
                     }
 
-                    function loadDemoTracker() {
-                        const demoTable = `
-                            <div class="demo-table-wrapper">
-                                <table class="demo-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Order #</th>
-                                            <th>Date</th>
-                                            <th>Customer</th>
-                                            <th>Product</th>
-                                            <th class="demo-table th--center">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>SNIP-1024</td>
-                                            <td>Jan 14</td>
-                                            <td>John Doe</td>
-                                            <td>Photo Blanket (60x80)</td>
-                                            <td class="demo-table td--center"><span class="status-badge status-badge--shipped">Shipped</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <p class="demo-table-note">(This is a demo. Your real Google Sheet will replace this.)</p>
-                            </div>
-                        `;
-                        document.getElementById('tracker-display').innerHTML = demoTable;
-                        toggleTrackerSettings();
-                    }
+
 
                     function toggleTrackerSettings() {
                         const settings = document.getElementById('tracker-settings');
