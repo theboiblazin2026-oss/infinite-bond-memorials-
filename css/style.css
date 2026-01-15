@@ -1411,9 +1411,10 @@ p {
   color: var(--color-charcoal);
   cursor: pointer;
   position: relative;
-  padding: var(--space-xs);
-  margin-left: var(--space-md);
+  padding: var(--space-sm);
+  margin-left: var(--space-sm);
   transition: color var(--transition-base);
+  flex-shrink: 0;
 }
 
 .btn-cart:hover {

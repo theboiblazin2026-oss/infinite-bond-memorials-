@@ -220,6 +220,87 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Success Confirmation Modal */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+        }
+
+        .success-modal.active {
+            display: flex;
+        }
+
+        .success-modal__content {
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-modal__icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-lg);
+        }
+
+        .success-modal__icon svg {
+            width: 40px;
+            height: 40px;
+            color: var(--color-white);
+        }
+
+        .success-modal__title {
+            font-family: var(--font-heading);
+            font-size: var(--text-2xl);
+            color: var(--color-charcoal);
+            margin-bottom: var(--space-sm);
+        }
+
+        .success-modal__message {
+            color: var(--color-gray);
+            margin-bottom: var(--space-xl);
+        }
+
+        .success-modal__actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .success-modal__actions .btn {
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -677,14 +758,63 @@
         </div>
     </div>
 
+    <!-- Success Confirmation Modal -->
+    <div id="successModal" class="success-modal">
+        <div class="success-modal__content">
+            <div class="success-modal__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h3 class="success-modal__title">Added to Cart!</h3>
+            <p class="success-modal__message">Your personalized item has been added to your cart. What would you like to
+                do next?</p>
+            <div class="success-modal__actions">
+                <button class="btn btn--primary snipcart-checkout" id="goToCartBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    View Cart & Checkout
+                </button>
+                <a href="/products/" class="btn btn--secondary" id="continueShoppingBtn">
+                    Continue Shopping
+                </a>
+                <button class="btn btn--outline" id="personalizeMoreBtn" onclick="closeSuccessModal()">
+                    Personalize Another Item
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="../js/main.js"></script>
     <script>
         // Personalization Modal Logic
         const modal = document.getElementById('personalizationModal');
+        const successModal = document.getElementById('successModal');
         const addToCartBtn = document.getElementById('modalAddToCartBtn');
         let currentProductData = {};
         let currentFile = null;
         let currentVariantPrice = 0;
+
+        // Success Modal Functions
+        function showSuccessModal() {
+            successModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSuccessModal() {
+            successModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close success modal when clicking outside
+        successModal.addEventListener('click', function (e) {
+            if (e.target === successModal) {
+                closeSuccessModal();
+            }
+        });
 
         // Handle URL parameters to auto-open product modal
         document.addEventListener('DOMContentLoaded', function () {
@@ -1006,12 +1136,15 @@
                 // TRIGGER CLICK
                 tempBtn.click();
 
-                // Clean up
+                // Clean up and show success modal
                 setTimeout(() => {
                     document.body.removeChild(tempBtn);
                     closePersonalizationModal();
                     addToCartBtn.textContent = originalText;
                     addToCartBtn.disabled = false;
+
+                    // Show success modal with cart/continue shopping options
+                    showSuccessModal();
                 }, 500);
 
             } catch (e) {
