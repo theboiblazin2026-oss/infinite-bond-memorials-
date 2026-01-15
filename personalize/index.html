@@ -1026,56 +1026,65 @@
             });
 
             try {
-                // Button Visual Feedback
+                // Button Feedback
                 const originalText = addToCartBtn.textContent;
-                addToCartBtn.textContent = "Processing...";
+                addToCartBtn.textContent = "Connecting...";
                 addToCartBtn.disabled = true;
 
-                // Native Snipcart Integration: CLONE METHOD
-                // We clone the original button to ensure 100% attribute matching for Snipcart's strict validation
-                const tempBtn = window.currentProductElement.cloneNode(true);
-                tempBtn.className = 'snipcart-add-item';
-                tempBtn.removeAttribute('onclick'); // Prevent recursion
-                tempBtn.hidden = true;
-
-                // Overlay User Selections
-                // 1. Photo (Custom 1) - Set empty to trigger native upload UI in cart
-                if (currentProductData.custom1Type === 'file') {
-                    tempBtn.dataset.itemCustom1Value = "";
-                }
-
-                // 2. Variant (Custom 2)
-                if (currentProductData.custom2Name && custom2Value) {
-                    tempBtn.dataset.itemCustom2Value = custom2Value;
-                }
-
-                // 3. Text (Custom 3)
-                if (currentProductData.custom3Name && custom3Value) {
-                    tempBtn.dataset.itemCustom3Value = custom3Value;
-                }
-
-                // Add to DOM, Click, Remove
-                document.body.appendChild(tempBtn);
-
-                // Trigger Snipcart
-                tempBtn.click();
-
-                setTimeout(() => {
-                    if (document.body.contains(tempBtn)) {
-                        document.body.removeChild(tempBtn);
+                // Ensure Snipcart Ready (Poll)
+                if (!window.Snipcart) {
+                    if (window.LoadSnipcart) window.LoadSnipcart();
+                    let attempts = 0;
+                    while (!window.Snipcart && attempts < 40) { // 10 seconds
+                        await new Promise(r => setTimeout(r, 250));
+                        attempts++;
                     }
+                    if (!window.Snipcart) throw new Error("Unable to connect to Secure Cart. Please refresh or check ad blockers.");
+                }
 
-                    // Success - Snipcart drawer should open automatically
-                    closePersonalizationModal();
+                addToCartBtn.textContent = "Adding...";
 
-                    // Reset Button
-                    addToCartBtn.textContent = originalText;
-                    addToCartBtn.disabled = false;
-                }, 500);
+                // API Payload
+                const customFields = [];
+                // 1. Photo - Must include empty value to satisfy 'required' logic for file upload in cart
+                if (currentProductData.custom1Type === 'file') {
+                    customFields.push({ name: currentProductData.custom1Name || "Photo", value: "" });
+                }
+                // 2. Variant
+                if (currentProductData.custom2Name && custom2Value) {
+                    customFields.push({ name: currentProductData.custom2Name, value: custom2Value });
+                }
+                // 3. Text
+                if (currentProductData.custom3Name && custom3Value) {
+                    customFields.push({ name: currentProductData.custom3Name, value: custom3Value });
+                }
+
+                // Add Item via API
+                await Snipcart.api.cart.items.add({
+                    id: currentProductData.id,
+                    name: currentProductData.name,
+                    price: currentProductData.price,
+                    url: currentProductData.url,
+                    description: currentProductData.description,
+                    image: currentProductData.image,
+                    quantity: 1,
+                    customFields: customFields
+                });
+
+                // Success
+                Snipcart.api.theme.cart.open();
+                closePersonalizationModal();
+
+                // Reset
+                addToCartBtn.textContent = originalText;
+                addToCartBtn.disabled = false;
 
             } catch (e) {
-                console.error(e);
-                alert("Cart Error: " + (e.message || e));
+                console.error("Cart API Error:", e);
+                let msg = e.message || e;
+                if (e.code) msg = "Error (" + e.code + "): " + msg;
+                alert("Cart Validation Error: " + msg);
+
                 addToCartBtn.textContent = "Error";
                 addToCartBtn.disabled = false;
             }
