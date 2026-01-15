@@ -445,6 +445,63 @@
                             <span class="product-option__price">From $45.99</span>
                         </div>
                     </button>
+
+                    <!-- Keepsake Pillow -->
+                    <button class="product-option" onclick="openPersonalizationModal(this)"
+                        data-item-id="keepsake-pillow" data-item-price="49.99" data-item-url="/personalize/"
+                        data-item-description="Soft 18x18 pillow with hidden pocket for keepsakes and custom photo."
+                        data-item-image="../assets/images/keepsake_pillow.png"
+                        data-item-name="In Loving Memory Keepsake Pillow" data-item-custom1-name="Photo"
+                        data-item-custom1-type="file" data-item-custom2-name="Processing Time"
+                        data-item-custom2-options="Standard (3-5 days)|Rush Order (Overnight)[+25.00]"
+                        data-item-custom3-name="Personalization Text" data-item-custom3-type="textarea">
+                        <div class="product-option__image">
+                            <img src="../assets/images/keepsake_pillow.png" alt="Keepsake Pillow">
+                        </div>
+                        <div class="product-option__content">
+                            <h3>Keepsake Pillow</h3>
+                            <p>Soft 18x18" with hidden pocket</p>
+                            <span class="product-option__price">From $49.99</span>
+                        </div>
+                    </button>
+
+                    <!-- Framed Portrait -->
+                    <button class="product-option" onclick="openPersonalizationModal(this)"
+                        data-item-id="framed-portrait" data-item-price="59.99" data-item-url="/personalize/"
+                        data-item-description="Elegant walnut-framed canvas portrait with custom photo and text."
+                        data-item-image="../assets/images/framed_portrait.png"
+                        data-item-name="Forever in Our Hearts Framed Portrait" data-item-custom1-name="Photo"
+                        data-item-custom1-type="file" data-item-custom2-name="Processing Time"
+                        data-item-custom2-options="Standard (3-5 days)|Rush Order (Overnight)[+25.00]"
+                        data-item-custom3-name="Custom Text" data-item-custom3-type="text">
+                        <div class="product-option__image">
+                            <img src="../assets/images/framed_portrait.png" alt="Framed Portrait">
+                        </div>
+                        <div class="product-option__content">
+                            <h3>Framed Portrait</h3>
+                            <p>Elegant walnut-framed canvas</p>
+                            <span class="product-option__price">From $59.99</span>
+                        </div>
+                    </button>
+
+                    <!-- Premium Woven Blanket -->
+                    <button class="product-option" onclick="openPersonalizationModal(this)"
+                        data-item-id="premium-woven-blanket" data-item-price="79.99" data-item-url="/personalize/"
+                        data-item-description="100% cotton woven blanket (6ft x 4ft) with intricate design and photo."
+                        data-item-image="../assets/images/premium_woven_blanket.png"
+                        data-item-name="Always In Our Hearts Premium Woven Blanket" data-item-custom1-name="Photo"
+                        data-item-custom1-type="file" data-item-custom2-name="Processing Time"
+                        data-item-custom2-options="Standard (3-5 days)|Rush Order (Overnight)[+35.00]"
+                        data-item-custom3-name="Personalization Text" data-item-custom3-type="textarea">
+                        <div class="product-option__image">
+                            <img src="../assets/images/premium_woven_blanket.png" alt="Premium Woven Blanket">
+                        </div>
+                        <div class="product-option__content">
+                            <h3>Premium Woven Blanket</h3>
+                            <p>100% cotton, 6ft x 4ft</p>
+                            <span class="product-option__price">From $79.99</span>
+                        </div>
+                    </button>
                 </div>
             </div>
         </section>
@@ -619,6 +676,37 @@
         let currentProductData = {};
         let currentFile = null;
         let currentVariantPrice = 0;
+
+        // Handle URL parameters to auto-open product modal
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('product');
+
+            if (productId) {
+                // Find the matching product button by data-item-id
+                const productButtons = document.querySelectorAll('.product-option[data-item-id]');
+                let matchingButton = null;
+
+                productButtons.forEach(btn => {
+                    if (btn.dataset.itemId === productId) {
+                        matchingButton = btn;
+                    }
+                });
+
+                if (matchingButton) {
+                    // Scroll to product section
+                    const productSection = document.querySelector('.product-selector');
+                    if (productSection) {
+                        productSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+
+                    // Slight delay to let page render, then open modal
+                    setTimeout(() => {
+                        openPersonalizationModal(matchingButton);
+                    }, 500);
+                }
+            }
+        });
 
         function openPersonalizationModal(element) {
             // 1. Get Product Data from the clicked button attributes

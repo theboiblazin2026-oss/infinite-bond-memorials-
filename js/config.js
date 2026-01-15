@@ -8,7 +8,7 @@ const CONFIG = {
     LIVE_DOMAIN: "https://infinitebondmemorials.com",
 
     // Google Analytics ID
-    GA_MEASUREMENT_ID: "G-XXXXXXXXXX",
+    GA_MEASUREMENT_ID: "G-SP8J7HT01B",
 
     // Formspree Form IDs (For Contact & Partnership Forms)
     // Create new forms at https://formspree.io/ and paste the 8-character codes here (e.g., "xjgdwkqz")
