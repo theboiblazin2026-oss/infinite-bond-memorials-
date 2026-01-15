@@ -1808,3 +1808,30 @@ p {
 .mt-xs {
   margin-top: var(--space-xs);
 }
+
+/* --------------------------------------------------------------------------
+   Personalize Modal Styles (Refactored from Inline Styles)
+   -------------------------------------------------------------------------- */
+.device-support-text {
+  font-size: 0.7em;
+  color: var(--color-gray);
+  margin-top: 5px;
+}
+
+.upload-note {
+  font-size: 0.8rem;
+  color: var(--color-primary);
+  margin-top: 0.5rem;
+  display: none;
+}
+
+.upload-note__icon {
+  margin-right: 4px;
+}
+
+.upload-preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}

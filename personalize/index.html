@@ -570,20 +570,19 @@
                                     <polyline points="21 15 16 10 5 21" />
                                 </svg>
                                 <p>Tap to Select Photo</p>
-                                <p style="font-size: 0.7em; color: var(--color-gray); margin-top:5px;">Supports iOS &
+                                <p class="device-support-text">Supports iOS &
                                     Android</p>
                             </div>
                         </div>
                         <p class="form-error" id="fileError"></p>
-                        <p style="font-size: 0.8rem; color: var(--color-primary); margin-top: 0.5rem; display:none;"
-                            id="uploadNote">
-                            <span style="margin-right:4px">⚠️</span>
+                        <p class="upload-note" id="uploadNote">
+                            <span class="upload-note__icon">⚠️</span>
                             <strong>Note:</strong> You will confirm this high-quality upload in the secure cart next.
                         </p>
                     </div>
 
                     <!-- Size/Variant Selector (Dynamic) -->
-                    <div id="modalVariantSection" class="form-group" style="display:none;">
+                    <div id="modalVariantSection" class="form-group hidden">
                         <label class="form-label" id="modalVariantLabel">Select Size</label>
                         <div class="variant-selector" id="modalVariantOptions">
                             <!-- Options injected via JS -->
@@ -649,7 +648,7 @@
                     <polyline points="21 15 16 10 5 21"/>
                 </svg>
                 <p>Tap to Select Photo</p>
-                <p style="font-size: 0.7em; color: var(--color-gray); margin-top:5px;">Supports iOS & Android</p>`;
+                <p class="device-support-text">Supports iOS & Android</p>`;
             document.getElementById('modalTextInput').value = '';
             document.getElementById('fileError').textContent = '';
             const note = document.getElementById('uploadNote');
@@ -748,7 +747,7 @@
                 reader.onload = function (e) {
                     // Use the preview image in the upload box
                     document.getElementById('modalFileContent').innerHTML = `
-                        <img src="${e.target.result}" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+                        <img src="${e.target.result}" class="upload-preview-image">
                     `;
                     // Show the guidance note
                     const note = document.getElementById('uploadNote');

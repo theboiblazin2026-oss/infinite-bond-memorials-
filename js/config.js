@@ -13,7 +13,24 @@ const CONFIG = {
     // Formspree Form IDs (For Contact & Partnership Forms)
     // Create new forms at https://formspree.io/ and paste the 8-character codes here (e.g., "xjgdwkqz")
     FORMSPREE_CONTACT_ID: "xwvvkgwa",
-    FORMSPREE_PARTNER_ID: "xnjjqeoy"
+    FORMSPREE_PARTNER_ID: "xnjjqeoy",
+
+    // ============================================
+    // FULFILLMENT VENDOR CONFIGURATION
+    // ============================================
+    // CRITICAL: DO NOT PUT API KEYS HERE!
+    // API keys must be stored in Netlify Environment Variables for security.
+    // Go to: Netlify Dashboard -> Site Settings -> Environment Variables
+    // Keys required:
+    // - CUSTOMCAT_API_KEY
+    // - SPOD_API_KEY
+    // - PRINTFUL_API_KEY
+    // - PRINTIFY_API_KEY
+    // - CONTRADO_API_KEY
+    // - TRUPOINT_API_KEY
+
+    // Manual Order Accounts (Reference only)
+    CELEBRATE_PRINTS_ACCOUNT: "theboiblazin2026@gmail.com"
 };
 
 // Auto-inject Snipcart Key if the placeholder exists

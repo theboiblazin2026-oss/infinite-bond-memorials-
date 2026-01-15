@@ -10,6 +10,28 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
+# ============================================
+# ENVIRONMENT VARIABLES (Set in Netlify Dashboard)
+# ============================================
+# Go to: Site Settings > Build & deploy > Environment > Environment variables
+#
+# Required Variables:
+#   GOOGLE_SERVICE_ACCOUNT_EMAIL - Google Sheets API access
+#   GOOGLE_PRIVATE_KEY - Google Sheets API key
+#   GOOGLE_SHEET_ID - The spreadsheet ID for orders
+#   SNIPCART_SECRET_KEY - Snipcart webhook validation
+#
+# Fulfillment Vendor API Keys:
+#   CUSTOMCAT_API_KEY - CustomCat overnight fulfillment (blankets, pillows, portraits)
+#   SPOD_API_KEY - SPOD/Spreadshirt (fast 48hr t-shirts/hoodies)
+#   PRINTFUL_API_KEY - Printful (t-shirts, mugs, candles, ornaments)
+#   PRINTIFY_API_KEY - Printify (standard blankets)
+#   TRUPOINT_API_KEY - Trupoint Memorials (urns dropship)
+#   CONTRADO_API_KEY - Contrado (premium textiles, 1-2 day production)
+#
+# Note: Celebrate Prints orders are manual via email (theboiblazin2026@gmail.com)
+# ============================================
+
 # Redirects (if needed)
 [[redirects]]
   from = "/admin"
@@ -24,6 +46,11 @@
 [[redirects]]
   from = "/for-funeral-homes"
   to = "/for-funeral-homes/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/products/specialty"
+  to = "/products/specialty-memorials.html"
   status = 200
 
 # Headers are defined in _headers file
