@@ -1031,10 +1031,21 @@
 
                 // Ensure Snipcart is ready
                 if (!window.Snipcart) {
+                    addToCartBtn.textContent = "Connecting...";
                     console.log("Waiting for Snipcart...");
                     if (window.LoadSnipcart) window.LoadSnipcart();
-                    await new Promise(r => setTimeout(r, 1500));
-                    if (!window.Snipcart) throw new Error("Cart is still loading. Please check your connection.");
+
+                    // Poll for up to 5 seconds (10 checks)
+                    let attempts = 0;
+                    while (!window.Snipcart && attempts < 20) {
+                        await new Promise(r => setTimeout(r, 250));
+                        attempts++;
+                    }
+
+                    if (!window.Snipcart) throw new Error("Unable to load Secure Cart. Please check your connection or disable ad blockers.");
+
+                    // Restore "Adding..." text
+                    addToCartBtn.textContent = "Adding...";
                 }
 
                 // Build Custom Fields
