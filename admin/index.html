@@ -14,163 +14,9 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
 
-    <style>
-        :root {
-            --color-admin-bg: #f3f4f6;
-            --color-admin-card: #ffffff;
-            --color-admin-text: #1f2937;
-            --color-status-pending: #f59e0b;
-            --color-status-processing: #3b82f6;
-            --color-status-shipped: #10b981;
-        }
 
-        body {
-            background-color: var(--color-admin-bg);
-        }
-
-        .admin-header {
-            background: var(--color-charcoal);
-            color: white;
-            padding: var(--space-lg) 0;
-            margin-bottom: var(--space-2xl);
-        }
-
-        .admin-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-xl);
-            padding-bottom: var(--space-4xl);
-        }
-
-        .admin-card {
-            background: var(--color-admin-card);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .admin-card__title {
-            font-family: var(--font-heading);
-            font-size: var(--text-2xl);
-            color: var(--color-charcoal);
-            margin-bottom: var(--space-lg);
-            border-bottom: 2px solid var(--color-gold);
-            padding-bottom: var(--space-xs);
-        }
-
-        .vendor-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .vendor-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: var(--space-md);
-            border-bottom: 1px solid #e5e7eb;
-            transition: background 0.2s;
-        }
-
-        .vendor-item:hover {
-            background: #f9fafb;
-        }
-
-        .vendor-name {
-            font-weight: 600;
-        }
-
-        .vendor-products {
-            font-size: var(--text-sm);
-            color: var(--color-gray);
-        }
-
-        .btn-dashboard {
-            display: inline-block;
-            width: 100%;
-            text-align: center;
-            margin-bottom: var(--space-sm);
-        }
-
-        .sop-checklist {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sop-step {
-            display: flex;
-            gap: var(--space-md);
-            margin-bottom: var(--space-md);
-            align-items: flex-start;
-        }
-
-        .sop-number {
-            background: var(--color-gold);
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .admin-header__content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            /* Fix: Prevent links from touching */
-        }
-
-        .admin-title {
-            margin-bottom: 2rem;
-        }
-
-        .admin-text {
-            margin-bottom: 1.5rem;
-        }
-
-        .admin-note {
-            margin-top: 1rem;
-            font-size: 0.9em;
-            color: gray;
-        }
-
-        .btn-dashboard--danger {
-            border-color: #dc3545;
-            color: #dc3545;
-        }
-
-        .btn-dashboard--danger:hover {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .mb-sm {
-            margin-bottom: 0.5rem;
-        }
-
-        .mt-sm {
-            margin-top: 1rem;
-        }
-
-        .flex-col-gap {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .admin-footer {
-            padding: 2rem 0;
-            text-align: center;
-            color: var(--color-gray);
-        }
-    </style>
 </head>
 
 <body>
@@ -193,8 +39,7 @@
             <!-- 1. Incoming Orders -->
             <div class="admin-card">
                 <h2 class="admin-card__title">1. Incoming Orders</h2>
-                <div
-                    style="background:var(--color-primary); color:white; padding:1rem; border-radius:4px; margin-bottom:1rem;">
+                <div class="alert-recommendation">
                     <strong>Recommended:</strong> Use the <strong>Order Tracker</strong> below to manage orders.
                 </div>
                 <p class="admin-text">For full details, use the official dashboard.</p>
@@ -204,38 +49,104 @@
                 </a>
             </div>
 
+            <!-- 2. Profit Command Center (CRM) -->
+            <div class="admin-card admin-card--border-gold">
+                <div class="crm-header-wrapper">
+                    <h2 class="admin-card__title">2. Profit Command Center</h2>
+                    <span class="crm-badge">LIVE CRM</span>
+                </div>
+
+                <div class="crm-stats-grid">
+                    <div class="crm-stat-card crm-stat-card--profit">
+                        <div class="crm-stat-label">Net Profit</div>
+                        <div id="crm-profit" class="crm-stat-value">$-.--</div>
+                    </div>
+                    <div class="crm-stat-card crm-stat-card--revenue">
+                        <div class="crm-stat-label">Revenue</div>
+                        <div id="crm-revenue" class="crm-stat-value">$-.--</div>
+                    </div>
+                    <div class="crm-stat-card crm-stat-card--margin">
+                        <div class="crm-stat-label">Margin</div>
+                        <div id="crm-margin" class="crm-stat-value">--%</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="crm-recent-log-header">Recent Profit Log</h4>
+                    <table class="crm-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Profit</th>
+                            </tr>
+                        </thead>
+                        <tbody id="crm-recent-list">
+                            <tr>
+                                <td colspan="3" class="crm-loading-cell">Loading financials...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <script>
+                    async function loadFinancials() {
+                        try {
+                            const res = await fetch('/.netlify/functions/get-stats');
+                            const data = await res.json();
+
+                            if (data.error) throw new Error(data.error);
+
+                            document.getElementById('crm-revenue').textContent = `$${data.totalRevenue}`;
+                            document.getElementById('crm-profit').textContent = `$${data.totalProfit}`;
+                            document.getElementById('crm-margin').textContent = `${data.margin}%`;
+
+                            const list = document.getElementById('crm-recent-list');
+                            list.innerHTML = data.recentOrders.map(o => `
+                                <tr class="crm-row">
+                                    <td>${o.date.split('-').slice(1).join('/')}</td>
+                                    <td class="crm-customer-cell">${o.customer}</td>
+                                    <td class="crm-profit-cell">+$${o.profit}</td>
+                                </tr>
+                            `).join('');
+                        } catch (e) {
+                            console.error("CRM Error:", e);
+                            document.getElementById('crm-recent-list').innerHTML = `<tr><td colspan="3" class="crm-empty-cell">Syncing... (Place 1st order to activate)</td></tr>`;
+                            document.getElementById('crm-profit').textContent = '$0.00';
+                        }
+                    }
+                    window.addEventListener('DOMContentLoaded', loadFinancials);
+                </script>
+            </div>
+
             <!-- 2. Funeral Home Orders (B2B) -->
             <div class="admin-card admin-card--border-gold">
                 <h2 class="admin-card__title">2. Funeral Home B2B <span class="badge-priority">PRIORITY</span></h2>
                 <p class="mb-sm"><strong>High-Value Partners.</strong> Process these immediately.</p>
 
                 <div class="flex-col-gap">
-                    <div style="background:#f9f9f9; padding:10px; border-radius:4px;">
+                    <div class="info-box">
                         <strong>Quote Requests:</strong>
                         <a href="https://app.snipcart.com/dashboard/orders" target="_blank" rel="noopener"
-                            class="link-arrow">Process
-                            Quotes in Snipcart &rarr;</a>
+                            class="link-arrow">Process Quotes in Snipcart &rarr;</a>
                     </div>
-                    <div style="background:#f9f9f9; padding:10px; border-radius:4px;">
+                    <div class="info-box">
                         <strong>New Inquiries:</strong>
                         <a href="https://app.netlify.com" target="_blank" rel="noopener" class="link-arrow">View Leads
-                            in Netlify
-                            &rarr;</a>
+                            in Netlify &rarr;</a>
                     </div>
                 </div>
             </div>
 
             <!-- 3. LIVE ORDER TRACKER (Google Sheet Embed) -->
             <div class="admin-card admin-card--border-primary admin-card--full-width">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <h2 class="admin-card__title" style="margin-bottom:0; border:none;">3. Live Order Tracker</h2>
-                    <button onclick="toggleTrackerSettings()"
-                        style="font-size:0.8rem; text-decoration:underline; background:none; border:none; cursor:pointer; color:var(--color-primary);">⚙️
-                        Settings</button>
+                <div class="tracker-header">
+                    <h2 class="admin-card__title tracker-title">3. Live Order Tracker</h2>
+                    <button onclick="toggleTrackerSettings()" class="tracker-settings-toggle">⚙️ Settings</button>
                 </div>
 
                 <!-- Display Area -->
-                <div id="tracker-display" style="margin-top:1rem;">
+                <div id="tracker-display" class="tracker-display">
                     <!-- Content injected via JS -->
                     <div class="tracker-display-placeholder">
                         <p><strong>Tracker not connected yet.</strong></p>
@@ -247,11 +158,10 @@
 
                 <!-- Settings Area (Hidden by default) -->
                 <div id="tracker-settings" class="tracker-settings">
-                    <label style="display:block; margin-bottom:0.5rem; font-weight:bold;">Paste Google Sheet Embed
-                        Code:</label>
+                    <label class="tracker-label">Paste Google Sheet Embed Code:</label>
                     <textarea id="embed-input" rows="4" class="tracker-input"
                         placeholder='<iframe src="https://docs.google.com/spreadsheets/d/e/..." ...></iframe>'></textarea>
-                    <div style="margin-top:0.5rem; display:flex; gap:10px;">
+                    <div class="tracker-actions">
                         <button onclick="saveTrackerEmbed()" class="btn btn--primary btn--small">Save
                             Connection</button>
                         <button onclick="loadDemoTracker()" class="btn btn--outline btn--small btn-demo">Running a Test?
@@ -261,9 +171,8 @@
                 </div>
 
                 <!-- Fallback Link (Always Visible if tracker is loaded) -->
-                <div id="tracker-fallback" style="margin-top:10px; display:none; text-align:center;">
-                    <a id="fallback-link" href="#" target="_blank" rel="noopener"
-                        style="font-size:0.85rem; color:gray; text-decoration:underline;">
+                <div id="tracker-fallback" class="tracker-fallback">
+                    <a id="fallback-link" href="#" target="_blank" rel="noopener" class="tracker-fallback-link">
                         Tracker blank? Click here to open in new tab
                     </a>
                 </div>
@@ -312,28 +221,28 @@
 
                     function loadDemoTracker() {
                         const demoTable = `
-                            <div style="overflow-x:auto;">
-                                <table style="width:100%; border-collapse:collapse; background:white; font-size:0.9rem;">
-                                    <thead style="background:#eee;">
+                            <div class="demo-table-wrapper">
+                                <table class="demo-table">
+                                    <thead>
                                         <tr>
-                                            <th style="padding:10px; text-align:left;">Order #</th>
-                                            <th style="padding:10px; text-align:left;">Date</th>
-                                            <th style="padding:10px; text-align:left;">Customer</th>
-                                            <th style="padding:10px; text-align:left;">Product</th>
-                                            <th style="padding:10px; text-align:center;">Status</th>
+                                            <th>Order #</th>
+                                            <th>Date</th>
+                                            <th>Customer</th>
+                                            <th>Product</th>
+                                            <th class="demo-table th--center">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr style="border-bottom:1px solid #eee;">
-                                            <td style="padding:10px;">SNIP-1024</td>
-                                            <td style="padding:10px;">Jan 14</td>
-                                            <td style="padding:10px;">John Doe</td>
-                                            <td style="padding:10px;">Photo Blanket (60x80)</td>
-                                            <td style="padding:10px; text-align:center;"><span style="background:#e6f4ea; color:#1e8e3e; padding:2px 8px; border-radius:12px;">Shipped</span></td>
+                                        <tr>
+                                            <td>SNIP-1024</td>
+                                            <td>Jan 14</td>
+                                            <td>John Doe</td>
+                                            <td>Photo Blanket (60x80)</td>
+                                            <td class="demo-table td--center"><span class="status-badge status-badge--shipped">Shipped</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <p style="text-align:center; color:gray; font-size:0.8rem; margin-top:10px;">(This is a demo. Your real Google Sheet will replace this.)</p>
+                                <p class="demo-table-note">(This is a demo. Your real Google Sheet will replace this.)</p>
                             </div>
                         `;
                         document.getElementById('tracker-display').innerHTML = demoTable;
@@ -359,33 +268,134 @@
             <!-- 4. Vendor Routing & Integrations -->
             <div class="admin-card">
                 <h2 class="admin-card__title">4. Vendor Routing & Integrations</h2>
-                <div
-                    style="margin-bottom: 1rem; padding: 10px; background: #e0f7fa; color: #006064; border-radius: 4px; font-size: 0.9em; word-break: break-all;">
-                    <strong>Webhook URL:</strong> <span id="webhook-url-display"
-                        style="font-family: monospace; font-weight: bold;">Loading...</span>
-                    <button onclick="copyWebhook()"
-                        style="margin-left: 5px; cursor: pointer; border: 1px solid #006064; background: white; padding: 2px 5px; border-radius: 3px; font-size: 0.8em;">Copy</button>
-                    <p style="margin-top: 5px; font-size: 0.9em;">Paste this URL into your vendor settings to auto-sync
-                        shipments.</p>
+                <div class="webhook-box">
+                    <strong>Webhook URL:</strong> <span id="webhook-url-display" class="webhook-url">Loading...</span>
+                    <button onclick="copyWebhook()" class="webhook-copy-btn">Copy</button>
+                    <p class="webhook-note">Paste this URL into your vendor settings to auto-sync shipments.</p>
                 </div>
 
                 <ul class="vendor-list">
-                    <li class="vendor-item" style="flex-wrap: wrap;">
-                        <div
-                            style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                            <div><strong style="color:#d93025;">Printful</strong> <span
-                                    style="font-size:0.8em; color:gray;">(Apparel, Mugs)</span></div>
+                    <!-- CustomCat - OVERNIGHT -->
+                    <li class="vendor-item vendor-item--wrap vendor-item--customcat">
+                        <div class="vendor-content-row">
+                            <div><strong class="vendor-name--customcat">⚡ CustomCat</strong> <span
+                                    class="text-gray-sm">(Overnight Pillows, Blankets, Portraits)</span></div>
                             <div>
-                                <button onclick="toggleSetup('setup-printful')" class="btn btn--outline btn--small"
-                                    style="margin-right: 5px; font-size: 0.75rem;">Setup</button>
+                                <button onclick="toggleSetup('setup-customcat')"
+                                    class="btn btn--outline btn--small btn-setup">Setup</button>
+                                <a href="https://customcat.com/dashboard" target="_blank" rel="noopener"
+                                    class="btn btn--primary btn--small">Login</a>
+                            </div>
+                        </div>
+                        <div id="setup-customcat" class="vendor-setup--customcat">
+                            <strong>Setup Steps:</strong>
+                            <ol class="vendor-setup-steps">
+                                <li>Dashboard → API Settings.</li>
+                                <li>Copy your <strong>API Key</strong>.</li>
+                                <li>Add to Netlify Environment Variables.</li>
+                                <li>Orders auto-route when AUTOPILOT_PILLOW is ON.</li>
+                            </ol>
+                        </div>
+                    </li>
+
+                    <!-- SPOD - 48hr -->
+                    <li class="vendor-item vendor-item--wrap vendor-item--spod">
+                        <div class="vendor-content-row">
+                            <div><strong class="vendor-name--spod">🚀 SPOD (Spreadshirt)</strong> <span
+                                    class="text-gray-sm">(48hr Shirts, Hoodies)</span></div>
+                            <div>
+                                <button onclick="toggleSetup('setup-spod')"
+                                    class="btn btn--outline btn--small btn-setup">Setup</button>
+                                <a href="https://partner.spreadshirt.com/dashboard" target="_blank" rel="noopener"
+                                    class="btn btn--primary btn--small">Login</a>
+                            </div>
+                        </div>
+                        <div id="setup-spod" class="vendor-setup--spod">
+                            <strong>Setup Steps:</strong>
+                            <ol class="vendor-setup-steps">
+                                <li>Dashboard → API Access.</li>
+                                <li>Generate <strong>API Token</strong>.</li>
+                                <li>Add SPOD_API_KEY to Netlify.</li>
+                            </ol>
+                        </div>
+                    </li>
+
+                    <!-- Contrado - Premium -->
+                    <li class="vendor-item vendor-item--wrap vendor-item--contrado">
+                        <div class="vendor-content-row">
+                            <div><strong class="vendor-name--contrado">✨ Contrado</strong> <span
+                                    class="text-gray-sm">(Premium Textiles, 1-2 days)</span></div>
+                            <div>
+                                <button onclick="toggleSetup('setup-contrado')"
+                                    class="btn btn--outline btn--small btn-setup">Setup</button>
+                                <a href="https://www.contrado.com/account" target="_blank" rel="noopener"
+                                    class="btn btn--primary btn--small">Login</a>
+                            </div>
+                        </div>
+                        <div id="setup-contrado" class="vendor-setup--contrado">
+                            <strong>Setup Steps:</strong>
+                            <ol class="vendor-setup-steps">
+                                <li>Account → API/Developer section.</li>
+                                <li>Generate API credentials.</li>
+                                <li>Add CONTRADO_API_KEY to Netlify.</li>
+                            </ol>
+                        </div>
+                    </li>
+
+                    <!-- Celebrate Prints - Same Day -->
+                    <li class="vendor-item vendor-item--wrap vendor-item--celebrate">
+                        <div class="vendor-content-row">
+                            <div><strong class="vendor-name--celebrate">🎨 Celebrate Prints</strong> <span
+                                    class="text-gray-sm">(Same-Day Cap Panels)</span></div>
+                            <div>
+                                <span class="vendor-manual-tag">Manual Orders</span>
+                                <a href="https://celebrateprints.com" target="_blank" rel="noopener"
+                                    class="btn btn--primary btn--small">Login</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Trupoint Memorials - Urns -->
+                    <li class="vendor-item vendor-item--wrap vendor-item--trupoint">
+                        <div class="vendor-content-row">
+                            <div><strong class="vendor-name--trupoint">🏺 Trupoint Memorials</strong> <span
+                                    class="text-gray-sm">(Photo Urns, 5-day)</span></div>
+                            <div>
+                                <button onclick="toggleSetup('setup-trupoint')"
+                                    class="btn btn--outline btn--small btn-setup">Setup</button>
+                                <a href="https://trupointmemorials.com" target="_blank" rel="noopener"
+                                    class="btn btn--primary btn--small">Login</a>
+                            </div>
+                        </div>
+                        <div id="setup-trupoint" class="vendor-setup--trupoint">
+                            <strong>Setup Steps:</strong>
+                            <ol class="vendor-setup-steps">
+                                <li>Contact for API access or use manual ordering.</li>
+                                <li>Add TRUPOINT_API_KEY to Netlify if available.</li>
+                            </ol>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Standard Vendors Section (moved outside ul to fix HTML structure) -->
+                <hr class="vendor-divider">
+                <p class="vendor-section-label">— Standard Vendors —</p>
+
+                <ul class="vendor-list">
+                    <li class="vendor-item vendor-item--wrap vendor-item--printful">
+                        <div class="vendor-content-row">
+                            <div><strong class="vendor-name--printful">Printful</strong> <span
+                                    class="text-gray-sm">(Apparel, Mugs, Candles)</span></div>
+                            <div>
+                                <button onclick="toggleSetup('setup-printful')"
+                                    class="btn btn--outline btn--small btn-setup">Setup</button>
                                 <a href="https://www.printful.com/dashboard/orders" target="_blank" rel="noopener"
                                     class="btn btn--primary btn--small">Login</a>
                             </div>
                         </div>
-                        <div id="setup-printful"
-                            style="display: none; width: 100%; background: #fff5f5; padding: 10px; border-radius: 4px; font-size: 0.9em; margin-top: 5px; border-left: 3px solid #d93025;">
+                        <div id="setup-printful" class="vendor-setup--printful">
                             <strong>Setup Steps:</strong>
-                            <ol style="margin-left: 20px; list-style-type: decimal;">
+                            <ol class="vendor-setup-steps">
                                 <li>Create Order -> Paste <strong>Reference ID</strong> (e.g. SNIP-1024).</li>
                                 <li>Settings > API > Webhooks.</li>
                                 <li>Paste <strong>Webhook URL</strong> above.</li>
@@ -395,22 +405,20 @@
                         </div>
                     </li>
 
-                    <li class="vendor-item" style="flex-wrap: wrap;">
-                        <div
-                            style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                            <div><strong style="color:#1a73e8;">Printify</strong> <span
-                                    style="font-size:0.8em; color:gray;">(Blankets, Stones)</span></div>
+                    <li class="vendor-item vendor-item--wrap">
+                        <div class="vendor-content-row">
+                            <div><strong class="text-printify">Printify</strong> <span class="text-gray-sm">(Standard
+                                    Blankets)</span></div>
                             <div>
-                                <button onclick="toggleSetup('setup-printify')" class="btn btn--outline btn--small"
-                                    style="margin-right: 5px; font-size: 0.75rem;">Setup</button>
+                                <button onclick="toggleSetup('setup-printify')"
+                                    class="btn btn--outline btn--small btn-setup">Setup</button>
                                 <a href="https://printify.com/app/orders" target="_blank" rel="noopener"
                                     class="btn btn--primary btn--small">Login</a>
                             </div>
                         </div>
-                        <div id="setup-printify"
-                            style="display: none; width: 100%; background: #f0f7ff; padding: 10px; border-radius: 4px; font-size: 0.9em; margin-top: 5px; border-left: 3px solid #1a73e8;">
+                        <div id="setup-printify" class="vendor-setup-panel">
                             <strong>Setup Steps:</strong>
-                            <ol style="margin-left: 20px; list-style-type: decimal;">
+                            <ol class="vendor-setup-steps">
                                 <li>Orders > Create -> Paste <strong>External ID</strong> (e.g. SNIP-1024).</li>
                                 <li>Settings > API > Webhooks.</li>
                                 <li>Topic: <strong>"Order Shipment Created"</strong>.</li>
@@ -420,22 +428,20 @@
                         </div>
                     </li>
 
-                    <li class="vendor-item" style="flex-wrap: wrap;">
-                        <div
-                            style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                            <div><strong style="color:#e37400;">Gooten</strong> <span
-                                    style="font-size:0.8em; color:gray;">(Ornaments)</span></div>
+                    <li class="vendor-item vendor-item--wrap">
+                        <div class="vendor-content-row">
+                            <div><strong class="text-gooten">Gooten</strong> <span class="text-gray-sm">(Ornaments,
+                                    Gifts)</span></div>
                             <div>
-                                <button onclick="toggleSetup('setup-gooten')" class="btn btn--outline btn--small"
-                                    style="margin-right: 5px; font-size: 0.75rem;">Setup</button>
+                                <button onclick="toggleSetup('setup-gooten')"
+                                    class="btn btn--outline btn--small btn-setup">Setup</button>
                                 <a href="https://www.gooten.com/admin" target="_blank" rel="noopener"
                                     class="btn btn--primary btn--small">Login</a>
                             </div>
                         </div>
-                        <div id="setup-gooten"
-                            style="display: none; width: 100%; background: #fffcf5; padding: 10px; border-radius: 4px; font-size: 0.9em; margin-top: 5px; border-left: 3px solid #e37400;">
+                        <div id="setup-gooten" class="vendor-setup--gooten">
                             <strong>Setup Steps:</strong>
-                            <ol style="margin-left: 20px; list-style-type: decimal;">
+                            <ol class="vendor-setup-steps">
                                 <li>Paste <strong>Ref ID</strong> when ordering.</li>
                                 <li>Settings > API.</li>
                                 <li>Paste <strong>Webhook URL</strong> in Postback/Webhook field.</li>
@@ -485,408 +491,398 @@
             <!-- 5. AUTOPILOT CONSOLE -->
             <div class="admin-card">
                 <h2 class="admin-card__title">5. Autopilot Console 🤖</h2>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <p class="admin-text" style="margin: 0;"><strong>Status:</strong> Automatically route orders to
+                <div class="autopilot-status-row">
+                    <p class="admin-text autopilot-status-text"><strong>Status:</strong> Automatically route orders to
                         vendors.</p>
                 </div>
 
-                <div class="autopilot-grid" style="display: grid; gap: 10px;">
+                <div class="autopilot-grid">
 
                     <!-- Global Master Switch -->
-                    <div class="autopilot-item"
-                        style="background: #1f2937; color: white; padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                    <div class="autopilot-item autopilot-master-toggle">
                         <strong>MASTER CONTROL</strong>
                         <label class="switch">
-                            <input type="checkbox" id="toggle-global"
+                            <input type="checkbox" id="toggle-global" title="Master autopilot control"
                                 onchange="updateAutopilot('AUTOPILOT_GLOBAL', this.checked)">
                             <span class="slider round"></span>
                         </label>
                     </div>
 
-                    <!-- Individual Products -->
-                    <div class="autopilot-item item-row">
-                        <span>Photo Blanket</span>
+                    <!-- Fast Fulfillment Products (NEW) -->
+                    <p class="autopilot-section-header">⚡ FAST FULFILLMENT (1-2 days)</p>
+
+                    <div class="autopilot-item item-row item-row--green">
+                        <span>⚡ Keepsake Pillow <small class="vendor-tag">(CustomCat)</small></span>
                         <label class="switch">
-                            <input type="checkbox" id="toggle-blanket"
-                                onchange="updateAutopilot('AUTOPILOT_BLANKET', this.checked)">
+                            <input type="checkbox" id="toggle-pillow" title="Autopilot for pillows"
+                                onchange="updateAutopilot('AUTOPILOT_PILLOW', this.checked)">
                             <span class="slider round"></span>
                         </label>
                     </div>
 
-                    <div class="autopilot-item item-row">
-                        <span>Memorial T-Shirt</span>
+                    <div class="autopilot-item item-row item-row--green">
+                        <span>⚡ Framed Portrait <small class="vendor-tag">(CustomCat)</small></span>
                         <label class="switch">
-                            <input type="checkbox" id="toggle-tshirt"
-                                onchange="updateAutopilot('AUTOPILOT_TSHIRT', this.checked)">
+                            <input type="checkbox" id="toggle-portrait" title="Autopilot for portraits"
+                                onchange="updateAutopilot('AUTOPILOT_PORTRAIT', this.checked)">
                             <span class="slider round"></span>
                         </label>
                     </div>
 
-                    <div class="autopilot-item item-row">
-                        <span>Custom Mug</span>
-                        <label class="switch">
-                            <input type="checkbox" id="toggle-mug"
-                                onchange="updateAutopilot('AUTOPILOT_MUG', this.checked)">
-                            <span class="slider round"></span>
-                        </label>
+                    <div class="autopilot-item item-row item-row--orange">
+                        <div class="item-row item-row--blue">
+                            <span>☁️ Blankets <small class="text-gray-sm">(Printify/CustomCat)</small></span>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-blanket" title="Autopilot for blankets"
+                                    onchange="updateAutopilot('AUTOPILOT_BLANKET', this.checked)">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <div class="item-row item-row--blue">
+                            <span>👕 T-Shirts <small class="text-gray-sm">(SPOD)</small></span>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-tshirt" title="Autopilot for t-shirts"
+                                    onchange="updateAutopilot('AUTOPILOT_TSHIRT', this.checked)">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <div class="item-row">
+                            <span>Mugs / Candles <small class="text-gray-sm">(Gooten)</small></span>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-mug" title="Autopilot for mugs"
+                                    onchange="updateAutopilot('AUTOPILOT_MUG', this.checked)">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <div class="item-row">
+                            <span>Comfort Package (Bundle)</span>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-comfort" title="Autopilot for bundles"
+                                    onchange="updateAutopilot('AUTOPILOT_COMFORT', this.checked)">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <!-- Specialty Products -->
+                        <p class="section-label-specialty">🏺 SPECIALTY ITEMS (Manual/Inquiry)</p>
+
+                        <div class="item-row item-row--pink">
+                            <span>🏺 Photo Urns <small class="text-gray-sm">(Trupoint)</small></span>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-urn" title="Autopilot for urns"
+                                    onchange="updateAutopilot('AUTOPILOT_URN', this.checked)">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <div class="item-row item-row--blue">
+                            <span>🎨 Cap Panels <small class="text-gray-sm">(Celebrate Prints)</small></span>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-cappanel" title="Autopilot for cap panels"
+                                    onchange="updateAutopilot('AUTOPILOT_CAPPANEL', this.checked)">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <div class="item-row">
+                            <span>Other / Default</span>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-default" title="Default autopilot"
+                                    onchange="updateAutopilot('AUTOPILOT_DEFAULT', this.checked)">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
                     </div>
 
-                    <div class="autopilot-item item-row">
-                        <span>Comfort Package (Bundle)</span>
-                        <label class="switch">
-                            <input type="checkbox" id="toggle-comfort"
-                                onchange="updateAutopilot('AUTOPILOT_COMFORT', this.checked)">
-                            <span class="slider round"></span>
-                        </label>
-                    </div>
 
-                    <div class="autopilot-item item-row">
-                        <span>Other / Default</span>
-                        <label class="switch">
-                            <input type="checkbox" id="toggle-default"
-                                onchange="updateAutopilot('AUTOPILOT_DEFAULT', this.checked)">
-                            <span class="slider round"></span>
-                        </label>
-                    </div>
 
-                </div>
+                    <script>
+                        async function fetchSettings() {
+                            try {
+                                const res = await fetch('/.netlify/functions/manage-settings');
+                                const settings = await res.json();
 
-                <style>
-                    .item-row {
-                        background: white;
-                        border: 1px solid #e5e7eb;
-                        padding: 10px 15px;
-                        border-radius: 6px;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                    }
+                                // Map settings to toggles
+                                document.getElementById('toggle-global').checked = settings['AUTOPILOT_GLOBAL'] === 'ON';
+                                document.getElementById('toggle-blanket').checked = settings['AUTOPILOT_BLANKET'] === 'ON';
+                                document.getElementById('toggle-tshirt').checked = settings['AUTOPILOT_TSHIRT'] === 'ON';
+                                document.getElementById('toggle-mug').checked = settings['AUTOPILOT_MUG'] === 'ON';
+                                document.getElementById('toggle-comfort').checked = settings['AUTOPILOT_COMFORT'] === 'ON';
+                                document.getElementById('toggle-default').checked = settings['AUTOPILOT_DEFAULT'] === 'ON';
 
-                    /* Switch Styles */
-                    .switch {
-                        position: relative;
-                        display: inline-block;
-                        width: 44px;
-                        height: 24px;
-                    }
-
-                    .switch input {
-                        opacity: 0;
-                        width: 0;
-                        height: 0;
-                    }
-
-                    .slider {
-                        position: absolute;
-                        cursor: pointer;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                        background-color: #ccc;
-                        transition: .4s;
-                        border-radius: 24px;
-                    }
-
-                    .slider:before {
-                        position: absolute;
-                        content: "";
-                        height: 18px;
-                        width: 18px;
-                        left: 3px;
-                        bottom: 3px;
-                        background-color: white;
-                        transition: .4s;
-                        border-radius: 50%;
-                    }
-
-                    input:checked+.slider {
-                        background-color: #22c55e;
-                    }
-
-                    input:checked+.slider:before {
-                        transform: translateX(20px);
-                    }
-                </style>
-
-                <script>
-                    async function fetchSettings() {
-                        try {
-                            const res = await fetch('/.netlify/functions/manage-settings');
-                            const settings = await res.json();
-
-                            // Map settings to toggles
-                            document.getElementById('toggle-global').checked = settings['AUTOPILOT_GLOBAL'] === 'ON';
-                            document.getElementById('toggle-blanket').checked = settings['AUTOPILOT_BLANKET'] === 'ON';
-                            document.getElementById('toggle-tshirt').checked = settings['AUTOPILOT_TSHIRT'] === 'ON';
-                            document.getElementById('toggle-mug').checked = settings['AUTOPILOT_MUG'] === 'ON';
-                            document.getElementById('toggle-comfort').checked = settings['AUTOPILOT_COMFORT'] === 'ON';
-                            document.getElementById('toggle-default').checked = settings['AUTOPILOT_DEFAULT'] === 'ON';
-
-                        } catch (e) { console.error('Error fetching settings', e); }
-                    }
-
-                    async function updateAutopilot(key, isChecked) {
-                        const val = isChecked ? 'ON' : 'OFF';
-                        // Visual feedback (optional)
-                        console.log(`Setting ${key} to ${val}`);
-
-                        try {
-                            await fetch('/.netlify/functions/manage-settings', {
-                                method: 'POST',
-                                body: JSON.stringify({ key: key, value: val })
-                            });
-                        } catch (e) {
-                            alert('Failed to save setting');
+                            } catch (e) { console.error('Error fetching settings', e); }
                         }
-                    }
 
-                    // Load on start
-                    window.addEventListener('DOMContentLoaded', fetchSettings);
-                </script>
-            </div>
+                        async function updateAutopilot(key, isChecked) {
+                            const val = isChecked ? 'ON' : 'OFF';
+                            // Visual feedback (optional)
+                            console.log(`Setting ${key} to ${val}`);
 
-            <!-- 6. CRM & Financials -->
-            <div class="admin-card">
-                <h2 class="admin-card__title">6. CRM & Financials</h2>
-                <div class="flex-col-gap">
-                    <a href="https://app.snipcart.com/dashboard/customers" target="_blank" rel="noopener"
-                        class="btn btn--outline btn-dashboard">Customer CRM</a>
-                    <a href="https://app.snipcart.com/dashboard/refunds" target="_blank" rel="noopener"
-                        class="btn btn--outline btn-dashboard btn-dashboard--danger">Disputes & Refunds</a>
+                            try {
+                                await fetch('/.netlify/functions/manage-settings', {
+                                    method: 'POST',
+                                    body: JSON.stringify({ key: key, value: val })
+                                });
+                            } catch (e) {
+                                alert('Failed to save setting');
+                            }
+                        }
+
+                        // Load on start
+                        window.addEventListener('DOMContentLoaded', fetchSettings);
+                    </script>
                 </div>
-            </div>
 
-            <!-- 7. Quick Links -->
-            <div class="admin-card">
-                <h2 class="admin-card__title">7. Quick Actions</h2>
-                <div class="flex-col-gap">
-                    <a href="../" target="_blank" class="btn btn--outline">View Live Store</a>
-                    <a href="https://analytics.google.com/" target="_blank" rel="noopener"
-                        class="btn btn--outline">Google
-                        Analytics</a>
-                </div>
-            </div>
-
-            <!-- 8. Fulfillment SOP (Full Width) -->
-            <div class="admin-card admin-card--full-width">
-                <h2 class="admin-card__title">8. Reference: Fulfillment SOP</h2>
-                <div class="sop-grid">
-                    <div>
-                        <h4>Step 1: Receive & Review</h4>
-                        <ol style="font-size:0.9rem; padding-left:1.2rem;">
-                            <li>Open Snipcart Order.</li>
-                            <li>Download <strong>Custom Photo</strong>.</li>
-                            <li><strong>QC Check:</strong> Is it blurry? Face cut off?</li>
-                            <li><em>If bad: Email customer immediately.</em></li>
-                        </ol>
-                    </div>
-                    <div>
-                        <h4>Step 2: Create Vendor Order</h4>
-                        <ol style="font-size:0.9rem; padding-left:1.2rem;">
-                            <li>Login to Vendor (see Card 3).</li>
-                            <li>Create <strong>Manual Order</strong>.</li>
-                            <li>Upload Photo & Text.</li>
-                            <li>Copy Shipping Info <strong>Exactly</strong>.</li>
-                        </ol>
-                    </div>
-                    <div>
-                        <h4>Step 3: Ship & Track</h4>
-                        <ol style="font-size:0.9rem; padding-left:1.2rem;">
-                            <li>Pay vendor base cost.</li>
-                            <li>Wait for Tracking # (2-5 days).</li>
-                            <li>Add Tracking # to Snipcart.</li>
-                            <li>Mark as Shipped.</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- CONTENT MANAGEMENT SECTION -->
-        <h2 class="admin-title" style="margin-top: 3rem;">Content Management</h2>
-        <div class="admin-grid">
-
-            <!-- Product & Price Editor -->
-            <div class="admin-card admin-card--full-width">
-                <h2 class="admin-card__title">📦 Product & Price Editor</h2>
-                <p class="admin-text" style="margin-bottom: 1rem;">Edit product prices below. Click "Generate Code" to
-                    get the updated HTML.</p>
-
-                <div id="product-editor">
-                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 1rem;">
-                        <thead>
-                            <tr style="background: var(--color-cream);">
-                                <th
-                                    style="padding: 10px; text-align: left; border-bottom: 2px solid var(--color-primary);">
-                                    Product</th>
-                                <th
-                                    style="padding: 10px; text-align: left; border-bottom: 2px solid var(--color-primary);">
-                                    Current Price</th>
-                                <th
-                                    style="padding: 10px; text-align: left; border-bottom: 2px solid var(--color-primary);">
-                                    New Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Photo Blanket</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$64.99</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
-                                        step="0.01" id="price-blanket" value="64.99"
-                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Memorial T-Shirt</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$29.99</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
-                                        step="0.01" id="price-tshirt" value="29.99"
-                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Custom Mug</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$24.99</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
-                                        step="0.01" id="price-mug" value="24.99"
-                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Memorial Candle</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$34.99</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
-                                        step="0.01" id="price-candle" value="34.99"
-                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Keychain</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$19.99</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
-                                        step="0.01" id="price-keychain" value="19.99"
-                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
-                                </td>
-                            </tr>
-                            <tr style="background: #fef3c7;">
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><strong>Comfort
-                                        Package</strong></td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$99.99</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
-                                        step="0.01" id="price-comfort" value="99.99"
-                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Keepsake Collection</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$45.99</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
-                                        step="0.01" id="price-keepsake" value="45.99"
-                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Remembrance Bundle</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$55.99</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
-                                        step="0.01" id="price-remembrance" value="55.99"
-                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
-                                </td>
-                            </tr>
-                            <tr style="background: #dbeafe;">
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><strong>Rush Order</strong>
-                                </td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">$15.00</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><input type="number"
-                                        step="0.01" id="price-rush" value="15.00"
-                                        style="padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 100px;">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div
-                        style="background: #f0fdf4; padding: 1rem; border-radius: 8px; border-left: 4px solid #22c55e;">
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>💡 How to update prices:</strong></p>
-                        <ol style="font-size: 0.85rem; margin: 0.5rem 0 0 1rem; padding: 0;">
-                            <li>Edit the prices in the table above</li>
-                            <li>Use "Find & Replace" in your code editor</li>
-                            <li>Search for the old price (e.g., <code>data-item-price="64.99"</code>)</li>
-                            <li>Replace with the new price</li>
-                            <li>Deploy to Netlify</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Page Header Editor -->
-            <div class="admin-card">
-                <h2 class="admin-card__title">📝 Page Headers</h2>
-                <p class="admin-text" style="margin-bottom: 1rem;">Edit key page text content.</p>
-
-                <div style="display: flex; flex-direction: column; gap: 1rem;">
-                    <div>
-                        <label style="display: block; font-weight: 600; margin-bottom: 0.25rem;">Homepage Hero
-                            Title</label>
-                        <input type="text" id="header-hero" value="Keep Their Memory Close to Your Heart"
-                            style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 4px;">
-                    </div>
-                    <div>
-                        <label style="display: block; font-weight: 600; margin-bottom: 0.25rem;">Homepage Hero
-                            Subtitle</label>
-                        <textarea id="header-subtitle" rows="2"
-                            style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 4px;">Premium personalized memorial products crafted with love, designed to honor and celebrate the lives of those who meant the most.</textarea>
-                    </div>
-                    <div>
-                        <label style="display: block; font-weight: 600; margin-bottom: 0.25rem;">Products Page
-                            Title</label>
-                        <input type="text" id="header-products" value="Memorial Products"
-                            style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 4px;">
+                <!-- 6. CRM & Financials -->
+                <div class="admin-card">
+                    <h2 class="admin-card__title">6. CRM & Financials</h2>
+                    <div class="flex-col-gap">
+                        <a href="https://app.snipcart.com/dashboard/customers" target="_blank" rel="noopener"
+                            class="btn btn--outline btn-dashboard">Customer CRM</a>
+                        <a href="https://app.snipcart.com/dashboard/refunds" target="_blank" rel="noopener"
+                            class="btn btn--outline btn-dashboard btn-dashboard--danger">Disputes & Refunds</a>
                     </div>
                 </div>
 
-                <div
-                    style="background: #fef3c7; padding: 0.75rem; border-radius: 8px; margin-top: 1rem; border-left: 4px solid #f59e0b;">
-                    <p style="margin: 0; font-size: 0.85rem;"><strong>Note:</strong> Copy this text and use Find &
-                        Replace in HTML files to update.</p>
-                </div>
-            </div>
-
-            <!-- Image Upload Reference -->
-            <div class="admin-card">
-                <h2 class="admin-card__title">🖼️ Product Images</h2>
-                <p class="admin-text">Manage product images for the store.</p>
-
-                <div style="margin-top: 1rem;">
-                    <p style="font-size: 0.9rem;"><strong>Image Location:</strong></p>
-                    <code
-                        style="background: #f3f4f6; padding: 0.5rem; display: block; border-radius: 4px; font-size: 0.85rem;">/assets/images/</code>
-
-                    <p style="font-size: 0.9rem; margin-top: 1rem;"><strong>Current Product Images:</strong></p>
-                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
-                        <li>memorial_blanket_*.png</li>
-                        <li>memorial_tshirt_*.png</li>
-                        <li>memorial_mug_*.png</li>
-                        <li>memorial_candle_*.png</li>
-                        <li>memorial_gift_set_*.png</li>
-                    </ul>
-
-                    <p style="font-size: 0.9rem; margin-top: 1rem;"><strong>To update images:</strong></p>
-                    <ol style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
-                        <li>Replace files in <code>/assets/images/</code></li>
-                        <li>Use same filename OR update HTML</li>
-                        <li>Recommended size: 800x800px</li>
-                    </ol>
+                <!-- 7. Quick Links -->
+                <div class="admin-card">
+                    <h2 class="admin-card__title">7. Quick Actions</h2>
+                    <div class="flex-col-gap">
+                        <a href="../" target="_blank" class="btn btn--outline">View Live Store</a>
+                        <a href="https://analytics.google.com/" target="_blank" rel="noopener"
+                            class="btn btn--outline">Google
+                            Analytics</a>
+                    </div>
                 </div>
 
-                <a href="https://github.com/" target="_blank" rel="noopener" class="btn btn--outline"
-                    style="margin-top: 1rem;">
-                    Upload via GitHub
-                </a>
-            </div>
+                <!-- 8. Daily Operations & SOP (Critical) -->
+                <div class="admin-card admin-card--full-width admin-card--border-gold">
+                    <div class="crm-header-wrapper">
+                        <h2 class="admin-card__title">📋 Daily Operations Checklist</h2>
+                        <span class="badgex sop-badge--failsafe">FAIL-SAFE
+                            PROTOCOL</span>
+                    </div>
 
-        </div>
+                    <div class="sop-wrapper">
+
+                        <!-- Left: Daily Routine -->
+                        <div class="sop-section-morning">
+                            <h3 class="sop-title">☀️ Morning Routine (9 AM)</h3>
+                            <ul class="sop-checklist">
+                                <li class="sop-check-item">
+                                    <input type="checkbox" id="sop-1">
+                                    <label for="sop-1"><strong>1. Check Emails:</strong> Look for "⚠️ ACTION REQUIRED"
+                                        alerts from system.</label>
+                                </li>
+                                <li class="sop-check-item">
+                                    <input type="checkbox" id="sop-2">
+                                    <label for="sop-2"><strong>2. Open Tracker:</strong> Check "Live Order Tracker"
+                                        above
+                                        for Red Flags.</label>
+                                </li>
+                                <li class="sop-check-item">
+                                    <input type="checkbox" id="sop-3">
+                                    <label for="sop-3"><strong>3. Manual Orders:</strong> Process any Contrado/Trupoint
+                                        orders immediately.</label>
+                                </li>
+                                <li class="sop-check-item">
+                                    <input type="checkbox" id="sop-4">
+                                    <label for="sop-4"><strong>4. Update Tracking:</strong> Copy tracking #s from
+                                        Vendors ->
+                                        Snipcart.</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Right: Emergency Backups -->
+                        <div class="sop-section-backup">
+                            <h3 class="sop-title sop-title--danger">
+                                🚨 Emergency Backups (Fail-Safe)</h3>
+
+                            <div class="mb-sm">
+                                <strong>If CustomCat Fails (Overnight):</strong>
+                                <p class="admin-note backup-note">Log in to <strong>Printify</strong> -> Use
+                                    provider <strong>"Monster Digital"</strong> (Fastest alternative).</p>
+                            </div>
+
+                            <div class="mb-sm">
+                                <strong>If Contrado Fails (Premium):</strong>
+                                <p class="admin-note backup-note">Log in to <strong>Prodigi</strong> or
+                                    <strong>Printful</strong> (Premium Line).
+                            </div>
+
+                            <!-- CONTENT MANAGEMENT SECTION -->
+                            <h2 class="admin-title content-section-title">Content Management</h2>
+                            <div class="admin-grid">
+
+                                <!-- Product & Price Editor -->
+                                <div class="admin-card admin-card--full-width">
+                                    <h2 class="admin-card__title">📦 Product & Price Editor</h2>
+                                    <p class="admin-text content-intro-text">Edit product prices below. Click
+                                        "Generate Code" to
+                                        get the updated HTML.</p>
+
+                                    <div id="product-editor">
+                                        <table class="editor-table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="editor-th">Product</th>
+                                                    <th class="editor-th">Current Price</th>
+                                                    <th class="editor-th">New Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="editor-td">Photo Blanket</td>
+                                                    <td class="editor-td">$64.99</td>
+                                                    <td class="editor-td"><input type="number" step="0.01"
+                                                            id="price-blanket" value="64.99" class="editor-input"
+                                                            aria-label="Price for Photo Blanket"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="editor-td">Memorial T-Shirt</td>
+                                                    <td class="editor-td">$29.99</td>
+                                                    <td class="editor-td"><input type="number" step="0.01"
+                                                            id="price-tshirt" value="29.99" class="editor-input"
+                                                            aria-label="Price for Memorial T-Shirt"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="editor-td">Custom Mug</td>
+                                                    <td class="editor-td">$24.99</td>
+                                                    <td class="editor-td"><input type="number" step="0.01"
+                                                            id="price-mug" value="24.99" class="editor-input"
+                                                            aria-label="Price for Custom Mug"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="editor-td">Memorial Candle</td>
+                                                    <td class="editor-td">$34.99</td>
+                                                    <td class="editor-td"><input type="number" step="0.01"
+                                                            id="price-candle" value="34.99" class="editor-input"
+                                                            aria-label="Price for Memorial Candle"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="editor-td">Keychain</td>
+                                                    <td class="editor-td">$19.99</td>
+                                                    <td class="editor-td"><input type="number" step="0.01"
+                                                            id="price-keychain" value="19.99" class="editor-input"
+                                                            aria-label="Price for Keychain"></td>
+                                                </tr>
+                                                <tr class="item-row--pink">
+                                                    <td class="editor-td"><strong>Comfort Package</strong></td>
+                                                    <td class="editor-td">$99.99</td>
+                                                    <td class="editor-td"><input type="number" step="0.01"
+                                                            id="price-comfort" value="99.99" class="editor-input"
+                                                            aria-label="Price for Comfort Package"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="editor-td">Keepsake Collection</td>
+                                                    <td class="editor-td">$45.99</td>
+                                                    <td class="editor-td"><input type="number" step="0.01"
+                                                            id="price-keepsake" value="45.99" class="editor-input"
+                                                            aria-label="Price for Keepsake Collection"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="editor-td">Remembrance Bundle</td>
+                                                    <td class="editor-td">$55.99</td>
+                                                    <td class="editor-td"><input type="number" step="0.01"
+                                                            id="price-remembrance" value="55.99" class="editor-input"
+                                                            aria-label="Price for Remembrance Bundle">
+                                                    </td>
+                                                </tr>
+                                                <tr class="item-row--blue">
+                                                    <td class="editor-td"><strong>Rush Order</strong></td>
+                                                    <td class="editor-td">$15.00</td>
+                                                    <td class="editor-td"><input type="number" step="0.01"
+                                                            id="price-rush" value="15.00" class="editor-input"
+                                                            aria-label="Price for Rush Order"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="price-guide-box">
+                                            <p class="mb-sm"><strong>💡 How to update prices:</strong></p>
+                                            <ol class="vendor-setup-list">
+                                                <li>Edit the prices in the table above</li>
+                                                <li>Use "Find & Replace" in your code editor</li>
+                                                <li>Search for the old price (e.g.,
+                                                    <code>data-item-price="64.99"</code>)
+                                                </li>
+                                                <li>Replace with the new price</li>
+                                                <li>Deploy to Netlify</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Page Header Editor -->
+                                <div class="admin-card">
+                                    <h2 class="admin-card__title">📝 Page Headers</h2>
+                                    <p class="admin-text mb-sm">Edit key page text content.</p>
+
+                                    <div class="flex-col-gap">
+                                        <div>
+                                            <label class="form-label" for="header-hero">Homepage Hero Title</label>
+                                            <input type="text" id="header-hero"
+                                                value="Keep Their Memory Close to Your Heart" class="form-input">
+                                        </div>
+                                        <div>
+                                            <label class="form-label" for="header-subtitle">Homepage Hero
+                                                Subtitle</label>
+                                            <textarea id="header-subtitle" rows="2"
+                                                class="form-input">Premium personalized memorial products crafted with love, designed to honor and celebrate the lives of those who meant the most.</textarea>
+                                        </div>
+                                        <div>
+                                            <label class="form-label" for="header-products">Products Page Title</label>
+                                            <input type="text" id="header-products" value="Memorial Products"
+                                                class="form-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="admin-note-box">
+                                        <p class="admin-note"><strong>Note:</strong> Copy this text and use Find &
+                                            Replace in HTML files to update.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Image Upload Reference -->
+                                <div class="admin-card">
+                                    <h2 class="admin-card__title">🖼️ Product Images</h2>
+                                    <p class="admin-text">Manage product images for the store.</p>
+
+                                    <div class="image-info-box">
+                                        <p class="image-info-title"><strong>Image Location:</strong></p>
+                                        <code class="image-path-code">/assets/images/</code>
+
+                                        <p class="image-info-title mt-md"><strong>Current Product
+                                                Images:</strong></p>
+                                        <ul class="image-list">
+                                            <li>memorial_blanket_*.png</li>
+                                            <li>memorial_tshirt_*.png</li>
+                                            <li>memorial_mug_*.png</li>
+                                            <li>memorial_candle_*.png</li>
+                                            <li>memorial_gift_set_*.png</li>
+                                        </ul>
+
+                                        <p class="image-info-title mt-md"><strong>To update
+                                                images:</strong>
+                                        </p>
+                                        <ol class="image-update-steps">
+                                            <li>Replace files in <code>/assets/images/</code></li>
+                                            <li>Use same filename OR update HTML</li>
+                                            <li>Recommended size: 800x800px</li>
+                                        </ol>
+                                    </div>
+
+                                    <a href="https://github.com/" target="_blank" rel="noopener"
+                                        class="btn btn--outline btn--mt-md">
+                                        Upload via GitHub
+                                    </a>
+                                </div>
+
+                            </div>
     </main>
 
     <footer class="footer admin-footer">

@@ -7,8 +7,34 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initScrollEffects();
   initAnimations();
+  initLazyLoading();
   // initForms() - Handled by config.js
 });
+
+// --------------------------------------------------------------------------
+// Global Error Handler
+// --------------------------------------------------------------------------
+window.onerror = function (message, source, lineno, colno, error) {
+  console.error('Global error:', { message, source, lineno, colno, error });
+  // Could send to analytics here
+  return false;
+};
+
+// --------------------------------------------------------------------------
+// Lazy Loading
+// --------------------------------------------------------------------------
+function initLazyLoading() {
+  // Native lazy loading is supported in modern browsers
+  // For images that need lazy loading, add loading="lazy" attribute
+  const images = document.querySelectorAll('img:not([loading])');
+
+  images.forEach((img, index) => {
+    // Skip first 3 images (likely above the fold)
+    if (index > 2) {
+      img.setAttribute('loading', 'lazy');
+    }
+  });
+}
 
 // --------------------------------------------------------------------------
 // Formspree Integration (Handled by config.js - Dual Submission Logic)

@@ -557,6 +557,31 @@ p {
   font-family: var(--font-body);
 }
 
+/* Delivery Estimates */
+.delivery-estimate {
+  font-weight: 500;
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}
+
+.delivery-estimate--fast {
+  color: #166534;
+}
+
+
+.delivery-estimate--standard {
+  color: #0284c7;
+}
+
+.product-disclaimer {
+  font-size: 0.8em;
+  color: #dc2626;
+  /* Red for warning */
+  margin-top: 2px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
 /* --------------------------------------------------------------------------
    Product Grid
    -------------------------------------------------------------------------- */
@@ -1214,21 +1239,29 @@ p {
 
   .nav__list {
     display: none;
+    visibility: hidden;
+    opacity: 0;
     position: fixed;
-    top: var(--header-height);
+    top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: var(--space-xl);
-    background: var(--color-cream);
-    z-index: 999;
+    background-color: #FAF8F5;
+    z-index: 9998;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding-top: var(--header-height);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   }
 
   .nav__list.active {
-    display: flex;
+    display: flex !important;
+    visibility: visible;
+    opacity: 1;
   }
 
   .nav__link {
@@ -1237,6 +1270,7 @@ p {
 
   .nav__toggle {
     display: flex;
+    z-index: 10000;
   }
 
   .hero__content {

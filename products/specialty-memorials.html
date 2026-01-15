@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/images/logo-red.png">
+    <meta name="description"
+        content="Custom cap panels, personalized urns, and specialty memorial products. Contact us for custom orders with fast overnight fulfillment.">
+    <title>Specialty Memorial Products | Infinite Bond Memorials</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://app.snipcart.com">
+    <link rel="preconnect" href="https://cdn.snipcart.com">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .page-hero {
+            padding: calc(var(--header-height) + var(--space-4xl)) 0 var(--space-3xl);
+            background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-cream-dark) 100%);
+            text-align: center;
+        }
+
+        .specialty-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-3xl);
+        }
+
+        .specialty-card {
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .specialty-card__icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space-lg);
+            color: var(--color-primary);
+        }
+
+        .specialty-card__title {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-md);
+        }
+
+        .specialty-card__description {
+            color: var(--color-gray);
+            margin-bottom: var(--space-lg);
+        }
+
+        .specialty-card__features {
+            text-align: left;
+            margin-bottom: var(--space-xl);
+        }
+
+        .specialty-card__features li {
+            padding: var(--space-sm) 0;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .specialty-card__features svg {
+            color: var(--color-success);
+            flex-shrink: 0;
+        }
+
+        .inquiry-form {
+            background: var(--color-charcoal);
+            border-radius: var(--radius-xl);
+            padding: var(--space-3xl);
+            color: var(--color-white);
+        }
+
+        .inquiry-form h2 {
+            color: var(--color-white);
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .inquiry-form .form-label {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .inquiry-form .form-input,
+        .inquiry-form .form-textarea {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--color-white);
+        }
+
+        .inquiry-form .form-input::placeholder,
+        .inquiry-form .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .specialty-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="/" class="logo">
+                <img src="../assets/images/logo-red.png" alt="Infinite Bond Logo" class="logo__icon">
+                <span class="logo__text">Infinite Bond <span>Memorials</span></span>
+            </a>
+
+            <nav class="nav">
+                <ul class="nav__list" id="navList">
+                    <li><a href="/" class="nav__link">Home</a></li>
+                    <li><a href="/products/" class="nav__link">Products</a></li>
+                    <li><a href="/products/gift-sets.html" class="nav__link">Gift Sets</a></li>
+                    <li><a href="/for-funeral-homes/" class="nav__link">For Funeral Homes</a></li>
+                    <li><a href="/about.html" class="nav__link">About</a></li>
+                    <li><a href="/contact.html" class="nav__link">Contact</a></li>
+                </ul>
+                <a href="/personalize/" class="btn btn--primary">Personalize Now</a>
+
+                <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="page-hero__title">Specialty Memorial Products</h1>
+                <p>Custom cap panels, personalized urns, and premium keepsake boxes</p>
+                <p class="memorial-highlight">
+                    ✓ Same-Day Production Available &nbsp;|&nbsp; ✓ Overnight Delivery
+                </p>
+            </div>
+        </section>
+
+        <!-- Specialty Products -->
+        <section class="section">
+            <div class="container">
+                <div class="specialty-grid">
+                    <!-- Cap Panels -->
+                    <div class="specialty-card">
+                        <svg class="specialty-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="3" y1="9" x2="21" y2="9"></line>
+                            <line x1="9" y1="21" x2="9" y2="9"></line>
+                        </svg>
+                        <h3 class="specialty-card__title">Custom Cap Panels</h3>
+                        <p class="specialty-card__description">
+                            Transform any casket into a beautiful tribute with custom-printed cap panels featuring
+                            photos, artwork, and personalized messages.
+                        </p>
+                        <ul class="specialty-card__features">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Same-day production (order by 2PM CST)
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                High-gloss satin fabric
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Full-couch and half-couch options
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Thousands of design templates
+                            </li>
+                        </ul>
+                        <p class="card__price specialty-card__price">
+                            Starting at $89.99</p>
+                        <a href="#inquiry-form" class="btn btn--primary btn--large w-full">Request Quote</a>
+                    </div>
+
+                    <!-- Photo Urns -->
+                    <div class="specialty-card">
+                        <svg class="specialty-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path
+                                d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
+                            </path>
+                            <circle cx="12" cy="12" r="4"></circle>
+                        </svg>
+                        <h3 class="specialty-card__title">Personalized Photo Urns</h3>
+                        <p class="specialty-card__description">
+                            Beautiful cremation urns with 360° personalized graphics, up to five custom photos, and
+                            unlimited design options.
+                        </p>
+                        <ul class="specialty-card__features">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Handcrafted in the USA
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                360° photo personalization
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Adult, infant, and pet sizes
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                5-day production + expedited shipping
+                            </li>
+                        </ul>
+                        <p class="card__price specialty-card__price">
+                            Starting at $149.99</p>
+                        <a href="#inquiry-form" class="btn btn--primary btn--large w-full">Request Quote</a>
+                    </div>
+                </div>
+
+                <!-- Inquiry Form -->
+                <div class="inquiry-form" id="inquiry-form">
+                    <h2>Request a Custom Quote</h2>
+                    <form id="specialty-inquiry-form" name="specialty-inquiry" method="POST" data-netlify="true"
+                        data-netlify-honeypot="bot-field" action="/contact.html?success=true">
+                        <p class="hidden">
+                            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                        </p>
+
+                        <div class="form-row specialty-form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="name">Full Name *</label>
+                                <input type="text" class="form-input" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email *</label>
+                                <input type="email" class="form-input" id="email" name="email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row specialty-form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="phone">Phone</label>
+                                <input type="tel" class="form-input" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="product-type">Product Type *</label>
+                                <select class="form-input" id="product-type" name="product-type" required>
+                                    <option value="">Select a product</option>
+                                    <option value="cap-panel">Custom Cap Panel</option>
+                                    <option value="photo-urn">Personalized Photo Urn</option>
+                                    <option value="keepsake-box">Keepsake Box</option>
+                                    <option value="other">Other Specialty Item</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="details">Tell us about your order *</label>
+                            <textarea class="form-textarea" id="details" name="details"
+                                placeholder="Please describe your needs, including quantity, timeline, and any special requirements..."
+                                required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="timeline">When do you need this?</label>
+                            <select class="form-input" id="timeline" name="timeline">
+                                <option value="rush">Rush (1-2 days)</option>
+                                <option value="standard" selected>Standard (3-5 days)</option>
+                                <option value="flexible">Flexible (1-2 weeks)</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn--primary btn--large w-full">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="../" class="logo">
+                        <img src="../assets/images/logo-red.png" alt="Infinite Bond Logo" class="logo__icon">
+                        <span class="logo__text">Infinite Bond <span>Memorials</span></span>
+                    </a>
+                    <p>Creating meaningful memorial products that help families honor and remember their loved ones.</p>
+                </div>
+
+                <div class="footer__column">
+                    <h5>Products</h5>
+                    <ul>
+                        <li><a href="index.html">All Products</a></li>
+                        <li><a href="pet-memorials.html">Pet Memorials</a></li>
+                        <li><a href="gift-sets.html">Gift Sets</a></li>
+                        <li><a href="specialty-memorials.html">Specialty Items</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__column">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../for-funeral-homes/">For Funeral Homes</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="../policies.html">Store Policies</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__column">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="../track-order.html">Track Order</a></li>
+                        <li><a href="../policies.html#shipping">Shipping Info</a></li>
+                        <li><a href="../policies.html#returns">Returns</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2026 Infinite Bond. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+
+</html>
