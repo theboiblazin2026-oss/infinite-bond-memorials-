@@ -1039,6 +1039,10 @@
 
                 // Build Custom Fields
                 const customFields = [];
+                // CRITICAL: Must include Photo field (even if empty) to satisfy Snipcart validation if it's defined in the product
+                if (currentProductData.custom1Name && currentProductData.custom1Type === 'file') {
+                    customFields.push({ name: currentProductData.custom1Name, value: "" }); // Empty value prompts upload in cart
+                }
                 if (currentProductData.custom2Name && custom2Value) {
                     customFields.push({ name: currentProductData.custom2Name, value: custom2Value });
                 }
@@ -1067,6 +1071,8 @@
 
             } catch (e) {
                 console.error(e);
+                // Show actual error to user for debugging
+                alert("Cart Error: " + (e.message || e));
                 addToCartBtn.textContent = "Error";
             }
         }
