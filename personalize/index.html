@@ -1026,65 +1026,79 @@
             try {
                 // Button Visual Feedback
                 const originalText = addToCartBtn.textContent;
-                addToCartBtn.textContent = "Adding...";
+                addToCartBtn.textContent = "Processing...";
                 addToCartBtn.disabled = true;
 
-                // Ensure Snipcart is ready
-                if (!window.Snipcart) {
-                    addToCartBtn.textContent = "Connecting...";
-                    console.log("Waiting for Snipcart...");
-                    if (window.LoadSnipcart) window.LoadSnipcart();
+                // Native Snipcart Integration (Reliable Fallback)
+                // We create a hidden button with the exact configuration and click it
+                // This lets Snipcart handle validation, session loading, and file upload prompts natively
 
-                    // Poll for up to 5 seconds (10 checks)
-                    let attempts = 0;
-                    while (!window.Snipcart && attempts < 20) {
-                        await new Promise(r => setTimeout(r, 250));
-                        attempts++;
+                const tempBtn = document.createElement('button');
+                tempBtn.className = 'snipcart-add-item';
+                tempBtn.hidden = true;
+
+                // Core Product Data
+                tempBtn.dataset.itemId = currentProductData.id;
+                tempBtn.dataset.itemName = currentProductData.name;
+                tempBtn.dataset.itemPrice = currentProductData.price;
+                tempBtn.dataset.itemUrl = currentProductData.url;
+                tempBtn.dataset.itemDescription = currentProductData.description;
+                tempBtn.dataset.itemImage = currentProductData.image;
+                tempBtn.dataset.itemQuantity = 1;
+
+                // Custom Fields Configuration
+                // 1. Photo (Custom 1) - If file type, we explicitly DON'T set a value so Snipcart prompts for upload
+                if (currentProductData.custom1Name) {
+                    tempBtn.dataset.itemCustom1Name = currentProductData.custom1Name;
+                    tempBtn.dataset.itemCustom1Type = currentProductData.custom1Type || 'text';
+                    // No value = Prompt User in Cart
+                }
+
+                // 2. Variant/Size (Custom 2)
+                if (currentProductData.custom2Name) {
+                    tempBtn.dataset.itemCustom2Name = currentProductData.custom2Name;
+                    // Copy options string for validation
+                    tempBtn.dataset.itemCustom2Options = currentProductData.custom2Options;
+                    if (custom2Value) {
+                        tempBtn.dataset.itemCustom2Value = custom2Value;
+                    }
+                }
+
+                // 3. Text/Personalization (Custom 3)
+                if (currentProductData.custom3Name) {
+                    tempBtn.dataset.itemCustom3Name = currentProductData.custom3Name;
+                    tempBtn.dataset.itemCustom3Type = currentProductData.custom3Type || 'text';
+                    if (custom3Value) {
+                        tempBtn.dataset.itemCustom3Value = custom3Value;
+                    }
+                }
+
+                // Add to DOM, Click, Remove
+                document.body.appendChild(tempBtn);
+
+                // Trigger Snipcart
+                tempBtn.click();
+
+                // Wait for Snipcart to intercept (short delay)
+                setTimeout(() => {
+                    if (document.body.contains(tempBtn)) {
+                        document.body.removeChild(tempBtn);
                     }
 
-                    if (!window.Snipcart) throw new Error("Unable to load Secure Cart. Please check your connection or disable ad blockers.");
+                    // Show Success
+                    closePersonalizationModal();
+                    showSuccessModal();
 
-                    // Restore "Adding..." text
-                    addToCartBtn.textContent = "Adding...";
-                }
-
-                // Build Custom Fields
-                const customFields = [];
-                // CRITICAL: Must include Photo field (even if empty) to satisfy Snipcart validation if it's defined in the product
-                if (currentProductData.custom1Name && currentProductData.custom1Type === 'file') {
-                    customFields.push({ name: currentProductData.custom1Name, value: "" }); // Empty value prompts upload in cart
-                }
-                if (currentProductData.custom2Name && custom2Value) {
-                    customFields.push({ name: currentProductData.custom2Name, value: custom2Value });
-                }
-                if (currentProductData.custom3Name && custom3Value) {
-                    customFields.push({ name: currentProductData.custom3Name, value: custom3Value });
-                }
-
-                // Add to Cart via API
-                await Snipcart.api.cart.items.add({
-                    id: currentProductData.id,
-                    name: currentProductData.name,
-                    price: currentProductData.price,
-                    url: currentProductData.url,
-                    description: currentProductData.description,
-                    image: currentProductData.image,
-                    quantity: 1,
-                    customFields: customFields
-                });
-
-                // Success
-                closePersonalizationModal();
-                showSuccessModal();
-
-                addToCartBtn.textContent = originalText;
-                addToCartBtn.disabled = false;
+                    // Reset Button
+                    addToCartBtn.textContent = originalText;
+                    addToCartBtn.disabled = false;
+                }, 500);
 
             } catch (e) {
                 console.error(e);
-                // Show actual error to user for debugging
                 alert("Cart Error: " + (e.message || e));
                 addToCartBtn.textContent = "Error";
+                addToCartBtn.disabled = false;
             }
         }
     </script>
