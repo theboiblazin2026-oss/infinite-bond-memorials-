@@ -1400,7 +1400,7 @@ p {
   .nav>.btn,
   .nav .btn--primary,
   .header .btn--primary {
-    display: none !important;
+    display: flex !important;
   }
 }
 
@@ -1448,10 +1448,13 @@ p {
     align-items: center;
     gap: var(--space-xs);
   }
+
 }
 
 .nav__link--cart {
-  display: none !important;
+  display: flex !important;
+  align-items: center;
+  gap: var(--space-xs);
 }
 
 
