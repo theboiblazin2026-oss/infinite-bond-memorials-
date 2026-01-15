@@ -770,7 +770,7 @@
             <p class="success-modal__message">Your personalized item has been added to your cart. What would you like to
                 do next?</p>
             <div class="success-modal__actions">
-                <button class="btn btn--primary" id="goToCartBtn" onclick="goToCart()">
+                <button class="btn btn--primary snipcart-checkout" id="goToCartBtn" onclick="goToCart()">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="9" cy="21" r="1"></circle>
                         <circle cx="20" cy="21" r="1"></circle>
@@ -812,16 +812,10 @@
 
         function goToCart() {
             closeSuccessModal();
-            // Try API first, then hash fallback
-            if (window.Snipcart) {
-                try {
-                    Snipcart.api.theme.cart.open();
-                } catch (e) {
-                    window.location.hash = "#/cart";
-                }
-            } else {
+            // Redundant backup: Force hash if class click didn't work
+            setTimeout(() => {
                 window.location.hash = "#/cart";
-            }
+            }, 100);
         }
 
         // Close success modal when clicking outside
