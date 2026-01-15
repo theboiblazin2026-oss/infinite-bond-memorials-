@@ -1,7 +1,7 @@
 const CONFIG = {
     // Snipcart Public API Key
     // REPLACE THIS with your live key from Snipcart Dashboard -> Account -> API Keys
-    SNIPCART_API_KEY: "YWI2YmJiMjgtZWE5Yi00MTkwLWI3NWMtNWQ3Y2M3MDY1NjUxNjM5MDM5MjkyMDY0MTMxMDYw",
+    SNIPCART_API_KEY: "ab6bbb28-ea9b-4190-b75c-5d7cc7065651",
 
     // Live Domain URL (No trailing slash)
     // Update this after you purchase your custom domain (e.g., "https://infinitebondmemorials.com")
