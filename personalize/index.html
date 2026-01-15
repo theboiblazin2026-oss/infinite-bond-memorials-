@@ -812,9 +812,15 @@
 
         function goToCart() {
             closeSuccessModal();
-            // Use Snipcart API to open the cart
+            // Try API first, then hash fallback
             if (window.Snipcart) {
-                Snipcart.api.theme.cart.open();
+                try {
+                    Snipcart.api.theme.cart.open();
+                } catch (e) {
+                    window.location.hash = "#/cart";
+                }
+            } else {
+                window.location.hash = "#/cart";
             }
         }
 
@@ -857,6 +863,11 @@
         });
 
         function openPersonalizationModal(element) {
+            // Pre-load Snipcart when user starts interacting
+            if (window.LoadSnipcart) {
+                window.LoadSnipcart();
+            }
+
             // 1. Get Product Data from the clicked button attributes
             currentProductData = {
                 id: element.dataset.itemId,
