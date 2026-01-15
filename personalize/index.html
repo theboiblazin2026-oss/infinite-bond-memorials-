@@ -1029,137 +1029,41 @@
                 addToCartBtn.textContent = "Adding...";
                 addToCartBtn.disabled = true;
 
-                // Construct Item Object
-                const newItem = {
+                // Ensure Snipcart is ready
+                if (!window.Snipcart) {
+                    console.log("Waiting for Snipcart...");
+                    if (window.LoadSnipcart) window.LoadSnipcart();
+                    await new Promise(r => setTimeout(r, 1500));
+                    if (!window.Snipcart) throw new Error("Cart is still loading. Please check your connection.");
+                }
+
+                // Build Custom Fields
+                const customFields = [];
+                if (currentProductData.custom2Name && custom2Value) {
+                    customFields.push({ name: currentProductData.custom2Name, value: custom2Value });
+                }
+                if (currentProductData.custom3Name && custom3Value) {
+                    customFields.push({ name: currentProductData.custom3Name, value: custom3Value });
+                }
+
+                // Add to Cart via API
+                await Snipcart.api.cart.items.add({
                     id: currentProductData.id,
                     name: currentProductData.name,
                     price: currentProductData.price,
                     url: currentProductData.url,
                     description: currentProductData.description,
                     image: currentProductData.image,
-                    // Map custom fields
-                    customFields: []
-                };
+                    quantity: 1,
+                    customFields: customFields
+                });
 
-                // Add Custom Fields dynamically
-                if (currentProductData.custom1Name) {
-                    // Note: Snipcart API handles file uploads differently if not using the standard button.
-                    // IMPORTANT: For file uploads to work natively with the API in v3, it is complex.
-                    // STRATEGY SHIFT: simpler method is to UPDATE the hidden button attributes and CLICK IT.
-                    // This ensures Snipcart handles the file upload dialog correctly.
-                }
+                // Success
+                closePersonalizationModal();
+                showSuccessModal();
 
-                // REVISED STRATEGY: Update a hidden button and click it.
-                // It is much safer for file uploads.
-
-                // Create a temporary hidden button or use a designated one
-                let tempBtn = document.createElement('button');
-                tempBtn.className = 'snipcart-add-item';
-                tempBtn.style.display = 'none';
-
-                // Set Base Attributes
-                tempBtn.dataset.itemId = currentProductData.id;
-                tempBtn.dataset.itemPrice = currentProductData.price;
-                tempBtn.dataset.itemUrl = currentProductData.url;
-                tempBtn.dataset.itemDescription = currentProductData.description;
-                tempBtn.dataset.itemImage = currentProductData.image;
-                tempBtn.dataset.itemName = currentProductData.name;
-
-                // Set Custom 1 (Photo)
-                if (currentProductData.custom1Name) {
-                    tempBtn.dataset.itemCustom1Name = currentProductData.custom1Name;
-                    tempBtn.dataset.itemCustom1Type = 'file';
-                    // We cannot programmatically set the file value for Snipcart to auto-upload from a hidden input easily.
-                    // HOWEVER, if we simulate the click, Snipcart might open its OWN modal or we need to pass the file.
-                    // Snipcart v3 File Uploads via API usually require the file to be uploaded elsewhere first and URL passed.
-
-                    // FALLBACK: The user already "uploaded" in OUR modal. 
-                    // Challenge: How to pass this file to Snipcart?
-                    // Solution: Snipcart's default behavior for 'file' type is to show an upload button in the cart.
-                    // BUT we want to enforce it.
-
-                    // Let's rely on Snipcart's `data-item-custom1-type="file"`. 
-                    // When we add the item, Snipcart will see this required field.
-                    // If we add it via button click, Snipcart will open the cart and MIGHT ask for the file there if not provided?
-                    // actually, Snipcart v3 allows adding items with file inputs if the input is adjacent or associated.
-                }
-
-                // Let's try the Button Click Simulation with IDs
-                // Refined Approach: 
-                // We will use the attributes on the triggering button (which are correct) 
-                // BUT we need to inject the *selected values*.
-
-                // Actually, for file uploads, standard Snipcart requires the user to upload locally in the cart OR we use the API.
-                // Since we built a custom UI, we want to look like we did it.
-                // Simplest Path: Just let Snipcart handle the add, but PRE-FILL the text/variants.
-
-                // 1. Text Field
-                tempBtn.dataset.itemCustom3Name = currentProductData.custom3Name;
-                tempBtn.dataset.itemCustom3Type = currentProductData.custom3Type;
-                tempBtn.dataset.itemCustom3Value = custom3Value;
-
-                // 2. Variant Field
-                if (currentProductData.custom2Name) {
-                    tempBtn.dataset.itemCustom2Name = currentProductData.custom2Name;
-                    tempBtn.dataset.itemCustom2Options = currentProductData.custom2Options;
-                    tempBtn.dataset.itemCustom2Value = custom2Value;
-                }
-
-                document.body.appendChild(tempBtn);
-
-                // For the File: 
-                // Since we can't easily pass the file object to Snipcart's button click handler without their specific file input structure...
-                // We will let Snipcart PROMPT for the file in the cart, OR we assume the user will upload it there.
-                // WAIT -> The user request was "there is no place to customize".
-                // Our modal LOOKS like the place. if we make them upload AGAIN in the cart, they will be mad.
-
-                // ALTERNATIVE: Use the API to add the item.
-                // Snipcart.api.cart.items.add({ ... })
-                // File handling in API:
-                // item.customFields.push({ name: 'Photo', type: 'file', value: ??? }) 
-                // Value needs to be a URL usually? No, for local upload it's tricky.
-
-                // Let's look at the "Upload in Cart" step in the original HTML instruction:
-                // "Click 'Add' to upload your photo directly in the cart"
-                // The user hated that.
-
-                // Hacky Solution that works:
-                // We can't easily bridge the local file input to Snipcart without a backend upload first.
-                // SO: We will change the Flow.
-                // 1. User customizes text and variant in Modal.
-                // 2. User Clicks "Add to Cart".
-                // 3. We add the item (with text/variant pre-filled).
-                // 4. We SHOW A TOAST/MESSAGE saying "Please upload your photo in the cart to finish".
-                // OR we just let the Snipcart "Upload" button be the primary call to action in the cart.
-
-                // BETTER: We keep the file input in our modal for "Preview" purposes so they feel good.
-                // Then when adding to cart, we accept that they might have to click upload again, OR...
-                // Does Snipcart have a JS method to pass a file object? Not clearly documented for v3 client-side only.
-
-                // Let's stick to: Pre-configure the item with text/variants.
-                // Add the item.
-                // Snipcart opens.
-                // The "Photo" field will be blank (required). The user sees "Upload" button there.
-                // It's a slight double-step but allows text/variant customization upfront.
-
-                // However, to make it smoother, we can hide the "Upload" section in our modal if we can't pass it, 
-                // BUT the user specifically wants to "customize". 
-                // I will keep the upload in the modal as a "Preview" feature (mockup generator style) 
-                // and explain "Upload High-Res File in Cart".
-
-                // TRIGGER CLICK
-                tempBtn.click();
-
-                // Clean up and show success modal
-                setTimeout(() => {
-                    document.body.removeChild(tempBtn);
-                    closePersonalizationModal();
-                    addToCartBtn.textContent = originalText;
-                    addToCartBtn.disabled = false;
-
-                    // Show success modal with cart/continue shopping options
-                    showSuccessModal();
-                }, 500);
+                addToCartBtn.textContent = originalText;
+                addToCartBtn.disabled = false;
 
             } catch (e) {
                 console.error(e);
