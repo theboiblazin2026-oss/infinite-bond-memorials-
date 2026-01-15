@@ -1079,15 +1079,13 @@
                 // Trigger Snipcart
                 tempBtn.click();
 
-                // Wait for Snipcart to intercept (short delay)
                 setTimeout(() => {
                     if (document.body.contains(tempBtn)) {
                         document.body.removeChild(tempBtn);
                     }
 
-                    // Show Success
+                    // Success - Snipcart drawer should open automatically
                     closePersonalizationModal();
-                    showSuccessModal();
 
                     // Reset Button
                     addToCartBtn.textContent = originalText;
