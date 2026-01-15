@@ -65,9 +65,28 @@
           <li><a href="/for-funeral-homes/" class="nav__link">For Funeral Homes</a></li>
           <li><a href="/about.html" class="nav__link">About</a></li>
           <li><a href="/contact.html" class="nav__link">Contact</a></li>
+          <!-- Cart button for mobile -->
+          <li class="snipcart-checkout nav__link nav__link--cart">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="snipcart-items-count">0</span>
+          </li>
         </ul>
 
         <a href="/personalize/" class="btn btn--primary">Personalize Now</a>
+
+        <!-- Desktop Cart -->
+        <button class="snipcart-checkout btn-cart" aria-label="Cart">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="snipcart-items-count">0</span>
+        </button>
 
         <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
           <span></span>
@@ -75,6 +94,7 @@
           <span></span>
         </button>
       </nav>
+
     </div>
   </header>
 
