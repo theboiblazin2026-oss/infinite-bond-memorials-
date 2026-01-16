@@ -1839,3 +1839,33 @@ p {
   object-fit: cover;
   border-radius: 8px;
 }
+
+/* --------------------------------------------------------------------------
+   Snipcart Cart z-index Override
+   Ensures cart drawer appears above the fixed header
+   -------------------------------------------------------------------------- */
+#snipcart,
+.snipcart-modal__container,
+.snipcart-cart__content,
+.snipcart-modal,
+.snipcart-sidecart,
+.snipcart-layout {
+  z-index: 99999 !important;
+}
+
+/* Ensure the Snipcart overlay is on top */
+#snipcart .snipcart-layout {
+  position: fixed !important;
+  z-index: 99999 !important;
+}
+
+/* Fix for cart content being overlapped by header */
+.snipcart-cart-header {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure the cart item list has proper spacing from the top */
+.snipcart-item-list {
+  padding-top: 0;
+}
